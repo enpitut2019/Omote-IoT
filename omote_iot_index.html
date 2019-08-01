@@ -185,37 +185,35 @@ const contractadd="0xf800df370722d6d57cd888168f74939938663eeb";
 
 function getUserwallet(){
   const myContract=web3.eth.contract(abi).at(contractadd);
-  myContract.get_wallet.call({from:account},(error, y)=>{ $('.balance').html('<p>あなたのデポジットは'+y+'weiです')})
+  myContract.get_wallet.call({from:account},(error, result)=>{ $('.balance').html('<p>あなたのデポジットは'+result+'weiです')})
 }
 
+//支払い取得
 /*function getPayment(){
   const myContract=web3.eth.contract(abi).at(contractadd);
-  myContract.get_wallet.sendTransaction({from:useraddress},(error, y)=>{ $('.balance').html('<p>今月の支払い料金は'+y+'円です')})
+  myContract.get_wallet.call({from:useraddress},(error, result)=>{ $('.balance').html('<p>今月の支払い料金は'+result+'円です')})
 }*/
 
-function setdeposit(){
-  val input=$('.inputd').val();
-  const myContract=web3.eth.contract(abi).at(contractadd);
-  myContract.set.sendTransaction(Num(input),{from:account},(error, y)=>{console.log(y)})
-}
 
 //水の量セット
 function setamount(){
-  val input=$('.input').val();
+  var input=document.forms[0].elements[0].value;
   const myContract=web3.eth.contract(abi).at(contractadd);
-  myContract.set.sendTransaction(Num(input),{from:account},(error, y)=>{console.log(y)})
+  myContract.set.sendTransaction(Num(input),{from:account},(error, result)=>{console.log(result)})
 }
 
 //使用した水の量を受け取る
-function getUseamount(){
+/*function getUseamount(){
   const myContract=web3.eth.contract(abi).at(contractadd);
-  myContract.get_amount_of_water.call({from:account},(error, y)=>{ $('.use_amount').html('<p>あなたの使用量は'+y+'です')})
-}
+  myContract.get_amount_of_water.call({from:account},(error, result)=>{ $('.use_amount').html('<p>あなたの使用量は'+result+'です')})
+}*/
 
 //depositする
 function Deposit(){
+  var input=document.forms[1].elements[0].value;
+  alert(input);
   const myContract=web3.eth.contract(abi).at(contractadd);
-  myContract.deposit.sendTransaction({from:account,to:contractadd,value:web3.toWei(0.01, "ether")},(error, y)=>{ $('.button').text('デポジット完了')})
+  myContract.deposit.sendTransaction({from:account,to:contractadd,value:web3.toWei(input, "ether")},(error, result)=>{ $('.button').text('デポジット完了')})
 }
 
 </script>
@@ -227,21 +225,12 @@ function Deposit(){
 <div class="main">
   <script>
   getUserwallet();
+  //getUseamount();
   </script>
   <div id="networkid"></div>
   <div id="accounts"></div>
   <div id="txhash"></div>
 <p><b>機能
-<p>残高表示
-<p>支払い金額
-<p>使用量表示
-<p>デポジットボタン
-<br>
-<button onclick="Deposit()">デポジット</button>
-<div class="button"></div>
-<br>
-<div class="water"></div>
-<button onclick="getUseamount()">水の量</button>
 <br>
 <p>使用量入力
 <form>
@@ -252,7 +241,8 @@ function Deposit(){
 <p>金額入力
 <form>
   <input type="text" class="inputd">
-  <input type='submit' value='送信'>
+  <input type='submit' value='送信' onclick="Deposit()">
+  <div class="button"></div>
 </form>
 <div class="use_amount"></div>
 <br>
