@@ -32,7 +32,7 @@ contract Water_supply{
     }
 
     //従量料金の計算（つくば市）
-    function calc_commodity_charge(uint _amount_of_water, uint _diameter) public returns (uint){
+    function calc_commodity_charge(uint _amount_of_water) public returns (uint){
         if(_diameter <= 2){
 
             if(_amount_of_water <= 10){
@@ -58,8 +58,8 @@ contract Water_supply{
     }
 
     //支払い料金の計算（つくば市）
-    function clac_charge(uint _amount_of_water, uint _diameter) public returns(uint) {
-        return basic_rate[_diameter] + calc_commodity_charge(_amount_of_water, _diameter) * _amount_of_water;
+    function clac_charge(uint _amount_of_water) public returns(uint) {
+        return basic_rate[member[msg.sender].diameter] + calc_commodity_charge(_amount_of_water,) * _amount_of_water;
     }
 }
 
