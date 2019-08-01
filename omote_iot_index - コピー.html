@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>水道管理アプリ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<link rel="stylesheet" href="./main.css">
+<script src="./main.js">
+<script type="text/javascript">
+<!--
+var useraddress;
+web3.eth.getAccounts((error, result) => {
+          $('#accounts').text('Your accounts: '+result)
+          useraddress = result[0]
+});
+
+const abi=
+const contractadd=
+
+function getUserwallet(){
+  const myContract=web3.eth.contract(abi).at(contractadd);
+  myContract.get_wallet.sendTransaction({from:useraddress},(error, y)=>{ $('.balance').html('<p>あなたのデポジットは'+y+'円です')})
+}
+
+/*function getPayment(){
+  const myContract=web3.eth.contract(abi).at(contractadd);
+  myContract.get_wallet.sendTransaction({from:useraddress},(error, y)=>{ $('.balance').html('<p>今月の支払い料金は'+y+'円です')})
+}*/
+
+//使用した水の量を受け取る
+function getUseamount(){
+  const myContract=web3.eth.contract(abi).at(contractadd);
+  myContract.get_wallet.sendTransaction({from:useraddress},(error, y)=>{ $('.balance').html('<p>あなたの使用量は'+y+'です')})
+}
+
+//depositする
+function Deposit(){
+  const myContract=web3.eth.contract(abi).at(contractadd);
+  myContract.deposit.sendTransaction({from:useraddress to:contractadd value:web3.toWei(0.01, "ether")},(error, y)=>{ $('.button').text('デポジット完了')})
+}
+</script>
+</head>
+<body>
+<header class="head">
+  <h1><b>水道自動決済アプリケーション</h1>
+</header>
+<div class="main">
+<p>機能
+<p><b>残高表示
+<p><b>支払い金額
+<p><b>使用量表示
+<p><b>デポジットボタン
+<br>
+<div class="use_amount"></div>
+<br>
+<div class="balance"></div>
+<button class="button" onclick="Deposit()">デポジット</button>
+</div>
+<footer class="footer">omete_IoT</footer>
+</body>
+</html>
