@@ -25,10 +25,11 @@ contract Water_supply {
     }
     
     //料金の支払い
-    function payment(uint _charge) public {
-        if(member[msg.sender].wallet < _charge) revert();
-        member[msg.sender].wallet -= _charge;
-        collected_money += _charge;
+    function payment() public {
+        uint charge = calc_charge();
+        if(member[msg.sender].wallet < charge) revert();
+        member[msg.sender].wallet -= charge;
+        collected_money += charge;
     }
 
     //従量料金の計算（つくば市）
@@ -58,7 +59,12 @@ contract Water_supply {
     }
 
     //支払い料金の計算（つくば市）
-    function clac_charge(uint _amount_of_water) public view returns(uint) {
-        return basic_rate[member[msg.sender].diameter] + calc_commodity_charge(_amount_of_water) * _amount_of_water;
+    function calc_charge() public view returns(uint) {
+        return basic_rate[member[msg.sender].diameter] + calc_commodity_charge(member[msg.sender].amount_of_water) * member[msg.sender].amount_of_water;
+    }
+    
+    function set(uint _amount_of_water) public {
+        member[msg.sender].amount_of_water = _amount_of_water;
+        member[msg.sender].diameter = 1;
     }
 }
