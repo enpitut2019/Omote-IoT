@@ -1,11 +1,11 @@
 pragma solidity 0.5.10;
 
-contract Water_supply{
+contract Water_supply {
 
     address public owner;
     uint public collected_money;//集金の総額
     mapping (address => MemberStatus) public member;
-    uint[] public basic_rate = [1296,1620,2700,3510,7560,16200,42120,93960,234900,446040]
+    uint[] public basic_rate = [1296,1620,2700,3510,7560,16200,42120,93960,234900,446040];
     
     struct MemberStatus {
         uint amount_of_water;//当月の使用量
@@ -32,8 +32,8 @@ contract Water_supply{
     }
 
     //従量料金の計算（つくば市）
-    function calc_commodity_charge(uint _amount_of_water) public returns (uint){
-        if(_diameter <= 2){
+    function calc_commodity_charge(uint _amount_of_water) public view returns (uint){
+        if(member[msg.sender].diameter <= 2){
 
             if(_amount_of_water <= 10){
                 return 0;
@@ -58,8 +58,7 @@ contract Water_supply{
     }
 
     //支払い料金の計算（つくば市）
-    function clac_charge(uint _amount_of_water) public returns(uint) {
-        return basic_rate[member[msg.sender].diameter] + calc_commodity_charge(_amount_of_water,) * _amount_of_water;
+    function clac_charge(uint _amount_of_water) public view returns(uint) {
+        return basic_rate[member[msg.sender].diameter] + calc_commodity_charge(_amount_of_water) * _amount_of_water;
     }
 }
-
