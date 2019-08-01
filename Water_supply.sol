@@ -18,6 +18,10 @@ contract Water_supply {
         return member[msg.sender].wallet;
     }
     
+    function get_amount_of_water() public view returns (uint) {
+        return member[msg.sender].amount_of_water;
+    }
+    
     //デポジット
     function deposit() public payable {
         if(msg.value <= 0) revert();
