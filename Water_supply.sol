@@ -11,4 +11,22 @@ contract Water_supply{
         uint diameter;//口径 
         uint wallet;//個人の財布
     }
+    
+    //ユーザーのデポジットされた金額を表示
+    function get_wallet() public view returns (uint) {
+        return member[msg.sender].wallet;
+    }
+    
+    //デポジット
+    function deposit() public payable {
+        if (msg.value <= 0) revert();
+        member[msg.sender].wallet += msg.value;
+    }
+    
+    //料金の支払い
+    function payment(uint _charge) public {
+        if (member[msg.sender].wallet < _charge) revert();
+        member[msg.sender].wallet -= _charge;
+        collected_money += _charge;
+    }
 }
