@@ -203,21 +203,9 @@ function getUserwallet(){
  	 }
 	);
 }
-/* $(function(){
-	setTimeout(getUserwallet(),3000);
-}); */
-//console.log(1);
-setTimeout(function(){getUserwallet();}, 3000);
-//console.log(3);
 
-//$('.balance').html('<p>あなたのデポジットは'+result+'weiです');
-
-//請求支払い金額取得
-/*function getPayment(){
-  const myContract=web3.eth.contract(abi).at(contractadd);
-  myContract.-.call({from:useraddress},(error, result)=>{ $('.balance').html('<p>今月の支払い料金は'+result+'円です')})
-}*/
-
+setTimeout(function(){getUserwallet();}, 500);
+setTimeout(function(){getUseamount();}, 500);
 
 //水の量セット
 function setamount(){
@@ -258,10 +246,6 @@ function Deposit(){
 <p>履歴更新
 <p>setの繁栄
 <p>履歴を更新する関数
-<script>
-setTimeout(getUserwallet(),5000);
-getUseamount();
-</script>
 
 <br>
 <p>使用量入力
