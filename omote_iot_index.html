@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>水道管理アプリ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<link rel="stylesheet" href="./main.css">
+<script src="./main.js"></script>
+<script src="./init.js"></script>
+<script type="text/javascript">
+
+
+//使用した水の量を受け取る
+function getUserwallet(){
+  const myContract=web3.eth.contract(abi).at(contractadd);
+	console.log(account)
+  myContract.get_wallet.call({from:account},(error, result)=> {
+	console.log(account);
+	  $('.balance').text('あなたのデポジットは'+result+'weiです')
+	console.log(result)
+ 	 }
+	);
+}
+
+//水の量セット
+function setamount(){
+  var input=document.forms[0].elements[0].value;
+  const myContract=web3.eth.contract(abi).at(contractadd);
+  myContract.set.sendTransaction(input,{from:account},(error, result)=>{getUseamount();})
+}
+//使用した水の量を受け取る
+function getUseamount(){
+  const myContract=web3.eth.contract(abi).at(contractadd);
+  myContract.get_amount_of_water.call({from:account},(error,result)=>{$('.use_amount').text('あなたの使用量は'+result+'です')});
+}
+//depositする
+function Deposit(){
+  var input=document.forms[1].elements[0].value;
+  const myContract=web3.eth.contract(abi).at(contractadd);
+  myContract.deposit.sendTransaction({from:account,to:contractadd,value:web3.toWei(input, "ether")},(error,result)=>{
+	  console.log(result);
+	  getUserwallet();
+	  console.log("a")
+	  });
+}
+
+
+
+if (typeof web3 !== 'undefined') {
+    web3 = new Web3(web3.currentProvider);
+    ethereum.enable()
+    web3.version.getNetwork((error, result) => {
+        $('#networkid').text('Network ID: '+result)
+    })
+    var account;
+    web3.eth.getAccounts((error, result) => {
+        $('#accounts').text('Your accounts: '+result)
+        account = result[0]
+    })
+} else {
+    document.write('Install <a href="https://metamask.io">METAMASK</a>')
+}
+
+setTimeout(function(){getUserwallet();}, 500);
+setTimeout(function(){getUseamount();}, 500);
+</script>
+</head>
+<body>
+<header class="head">
+  <h1><b>水道自動決済アプリケーション</h1>
+</header>
+<div class="main">
+  <div id="networkid"></div>
+  <div id="accounts"></div>
+  <div id="txhash"></div>
+
+<br>
+<p>使用量入力
+<form>
+  <input type="text" class='input'>
+  <input type='submit' value='送信' onclick="setamount()">
+</form>
+<br>
+<p>金額入力
+<form>
+  <input type="text" class="inputd">
+  <input type='submit' value='送信' onclick="Deposit()">
+  <div class="button"></div>
+</form>
+<br>
+<div class="use_amount"></div>
+<br>
+<div class="balance"></div>
+</div>
+<footer class="footer">omete_IoT</footer>
+</body>
+</html>
