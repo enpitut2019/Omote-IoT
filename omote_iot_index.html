@@ -17,10 +17,15 @@
                 var account;
                 web3.eth.getAccounts((error, result) => {
                     $('#accounts').text('Your accounts: '+result)
+<<<<<<< Updated upstream
                     account = result[0]
                     web3.eth.sendTransaction({from: account, to: account}, (error, result)=>{
                         $('#txhash').text('Tx hash: '+result)
                     })
+=======
+                    account = result[0];
+					getUserwallet();
+>>>>>>> Stashed changes
                 })
             } else {
                 document.write('Install <a href="https://metamask.io">METAMASK</a>')
@@ -230,7 +235,22 @@ function Deposit(){
   <div id="networkid"></div>
   <div id="accounts"></div>
   <div id="txhash"></div>
+<<<<<<< Updated upstream
 <p><b>機能
+=======
+<p><b>TODO
+<br>
+<p>履歴作成
+<p>履歴更新
+<p>setの繁栄
+<p>履歴を更新する関数
+<script>
+console.log(account);
+setTimeout(getUserwallet(),5000);
+getUseamount();
+</script>
+
+>>>>>>> Stashed changes
 <br>
 <p>使用量入力
 <form>
