@@ -10,7 +10,8 @@ contract Water_supply {
     uint[] public history_water;//水の量の履歴
     uint[] public history_charge;//支払の履歴
     uint public unpaid_charge;//未払いの料金
-    uint public not_pay_counter = 0; //未払いの回数
+    uint public not_pay_counter = 0;//未払いの回数
+    bool public on_working = true;//水道が動いているかどうか
 
     
     constructor() public {
@@ -117,5 +118,14 @@ contract Water_supply {
     //未払金を返す関数
     function get_unpaid_charge() public view returns(uint){
         return unpaid_charge;
+    }
+
+    //水道のon/off
+    function change_working() public {
+        if(on_working == true){
+            on_working = false;
+        }else{
+            on_working = true;
+        }
     }
 }
