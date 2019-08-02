@@ -6,6 +6,7 @@ contract Water_supply {
     uint public collected_money;//集金の総額
     mapping (address => MemberStatus) public member;
     uint[] public basic_rate = [1296,1620,2700,3510,7560,16200,42120,93960,234900,446040];
+    uint[] public history; 
     
     struct MemberStatus {
         uint amount_of_water;//当月の使用量
@@ -71,4 +72,11 @@ contract Water_supply {
         member[msg.sender].amount_of_water = _amount_of_water;
         member[msg.sender].diameter = 1;
     }
+
+    //履歴の更新
+    function set_history(uint _amount_of_water) public {
+        history.push(_amount_of_water);
+    }
+
+
 }
