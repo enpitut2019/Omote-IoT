@@ -7,11 +7,20 @@ contract Water_supply {
     uint diameter;//口径（０から９の数字で） 
     uint wallet;//財布
     uint[] public basic_rate = [1296,1620,2700,3510,7560,16200,42120,93960,234900,446040];//基本料金
-    uint[] public history_water;
-    uint[] public history_charge;
+    uint[] public history_water;//水の量の履歴
+    uint[] public history_charge;//支払の履歴
+    uint public unpaid_charge;//未払いの料金
+    uint public not_pay_counter = 0; //未払いの回数
+
     
     constructor() public {
         owner = 0x1cd248fd0CAB42123758e5141ba143894df7f7F3;
+    }
+
+    //未払いの回数が３回より多いかを判断する修飾詞
+    modifier can_pay(uint num){
+        require(num <= 2);
+        _;
     }
     
     // modifier onlyOwner(){
@@ -36,12 +45,18 @@ contract Water_supply {
     }
     
     //料金の支払い
-    function payment() public {
-        uint charge = calc_charge();
-        if(wallet < charge) revert();
-        owner.transfer(charge);
-        wallet -= charge;
+    function payment() public can_pay(not_pay_counter){
+        uint charge = calc_charge() + unpaid_charge;
+        if(wallet < charge) {
+                unpaid_charge = charge;
+                not_pay_counter += 1;
+        }else{
+            owner.transfer(charge);
+            wallet -= charge;
+            unpaid_charge = 0;
+        }
     }
+    
 
     //従量料金の計算（つくば市）
     function calc_commodity_charge(uint _amount_of_water) public view returns (uint){
@@ -97,5 +112,10 @@ contract Water_supply {
         uint[] memory arrayMemory = new uint[](array_length);
         arrayMemory = history_charge;
         return arrayMemory;
+    }
+
+    //未払金を返す関数
+    function get_unpaid_charge() public view returns(uint){
+        return unpaid_charge;
     }
 }
