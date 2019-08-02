@@ -1,4 +1,4 @@
-pragma solidity 0.5.10;
+pragma solidity ^0.5.10;
 
 contract Water_supply {
 
@@ -7,6 +7,8 @@ contract Water_supply {
     uint diameter;//口径（０から９の数字で） 
     uint wallet;//財布
     uint[] public basic_rate = [1296,1620,2700,3510,7560,16200,42120,93960,234900,446040];//基本料金
+    uint[] public history_water;
+    uint[] public history_charge;
     
     constructor() public {
         owner = 0x1cd248fd0CAB42123758e5141ba143894df7f7F3;
@@ -73,5 +75,27 @@ contract Water_supply {
     function set(uint _amount_of_water) public {
         amount_of_water = _amount_of_water;
         diameter = 1;
+    }
+
+    //履歴の更新
+    function set_history() public {
+        history_water.push(get_amount_of_water());
+        history_charge.push(calc_charge());
+    }
+    
+    //使った水の量の履歴を返す関数
+    function get_history_water() public view returns(uint[] memory){
+        uint array_length = history_water.length;
+        uint[] memory arrayMemory = new uint[](array_length);
+        arrayMemory = history_water;
+        return arrayMemory;
+    }
+
+    //料金の履歴を返す関数
+    function get_history_charge() public view returns(uint[] memory){
+        uint array_length = history_charge.length;
+        uint[] memory arrayMemory = new uint[](array_length);
+        arrayMemory = history_charge;
+        return arrayMemory;
     }
 }
