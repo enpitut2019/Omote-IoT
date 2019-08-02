@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="./main.css">
 <script src="./main.js"></script>
 <script type="text/javascript">
-<!--
             if (typeof web3 !== 'undefined') {
                 web3 = new Web3(web3.currentProvider);
                 ethereum.enable()
@@ -196,8 +195,20 @@ const contractadd="0x62dac28e22a0faaf20bfa065658777d1ccc3a94e";
 
 function getUserwallet(){
   const myContract=web3.eth.contract(abi).at(contractadd);
-  myContract.get_wallet.call({from:account},(error, result)=>{ $('.balance').html('<p>depositは'+result+'円です');})
+	console.log(account)
+  myContract.get_wallet.call({from:account},(error, result)=> {
+	console.log(account);
+	  $('.balance').text('あなたのデポジットは'+result+'weiです')
+	console.log(result)
+ 	 }
+	);
 }
+/* $(function(){
+	setTimeout(getUserwallet(),3000);
+}); */
+//console.log(1);
+setTimeout(function(){getUserwallet();}, 3000);
+//console.log(3);
 
 //$('.balance').html('<p>あなたのデポジットは'+result+'weiです');
 
@@ -225,7 +236,11 @@ function getUseamount(){
 function Deposit(){
   var input=document.forms[1].elements[0].value;
   const myContract=web3.eth.contract(abi).at(contractadd);
-  myContract.deposit.sendTransaction({from:account,to:contractadd,value:web3.toWei(input, "ether")},(error,result)=>{getUserwallet();});
+  myContract.deposit.sendTransaction({from:account,to:contractadd,value:web3.toWei(input, "ether")},(error,result)=>{
+	  console.log(result);
+	  getUserwallet();
+	  console.log("a")
+	  });
 }
 </script>
 </head>
