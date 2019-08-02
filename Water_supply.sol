@@ -1,4 +1,4 @@
-pragma solidity 0.5.10;
+pragma solidity ^0.5.1;
 
 contract Water_supply {
 
@@ -6,7 +6,8 @@ contract Water_supply {
     uint public collected_money;//集金の総額
     mapping (address => MemberStatus) public member;
     uint[] public basic_rate = [1296,1620,2700,3510,7560,16200,42120,93960,234900,446040];
-    uint[] public history; 
+    uint[] public history_water;
+    uint[] public history_charge;
     
     struct MemberStatus {
         uint amount_of_water;//当月の使用量
@@ -74,8 +75,24 @@ contract Water_supply {
     }
 
     //履歴の更新
-    function set_history(uint _amount_of_water) public {
-        history.push(_amount_of_water);
+    function set_history() public {
+        history_water.push(get_amount_of_water());
+        history_charge.push(calc_charge());
+    }
+    //使った水の量の履歴を返す関数
+    function view_history_water() public view returns(uint[] memory){
+        uint array_length = history_water.length;
+        uint[] memory arrayMemory = new uint[](array_length);
+        arrayMemory = history_water;
+        return arrayMemory;
+    }
+
+    //料金の履歴を返す関数
+    function view_history_charge() public view returns(uint[] memory){
+        uint array_length = history_charge.length;
+        uint[] memory arrayMemory = new uint[](array_length);
+        arrayMemory = history_charge;
+        return arrayMemory;
     }
 
 
