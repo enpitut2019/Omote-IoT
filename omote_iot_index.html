@@ -20,9 +20,11 @@
   <canvas id="ex_chart"></canvas>
 <br>
 <p>使用量入力
-<form>
-  <input type="text" id="amountofWater">
-  <input type='submit' value='送信' onclick="setAmountofWater()">
+<form name="form_sw">
+  <input type="text" class='input' value="0" name="counter"></input>
+  <input type='submit' value='送信' onclick="setamount()"></input>
+  <input type="button" name="bstart" value="start" onclick="start_count()"></input>
+  <input type="button" name="reset" value="reset" onclick="reset_form()"> </input>
 </form>
 <br>
 <p>金額入力
