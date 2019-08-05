@@ -55,6 +55,7 @@ contract Water_supply {
             owner.transfer(charge);
             wallet -= charge;
             unpaid_charge = 0;
+            set_history();
         }
     }
     
