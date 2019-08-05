@@ -19,16 +19,21 @@
   <div id="txhash"></div>
   <canvas id="ex_chart"></canvas>
 <br>
+<div id="unpaid"></div>
+<div id="sendUnpaid"></div>
+
+<br>
 <p>使用量入力
 <form>
-  <input type="text" id="amountofWater">
-  <input type='submit' value='送信' onclick="setAmountofWater()">
+<div id="onWorking"></div>
+  <input type="text" id="amountofWater" class="inputWater">
+  <input type='submit' value='送信' onclick="setAmountofWater()" class="inputWater">
 </form>
 <br>
 <p>金額入力
 <form>
   <input type="text" id="deposit">
-  <input type='submit' value='送信' onclick="Deposit()">
+  <input type='submit' value='送金' onclick="Deposit()">
   <div class="button"></div>
 </form>
 <br>
