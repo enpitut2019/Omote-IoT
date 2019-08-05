@@ -1,8 +1,9 @@
 pragma solidity ^0.5.10;
 
 contract Water_supply {
-
-    address payable public owner;
+    
+    address public owner;//管理者
+    address payable public sender;//送金先アドレス
     uint amount_of_water;//当月の使用量
     uint diameter;//口径（０から９の数字で） 
     uint wallet;//財布
@@ -15,13 +16,8 @@ contract Water_supply {
 
     
     constructor() public {
-        owner = 0x1cd248fd0CAB42123758e5141ba143894df7f7F3;
-    }
-
-    //未払いの回数が３回より多いかを判断する修飾詞
-    modifier can_pay(uint num){
-        require(num <= 2);
-        _;
+        owner = msg.sender;
+        sender = 0x1cd248fd0CAB42123758e5141ba143894df7f7F3;
     }
     
     // modifier onlyOwner(){
@@ -46,18 +42,33 @@ contract Water_supply {
     }
     
     //料金の支払い
-    function payment() public can_pay(not_pay_counter){
+    function payment() public {
         uint charge = calc_charge() + unpaid_charge;
         if(wallet < charge) {
                 unpaid_charge = charge;
                 not_pay_counter += 1;
+                if(not_pay_counter  > 3) {
+                    stop_working();
+                }
+                
         }else{
-            owner.transfer(charge);
+            sender.transfer(charge);
             wallet -= charge;
             unpaid_charge = 0;
         }
     }
     
+    //未払い金の支払い
+    function pay_unpaid_charge() public {
+        if(wallet < unpaid_charge) revert();
+        sender.transfer(unpaid_charge);
+        wallet -= unpaid_charge;
+        unpaid_charge = 0;
+        not_pay_counter = 0;
+        if (!on_working) {
+            start_working();
+        }
+    }
 
     //従量料金の計算（つくば市）
     function calc_commodity_charge(uint _amount_of_water) public view returns (uint){
@@ -90,9 +101,11 @@ contract Water_supply {
 
     //当月の水量を入力    
     function set_used_water(uint _amount_of_water) public {
+        if (!on_working) revert();
         amount_of_water = _amount_of_water;
         set_history();
         diameter = 1;
+        payment();
     }
 
     //履歴の更新
@@ -116,18 +129,31 @@ contract Water_supply {
         arrayMemory = history_charge;
         return arrayMemory;
     }
+    
+    //未払金の回数を返す関数
+    function get_not_pay_counter() public view returns(uint){
+        return not_pay_counter;
+    }
 
     //未払金を返す関数
     function get_unpaid_charge() public view returns(uint){
         return unpaid_charge;
     }
-
-    //水道のon/off
-    function change_working() public {
-        if(on_working == true){
-            on_working = false;
-        }else{
-            on_working = true;
-        }
+    
+    //水道のon
+    function start_working() public {
+        if(on_working) revert();
+        on_working = true;
+    }
+    
+    //水道のoff
+    function stop_working() public {
+        if(!on_working) revert();
+        on_working = false;
+    }
+    
+    //水道が動いているかどうかを返す関数
+    function get_on_working() public view returns(bool){
+        return on_working;
     }
 }
