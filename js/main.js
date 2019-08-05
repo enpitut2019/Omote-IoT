@@ -1,4 +1,5 @@
 var account;
+var sw_status = 0;
 function init() {
 	return new Promise(resolve => {
 		if (typeof web3 !== 'undefined') {
@@ -31,6 +32,7 @@ $(function(){
 		getHistoryofWater().then(result => {
 			display_graph(result);
 		});
+		reset_form();
 	});
 });
 
@@ -136,24 +138,19 @@ function display_graph(amount) {
 
 // ストップウォッチの機能
 //ストップウォッチのリセット機能
-
-var sw_status = 0;
-
-
 function reset_form() {
-  if(sw_status == 1){
+  if(sw_status == 1)start_count();
     timer = 0;
     document.form_sw.counter.value = 0;
-  }
 }
 
 function start_count(){
   if(sw_status == 0){
-    document.form_sw.start.value = "stop"; 				
+    document.form_sw.bstart.value = "stop"; 				
 	sw_status = 1; 					
   	timerID = setInterval("count_up()",100);
   }else{
-    document.form_sw.start.value = "start";
+    document.form_sw.bstart.value = "start";
     sw_status = 0;
     clearInterval(timerID);
   }
@@ -163,4 +160,3 @@ function count_up(){
   timer++;
   document.form_sw.counter.value = timer;
 }
-​
