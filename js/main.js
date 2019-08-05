@@ -41,7 +41,7 @@ $(function(){
 //水の量セット
 function setAmountofWater(){
 	var input = $('#amountofWater').val();
-	contract.set_used_water.sendTransaction(input,{from:account},(error, result) => {
+	contract.set_used_water.sendTransaction(myEscape(input),{from:account},(error, result) => {
 	});
 }
 
@@ -57,7 +57,7 @@ function getUsedWater(){
 //depositする
 function Deposit() {
 	var input = $('#deposit').val();
-	contract.deposit.sendTransaction({from:account,to:contractAddress,value:web3.toWei(input, "wei")},(error,result) => {
+	contract.deposit.sendTransaction({from:account,to:contractAddress,value:web3.toWei(myEscape(input), "wei")},(error,result) => {
 	});
 }
 
@@ -209,6 +209,5 @@ function reset_form() {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-  };
-
+    .replace(/'/g, '&#39;')
+  }
