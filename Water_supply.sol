@@ -87,9 +87,11 @@ contract Water_supply {
     function calc_charge() public view returns(uint) {
         return basic_rate[diameter] + calc_commodity_charge(amount_of_water) * amount_of_water;
     }
-    
-    function set(uint _amount_of_water) public {
+
+    //当月の水量を入力    
+    function set_used_water(uint _amount_of_water) public {
         amount_of_water = _amount_of_water;
+        set_history();
         diameter = 1;
     }
 
