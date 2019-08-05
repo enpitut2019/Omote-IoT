@@ -180,15 +180,16 @@ function display_graph(amount) {
 // ストップウォッチの機能
 //ストップウォッチのリセット機能
 function reset_form() {
+	console.log(document.form_sw+ "A")
 	if(sw_status == 1)start_count();
 	  timer = 0;
-	  document.form_sw.counter.value = 0;
+	  document.form_sw.amountofWater.value = 0;
   }
-  
+
   function start_count(){
 	if(sw_status == 0){
-	  document.form_sw.bstart.value = "stop"; 				
-	  sw_status = 1; 					
+	  document.form_sw.bstart.value = "stop";
+	  sw_status = 1;
 		timerID = setInterval("count_up()",100);
 	}else{
 	  document.form_sw.bstart.value = "start";
@@ -196,9 +197,9 @@ function reset_form() {
 	  clearInterval(timerID);
 	}
   }
-  
+
   function count_up(){
 	timer++;
-	document.form_sw.counter.value = timer;
+	document.form_sw.amountofWater.value = timer;
   }
-  
+
