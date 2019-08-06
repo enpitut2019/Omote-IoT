@@ -1,4 +1,5 @@
 var account;
+var wallet;
 function init() {
 	return new Promise(resolve => {
 		if (typeof web3 !== 'undefined') {
@@ -72,8 +73,9 @@ function getUserwallet() {
 	contract.get_wallet.call({from:account},(error, result) => {
 		if(!error) {
 			console.log(account);
-			$('#balance').text('デポジット金額'+result+'wei')
+			$('#balance').text('残高: ' + result + ' wei')
 			console.log(result)
+			wallet = Number(result);
 		}
 	});
 }
@@ -93,8 +95,11 @@ function getNotPayCount() {
 function getUnpaidCharge() {
 	contract.get_unpaid_charge.call({from:account},(error,result) => {
 		if(!error) {
-			$("#unpaid").text("未払金額" + result + "wei");
-			$("#sendUnpaid").append('<input type="submit" value="未払金支払い" onclick="payUnpaidCharge()">');
+			$("#unpaid").text("未払金: " + result + " wei");
+			$("#sendUnpaid").append('<input type="submit" value="未払金支払い" id="sendUnpaidButton" onclick="payUnpaidCharge()">');
+			if(Number(result) >= wallet) {
+				$("#sendUnpaidButton").prop('disabled', true);
+			}
 		}
 	});
 }
