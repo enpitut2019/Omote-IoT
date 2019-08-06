@@ -2,8 +2,9 @@ pragma solidity ^0.5.10;
 
 contract Water_supply {
     
-    address public owner;//管理者
-    address payable public sender;//送金先アドレス
+    address public admin;//管理者
+    address public user;//使用者
+    address payable public sender = 0x1cd248fd0CAB42123758e5141ba143894df7f7F3;//送金先アドレス
     uint amount_of_water;//当月の使用量
     uint diameter;//口径（０から９の数字で） 
     uint wallet;//財布
@@ -14,16 +15,33 @@ contract Water_supply {
     uint public not_pay_counter = 0;//未払いの回数
     bool public on_working = true;//水道が動いているかどうか
 
-    
-    constructor() public {
-        owner = msg.sender;
-        sender = 0x1cd248fd0CAB42123758e5141ba143894df7f7F3;
+    //コンストラクター
+    constructor(address _user, uint _diameter) public {
+        admin = msg.sender;
+        user = _user;
+        diameter = _diameter;
     }
     
-    // modifier onlyOwner(){
-    //     if(msg.sender != owner) revert();
-    //     _;
-    // }
+    //オーナーのみ実行可
+    modifier onlyAdmin() {
+        if(msg.sender != admin) revert();
+        _;
+    }
+    //ユーザーのみ実行可
+    modifier onlyUser() {
+        if(msg.sender != user) revert();
+        _;
+    }
+    
+    //ユーザー情報の取得
+    function get_user_info() public view onlyAdmin returns (uint, uint, uint, uint[] memory, uint[] memory, uint, uint, bool) {
+        return(amount_of_water, diameter, wallet, get_history_water(), get_history_charge(), unpaid_charge, not_pay_counter, on_working);
+    }
+    
+    //送金先を変更
+    function set_sender(address payable newSender) public onlyAdmin {
+        sender = newSender;
+    }
 
     //デポジットされた金額を表示
     function get_wallet() public view returns (uint) {
@@ -36,18 +54,18 @@ contract Water_supply {
     }
     
     //デポジット
-    function deposit() public payable {
+    function deposit() public payable onlyUser {
         if(msg.value <= 0) revert();
         wallet += msg.value;
     }
     
     //料金の支払い
-    function payment() public {
+    function payment() private {
         uint charge = calc_charge() + unpaid_charge;
         if(wallet < charge) {
                 unpaid_charge = charge;
                 not_pay_counter += 1;
-                if(not_pay_counter  > 3) {
+                if(not_pay_counter  > 0) {
                     stop_working();
                 }
                 
@@ -70,7 +88,7 @@ contract Water_supply {
         }
     }
 
-    //従量料金の計算（つくば市）
+    //従量料金の計算(つくば市参考)
     function calc_commodity_charge(uint _amount_of_water) public view returns (uint){
         if(diameter <= 2){
             if(_amount_of_water <= 10){
@@ -94,7 +112,7 @@ contract Water_supply {
         }
     }
 
-    //支払い料金の計算（つくば市）
+    //支払い料金の計算（つくば市参考）
     function calc_charge() public view returns(uint) {
         return basic_rate[diameter] + calc_commodity_charge(amount_of_water) * amount_of_water;
     }
@@ -141,13 +159,13 @@ contract Water_supply {
     }
     
     //水道のon
-    function start_working() public {
+    function start_working() private {
         if(on_working) revert();
         on_working = true;
     }
     
     //水道のoff
-    function stop_working() public {
+    function stop_working() private {
         if(!on_working) revert();
         on_working = false;
     }
