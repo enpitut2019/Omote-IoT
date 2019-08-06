@@ -41,8 +41,20 @@ $(function(){
 //水の量セット
 function setAmountofWater(){
 	var input = $('#amountofWater').val();
+
+	$("#pending").text('pending....')
+
 	contract.set_used_water.sendTransaction(myEscape(input),{from:account},(error, result) => {
-	});
+
+		web3.eth.filter.watch('latest', function(error, result){
+			if (!error) {
+				$("#pending").text('Confirmed')
+			} else {
+		  	console.error(error)
+			}
+		  })
+		});
+
 }
 
 //当月の使用した水の量を受け取る
