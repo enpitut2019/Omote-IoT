@@ -1,5 +1,6 @@
 var account;
 var sw_status = 0;
+var msg = "now pending...."
 function init() {
 	return new Promise(resolve => {
 		if (typeof web3 !== 'undefined') {
@@ -41,7 +42,7 @@ $(function(){
 //水の量セット
 function setAmountofWater(){
 	var input = $('#amountofWater').val();
-	dispLoadning('now pending.....');
+	dispLoadning(msg);
 	contract.set_used_water.sendTransaction(myEscape(input),{from:account},(error, result) => {
 		if(!error){
 		web3.eth.filter('latest', function(error, result){
@@ -230,8 +231,8 @@ function reset_form() {
 
   //pending中に表示する
   function dispLoadning(msg){
-	  if(msg = undefined){
-		  msg = "";
+	  if(msg == undefined){
+		  var msg = "";
 	  }
 
 	  var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";
