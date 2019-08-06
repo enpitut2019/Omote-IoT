@@ -46,7 +46,7 @@ function setAmountofWater(){
 
 	contract.set_used_water.sendTransaction(myEscape(input),{from:account},(error, result) => {
 
-		web3.eth.filter.watch('latest', function(error, result){
+		web3.eth.filter('latest', function(error, result){
 			if (!error) {
 				$("#pending").text('Confirmed')
 			} else {
