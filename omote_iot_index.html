@@ -21,17 +21,7 @@
 <br>
 <div id="unpaid"></div>
 <div id="sendUnpaid"></div>
-<br>
-<p>使用量入力
-<form name="form_sw">
-<div id="onWorking"></div>
-  <input type="text" id="amountofWater" class="inputWater">
-  <input type='submit' value='送信' onclick="setAmountofWater()" class="inputWater">
-  <input type="button" name="bstart" value="start" onclick="start_count()"></input>
-  <input type="button" name="reset" value="reset" onclick="reset_form()"></input>
-</form>
-<br>
-<p>デポジットする金額
+<p>デポジット金額</p>
 <form>
   <input type="text" id="deposit">
   <input type='submit' value='送金' onclick="Deposit()">
@@ -41,6 +31,16 @@
 <div id="usedWater"></div>
 <br>
 <div id="balance"></div>
+<br>
+<p>使用量入力</p>
+<form name="form_sw">
+<div id="onWorking"></div>
+  <input type="text" id="amountofWater" class="inputWater">
+  <input type='submit' value='送信' onclick="setAmountofWater()" class="inputWater">
+  <input type="button" name="bstart" value="start" onclick="start_count()" class="inputWater"></input>
+  <input type="button" name="reset" value="reset" onclick="reset_form()" class="inputWater"></input>
+</form>
+<br><br><br>
 </div>
 <footer class="footer">omete_IoT</footer>
 </body>
