@@ -1,7 +1,7 @@
 var account;
 var wallet;
 var sw_status = 0;
-var msg = "now pending...."
+var msg = "now sending Transaction...."
 function init() {
 	return new Promise(resolve => {
 		if (typeof web3 !== 'undefined') {
