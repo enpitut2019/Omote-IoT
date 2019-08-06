@@ -12,6 +12,9 @@
     position: relative;
 }
 
+header h1 {
+    background-color: #e0ffff;
+}
 
 .footer {
     background-color: #e0ffff;

@@ -1,15 +1,14 @@
 var account;
-var sw_status = 0;
 function init() {
 	return new Promise(resolve => {
 		if (typeof web3 !== 'undefined') {
 			web3 = new Web3(web3.currentProvider);
 			ethereum.enable()
 			web3.version.getNetwork((error, result) => {
-				$('#networkid').text('Network ID: '+result)
+				$('#networkid').text('ネットワークID: '+result)
 			})
 			web3.eth.getAccounts((error, result) => {
-				$('#accounts').text('Your accounts: '+result)
+				$('#accounts').text('アカウントアドレス: '+result)
 				account = result[0]
 			})
 		} else {
@@ -28,10 +27,11 @@ $(function(){
 
 	init().then(result => {
 		getUserwallet();
-		getUsedWater();
+		//getUsedWater();
 		getNotPayCount();
 		getOnWorking();
 		getHistoryofWater().then(result => {
+			displayHistoryTable(result);
 			display_graph(result);
 		});
 		reset_form();
@@ -45,14 +45,14 @@ function setAmountofWater(){
 	});
 }
 
-//当月の使用した水の量を受け取る
-function getUsedWater(){
-	contract.get_amount_of_water.call({from:account},(error,result) => {
-		if(!error) {
-			$("#usedWater").text('先月の使用量'+result)
-		}
-	});
-}
+////当月の使用した水の量を受け取る
+//function getUsedWater(){
+//	contract.get_amount_of_water.call({from:account},(error,result) => {
+//		if(!error) {
+//			$("#usedWater").text('先月の使用量'+result)
+//		}
+//	});
+//}
 
 //depositする
 function Deposit() {
@@ -72,7 +72,7 @@ function getUserwallet() {
 	contract.get_wallet.call({from:account},(error, result) => {
 		if(!error) {
 			console.log(account);
-			$('#balance').text('あなたのデポジットは'+result+'weiです')
+			$('#balance').text('デポジット金額'+result+'wei')
 			console.log(result)
 		}
 	});
@@ -128,6 +128,20 @@ function getHistoryofWater() {
 	});
 }
 
+//使用した水の量と料金の履歴を表示
+function displayHistoryTable(amount) {
+	var amount_of_water = amount[0];
+	var amount_of_charge = amount[1];
+	var len = amount_of_water.length;
+	console.log(typeof(amount_of_charge[0]));
+	$('#amount1').text(amount_of_water[len-1]);
+	$('#charge1').text(Number(amount_of_charge[len-1]).toLocaleString());
+	$('#amount2').text(amount_of_water[len-2]);
+	$('#charge2').text(Number(amount_of_charge[len-2]).toLocaleString());
+	$('#amount3').text(amount_of_water[len-3]);
+	$('#charge3').text(Number(amount_of_charge[len-3]).toLocaleString());
+}
+
 //グラフを表示
 function display_graph(amount) {
 	var now   = new Date();
@@ -179,6 +193,7 @@ function display_graph(amount) {
 
 //ストップウォッチの機能
 //ストップウォッチのリセット機能
+var sw_status = 0;
 function reset_form() {
 	console.log(document.form_sw+ "A")
 	if(sw_status == 1)start_count();
