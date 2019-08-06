@@ -125,6 +125,7 @@ contract Water_supply {
         diameter = 1;
         payment();
     }
+    
 
     //履歴の更新
     function set_history() public {
@@ -174,4 +175,5 @@ contract Water_supply {
     function get_on_working() public view returns(bool){
         return on_working;
     }
+
 }

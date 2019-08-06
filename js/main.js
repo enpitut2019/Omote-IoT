@@ -1,5 +1,7 @@
 var account;
 var wallet;
+var sw_status = 0;
+var msg = "now pending...."
 function init() {
 	return new Promise(resolve => {
 		if (typeof web3 !== 'undefined') {
@@ -42,8 +44,23 @@ $(function(){
 //水の量セット
 function setAmountofWater(){
 	var input = $('#amountofWater').val();
+	dispLoadning(msg);
 	contract.set_used_water.sendTransaction(myEscape(input),{from:account},(error, result) => {
-	});
+		if(!error){
+		web3.eth.filter('latest', function(error, result){
+			if (!error) {
+				removeLoading();
+			} else {
+				console.error(error)
+				removeLoading();
+			}
+		  })
+		}else{
+			console.error(error);
+			removeLoading();
+		}
+		});
+
 }
 
 ////当月の使用した水の量を受け取る
@@ -198,7 +215,6 @@ function display_graph(amount) {
 
 //ストップウォッチの機能
 //ストップウォッチのリセット機能
-var sw_status = 0;
 function reset_form() {
 	console.log(document.form_sw+ "A")
 	if(sw_status == 1)start_count();
@@ -231,3 +247,23 @@ var myEscape = function (str) {
 	.replace(/"/g, '&quot;')
 	.replace(/'/g, '&#39;');
 };
+
+
+
+//pending中に表示する
+function dispLoadning(msg){
+	if(msg == undefined){
+		var msg = "";
+	}
+
+	var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";
+	if($("#loading").length == 0){
+		$("body").append("<div id='loading'>" + dispMsg + "</div>");
+	}
+}
+
+//アニメーションを削除
+function removeLoading(){
+	$("#loading").remove();
+}
+
