@@ -54,7 +54,7 @@ contract Water_supply {
     }
     
     //デポジット
-    function deposit() public payable onlyUser {
+    function deposit() public payable {//onlyUser {
         if(msg.value <= 0) revert();
         wallet += msg.value;
     }
