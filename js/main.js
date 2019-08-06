@@ -75,7 +75,21 @@ function setAmountofWater(){
 //depositする
 function Deposit() {
 	var input = $('#deposit').val();
+	dispLoadning(msg);
 	contract.deposit.sendTransaction({from:account,to:contractAddress,value:web3.toWei(myEscape(input), "wei")},(error,result) => {
+		if(!error){
+			web3.eth.filter('latest', function(error, result){
+				if (!error) {
+					removeLoading();
+				} else {
+					console.error(error)
+					removeLoading();
+				}
+			  })
+			}else{
+				console.error(error);
+				removeLoading();
+			}
 	});
 }
 
