@@ -1,4 +1,5 @@
 var account;
+var wallet;
 var sw_status = 0;
 var msg = "now pending...."
 function init() {
@@ -7,17 +8,17 @@ function init() {
 			web3 = new Web3(web3.currentProvider);
 			ethereum.enable()
 			web3.version.getNetwork((error, result) => {
-				$('#networkid').text('Network ID: '+result)
+				$('#networkid').text('ネットワークID: '+result)
 			})
 			web3.eth.getAccounts((error, result) => {
-				$('#accounts').text('Your accounts: '+result)
+				$('#accounts').text('アカウントアドレス: '+result)
 				account = result[0]
 			})
 		} else {
 			document.write('Install <a href="https://metamask.io">METAMASK</a>')
 		}
-		abi = [{"constant":true,"inputs":[],"name":"get_wallet","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"calc_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_history_water","outputs":[{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_not_pay_counter","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_history_charge","outputs":[{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_unpaid_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_amount_of_water","type":"uint256"}],"name":"set_used_water","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"payment","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"pay_unpaid_charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"history_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"start_working","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"sender","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"unpaid_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"not_pay_counter","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"stop_working","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"get_on_working","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"set_history","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"history_water","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"deposit","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"on_working","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"basic_rate","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_amount_of_water","type":"uint256"}],"name":"calc_commodity_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_amount_of_water","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
-		contractAddress = "0x14810bcbf676b8a46f8077214ce196296d0984b0";
+		abi = [{"constant":false,"inputs":[],"name":"deposit","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"pay_unpaid_charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"set_history","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"newSender","type":"address"}],"name":"set_sender","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_amount_of_water","type":"uint256"}],"name":"set_used_water","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"_user","type":"address"},{"name":"_diameter","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"constant":true,"inputs":[],"name":"admin","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"basic_rate","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"calc_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_amount_of_water","type":"uint256"}],"name":"calc_commodity_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_amount_of_water","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_history_charge","outputs":[{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_history_water","outputs":[{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_not_pay_counter","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_on_working","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_unpaid_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_user_info","outputs":[{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256[]"},{"name":"","type":"uint256[]"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_wallet","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"history_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"history_water","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"not_pay_counter","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"on_working","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"sender","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"unpaid_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"user","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"}];
+		contractAddress = "0x56a90e95ea57bb9cfc9234559d03e5f523f5fe9f";
 		contract = web3.eth.contract(abi).at(contractAddress);
 		resolve();
 	});
@@ -29,10 +30,11 @@ $(function(){
 
 	init().then(result => {
 		getUserwallet();
-		getUsedWater();
+		//getUsedWater();
 		getNotPayCount();
 		getOnWorking();
 		getHistoryofWater().then(result => {
+			displayHistoryTable(result);
 			display_graph(result);
 		});
 		reset_form();
@@ -61,14 +63,14 @@ function setAmountofWater(){
 
 }
 
-//当月の使用した水の量を受け取る
-function getUsedWater(){
-	contract.get_amount_of_water.call({from:account},(error,result) => {
-		if(!error) {
-			$("#usedWater").text('あなたの使用量は'+result+'です')
-		}
-	});
-}
+////当月の使用した水の量を受け取る
+//function getUsedWater(){
+//	contract.get_amount_of_water.call({from:account},(error,result) => {
+//		if(!error) {
+//			$("#usedWater").text('先月の使用量'+result)
+//		}
+//	});
+//}
 
 //depositする
 function Deposit() {
@@ -88,8 +90,9 @@ function getUserwallet() {
 	contract.get_wallet.call({from:account},(error, result) => {
 		if(!error) {
 			console.log(account);
-			$('#balance').text('あなたのデポジットは'+result+'weiです')
-			console.log(result);
+			$('#balance').text('残高: ' + result + ' wei')
+			console.log(result)
+			wallet = Number(result);
 		}
 	});
 }
@@ -109,8 +112,11 @@ function getNotPayCount() {
 function getUnpaidCharge() {
 	contract.get_unpaid_charge.call({from:account},(error,result) => {
 		if(!error) {
-			$("#unpaid").text("未払金額" + result + "wei");
-			$("#sendUnpaid").append('<input type="submit" value="未払金支払い" onclick="payUnpaidCharge()">');
+			$("#unpaid").text("未払金: " + result + " wei");
+			$("#sendUnpaid").append('<input type="submit" value="未払金支払い" id="sendUnpaidButton" onclick="payUnpaidCharge()">');
+			if(Number(result) >= wallet) {
+				$("#sendUnpaidButton").prop('disabled', true);
+			}
 		}
 	});
 }
@@ -142,6 +148,20 @@ function getHistoryofWater() {
 			}
 		});
 	});
+}
+
+//使用した水の量と料金の履歴を表示
+function displayHistoryTable(amount) {
+	var amount_of_water = amount[0];
+	var amount_of_charge = amount[1];
+	var len = amount_of_water.length;
+	console.log(typeof(amount_of_charge[0]));
+	$('#amount1').text(amount_of_water[len-1]);
+	$('#charge1').text(Number(amount_of_charge[len-1]).toLocaleString());
+	$('#amount2').text(amount_of_water[len-2]);
+	$('#charge2').text(Number(amount_of_charge[len-2]).toLocaleString());
+	$('#amount3').text(amount_of_water[len-3]);
+	$('#charge3').text(Number(amount_of_charge[len-3]).toLocaleString());
 }
 
 //グラフを表示
@@ -176,15 +196,15 @@ function display_graph(amount) {
 					}
 				}]
 			},
-		    tooltips: {
-		        titleFontSize: 15,
-		        bodyFontSize: 12,
-		        callbacks: {
-		            title: function (tooltipItem, data){
-		                return ("料金:" + amount_of_charge[tooltipItem[0].index] + "wei");
-		            }
-		        }
-		    }
+			tooltips: {
+				titleFontSize: 15,
+				bodyFontSize: 12,
+				callbacks: {
+					title: function (tooltipItem, data){
+						return ("料金:" + amount_of_charge[tooltipItem[0].index] + "wei");
+					}
+				}
+			}
 	};
 	var ex_chart = new Chart(ctx, {
 		type: 'bar',
@@ -193,55 +213,57 @@ function display_graph(amount) {
 	});
 }
 
-// ストップウォッチの機能
+//ストップウォッチの機能
 //ストップウォッチのリセット機能
 function reset_form() {
 	console.log(document.form_sw+ "A")
 	if(sw_status == 1)start_count();
-	  timer = 0;
-	  document.form_sw.amountofWater.value = 0;
-  }
+	timer = 0;
+	document.form_sw.amountofWater.value = 0;
+}
 
-  function start_count(){
+function start_count(){
 	if(sw_status == 0){
-	  document.form_sw.bstart.value = "stop";
-	  sw_status = 1;
+		document.form_sw.bstart.value = "stop";
+		sw_status = 1;
 		timerID = setInterval("count_up()",100);
 	}else{
-	  document.form_sw.bstart.value = "start";
-	  sw_status = 0;
-	  clearInterval(timerID);
+		document.form_sw.bstart.value = "start";
+		sw_status = 0;
+		clearInterval(timerID);
 	}
-  }
+}
 
-  function count_up(){
+function count_up(){
 	timer++;
 	document.form_sw.amountofWater.value = timer;
-  }
+}
 
-  var myEscape = function (str) {
-    return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-  }
+var myEscape = function (str) {
+	return str
+	.replace(/&/g, '&amp;')
+	.replace(/</g, '&lt;')
+	.replace(/>/g, '&gt;')
+	.replace(/"/g, '&quot;')
+	.replace(/'/g, '&#39;');
+};
 
 
-  //pending中に表示する
-  function dispLoadning(msg){
-	  if(msg == undefined){
-		  var msg = "";
-	  }
 
-	  var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";
-	  if($("#loading").length == 0){
+//pending中に表示する
+function dispLoadning(msg){
+	if(msg == undefined){
+		var msg = "";
+	}
+
+	var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";
+	if($("#loading").length == 0){
 		$("body").append("<div id='loading'>" + dispMsg + "</div>");
-	  }
+	}
+}
 
-  }
-  //アニメーションを削除
-  function removeLoading(){
+//アニメーションを削除
+function removeLoading(){
 	$("#loading").remove();
-  }
+}
+
