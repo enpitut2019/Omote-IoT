@@ -8,6 +8,7 @@ const char* host = "arduino.php5.sk"; //external server domain for HTTP connecti
 int counter = 0;
 
 void ConnectWiFi();
+void set_used_water();
 
 void setup() {
   Serial.begin(115200);
@@ -44,4 +45,33 @@ void ConnectWiFi(){
     Serial.println("WiFi connected");
     Serial.println("IP address set: "); 
     Serial.println(WiFi.localIP()); //print LAN IP
+}
+
+void set_used_water(){
+  Contract contract(&web3,CONTRACT_ADDRESS);
+  contract.SetPrivateKey(PRIVATE_KEY);
+  string addr = MY_ADDRESS;
+
+  uint32_t nonceVal = (uint32_t)web3.EthGetTransactionCount(&addr);
+  uint32_t gasPriceVal = 141006540;
+  uint32_t gasLimitVal = 3000000;
+  uint8_t dataStr[100];
+  memset(dataStr, 0, 100);
+  string toStr = CONTRACT_ADDRESS;
+  string valueStr = "0x00";
+
+  string p = contract.SetupContractData("set_used_water(uint256)",60);
+
+  string result = contract.SendTransaction(nonceVal, gasPriceVal, gasLimitVal, &toStr, &valueStr, &p);
+
+  Serial.println(result.c_str());
+
+  string transactionHash = web3.getString(&result);
+  Serial.println("TX on Etherscan:");
+  Serial.print(ETHERSCAN_TX);
+  Serial.println(transactionHash.c_str());
+  digitalWrite(2,LOW);
+  delay(1000);
+  digitalWrite(2,HIGH);
+  delay(100);
 }
