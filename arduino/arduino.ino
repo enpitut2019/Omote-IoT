@@ -1,20 +1,34 @@
-
+#include <Web3.h>
 #include <WiFi.h> //Wifi library
+#include <Contract.h>
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
 #define EAP_IDENTITY "K8802r0Q@tsukuba.f.eduroam.jp" //if connecting from another corporation, use identity@organisation.domain in Eduroam 
 #define EAP_PASSWORD "gw7duKQx8]1r" //your Eduroam password
+//芳賀シンヤのINFURAの情報
+#define INFURA_HOST "rinkeby.infura.io"
+#define INFURA_PATH  "/v3/672082360bbc4bb0a584be860d9e1f85"
+#define MY_ADDRESS "0x61666605cE04f4D5e845165692D8a71C026d9a34"
+#define CONTRACT_ADDRESS "0x200Ed6bc284F778E6c4ad3A22dE0ddc5b2a8239a"
+#define ETHERSCAN_TX "https://rinkeby.etherscan.io/tx/"
+
 const char* ssid = "eduroam"; // Eduroam SSID
 const char* host = "arduino.php5.sk"; //external server domain for HTTP connection after authentification
 int counter = 0;
+
+//芳賀シンヤの秘密鍵
+const char *PRIVATE_KEY = "2D3E4CC5AC1A653FF47A97922B6ED91BC8E42428CF5FE5637506FB20F8635DEA";
+
+Web3 web3(INFURA_HOST, INFURA_PATH);
 
 void ConnectWiFi();
 void set_used_water();
 
 void setup() {
   Serial.begin(115200);
-  delay(10);
+  delay(10000);
   
   ConnectWiFi();
+  set_used_water();
 }
 void loop(){
 
@@ -60,7 +74,7 @@ void set_used_water(){
   string toStr = CONTRACT_ADDRESS;
   string valueStr = "0x00";
 
-  string p = contract.SetupContractData("set_used_water(uint256)",60);
+  string p = contract.SetupContractData("set_used_water(uint256)",300);
 
   string result = contract.SendTransaction(nonceVal, gasPriceVal, gasLimitVal, &toStr, &valueStr, &p);
 
