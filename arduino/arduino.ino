@@ -1,6 +1,7 @@
 #include <Web3.h>
 #include <WiFi.h> //Wifi library
 #include <Contract.h>
+#include <time.h>
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
 #define EAP_IDENTITY "K8802r0Q@tsukuba.f.eduroam.jp" //if connecting from another corporation, use identity@organisation.domain in Eduroam 
 #define EAP_PASSWORD "gw7duKQx8]1r" //your Eduroam password
@@ -22,16 +23,23 @@ Web3 web3(INFURA_HOST, INFURA_PATH);
 
 void ConnectWiFi();
 void set_used_water();
+bool timer();
 
 void setup() {
   Serial.begin(115200);
-  delay(10000);
+  delay(1000);
   
   ConnectWiFi();
-  set_used_water();
-}
-void loop(){
 
+  configTime(9 * 3600L, 0, "ntp.nict.jp");
+  
+}
+
+
+void loop(){
+ if(timer() == true){
+     set_used_water();
+ }
 }
 
 void ConnectWiFi(){
@@ -88,4 +96,34 @@ void set_used_water(){
   delay(1000);
   digitalWrite(2,HIGH);
   delay(100);
+}
+
+bool timer(){
+  // 曜日文字列配列
+  static const char *pszWDay[] = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+
+  // 現在時刻の取得
+  time_t timeNow = time(NULL);
+  struct tm* tmNow = localtime(&timeNow);
+
+  
+  char n_szDate[32];
+  char p_szDate[32];
+  sprintf( n_szDate, "%04d/%02d,
+          tmNow->tm_year+1900,
+          tmNow->tm_mon+1,
+          //tmNow->tm_mday,
+          //pszWDay[tmNow->tm_wday] 
+          );
+
+  Serial.println(n_szDate);
+
+  if(strcmp(p_szDate[32],n_szDate[32]) == 0){
+      return true;
+    }else{
+      return false;
+    }
+
+  p_szDate[32] = n_szDate[32];
+  delay(1000);
 }
