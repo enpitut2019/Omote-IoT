@@ -98,6 +98,8 @@ void set_used_water(){
   delay(100);
 }
 
+
+//10秒前が同じ月かどうか判断する=>月が変わった時に
 bool timer(){
   // 曜日文字列配列
   static const char *pszWDay[] = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
@@ -107,23 +109,33 @@ bool timer(){
   struct tm* tmNow = localtime(&timeNow);
 
   
-  char n_szDate[32];
-  char p_szDate[32];
-  sprintf( n_szDate, "%04d/%02d,
+  char past_Date[32];
+  char present_Date[32];
+  sprintf(present_Date, "%04d/%02d",
           tmNow->tm_year+1900,
-          tmNow->tm_mon+1,
-          //tmNow->tm_mday,
-          //pszWDay[tmNow->tm_wday] 
-          );
+          tmNow->tm_mon+1);
 
-  Serial.println(n_szDate);
 
-  if(strcmp(p_szDate[32],n_szDate[32]) == 0){
+  // 時刻
+  char szTime1[32];
+  char szTime2[32];
+  sprintf( szTime1, "%02d:%02d",
+          tmNow->tm_hour,
+          tmNow->tm_min);
+
+
+  Serial.print(szTime1);
+
+  char *s1 = szTime1;
+  char *s2 = szTime2;
+
+  if(strcmp(s1,s2) == 0){
       return true;
     }else{
       return false;
     }
-
-  p_szDate[32] = n_szDate[32];
-  delay(1000);
+    
+  szTime2[32] = szTime1[32];
+  //past_Date[32] = present_Date[32];
+  delay(10000);
 }
