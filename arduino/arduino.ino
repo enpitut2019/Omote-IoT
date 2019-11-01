@@ -27,6 +27,9 @@ bool timer();
 
 void setup() {
   Serial.begin(115200);
+  Serial.begin(9600);
+  waterFlow = 0;
+  attachInterrupt(2, pulse, RISING);  //DIGITAL Pin 2: Interrupt 0
   delay(1000);
   
   ConnectWiFi();
@@ -38,6 +41,8 @@ void setup() {
 
 void loop(){
 
+<<<<<<< HEAD
+>>>>>>> 1f23b6ca5fc1f338f9cb4e2c6d53af08639ba714
 }
 
 void ConnectWiFi(int amountof_water){
@@ -67,7 +72,6 @@ void ConnectWiFi(int amountof_water){
     Serial.println(WiFi.localIP()); //print LAN IP
 }
 
-void set_used_water(){
   Contract contract(&web3,CONTRACT_ADDRESS);
   contract.SetPrivateKey(PRIVATE_KEY);
   string addr = MY_ADDRESS;
