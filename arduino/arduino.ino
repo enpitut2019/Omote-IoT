@@ -37,12 +37,10 @@ void setup() {
 
 
 void loop(){
- if(timer() == true){
-     set_used_water();
- }
+
 }
 
-void ConnectWiFi(){
+void ConnectWiFi(int amountof_water){
     Serial.println();
     Serial.print("Connecting to network: ");
     Serial.println(ssid);
@@ -82,7 +80,7 @@ void set_used_water(){
   string toStr = CONTRACT_ADDRESS;
   string valueStr = "0x00";
 
-  string p = contract.SetupContractData("set_used_water(uint256)",300);
+  string p = contract.SetupContractData("set_used_water(uint256)",amountof_water);
 
   string result = contract.SendTransaction(nonceVal, gasPriceVal, gasLimitVal, &toStr, &valueStr, &p);
 
@@ -92,10 +90,6 @@ void set_used_water(){
   Serial.println("TX on Etherscan:");
   Serial.print(ETHERSCAN_TX);
   Serial.println(transactionHash.c_str());
-  digitalWrite(2,LOW);
-  delay(1000);
-  digitalWrite(2,HIGH);
-  delay(100);
 }
 
 
@@ -121,7 +115,8 @@ bool timer(){
   char szTime2[32];
   sprintf( szTime1, "%02d:%02d",
           tmNow->tm_hour,
-          tmNow->tm_min);
+          tmNow->tm_min
+          );
 
 
   Serial.print(szTime1);
