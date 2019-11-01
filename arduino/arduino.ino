@@ -26,7 +26,9 @@ void set_used_water();
 bool timer();
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
+  waterFlow = 0;
+  attachInterrupt(2, pulse, RISING);  //DIGITAL Pin 2: Interrupt 0
   delay(1000);
   
   ConnectWiFi();
@@ -38,7 +40,11 @@ void setup() {
 
 void loop(){
  if(timer() == true){
+     Serial.print("waterFlow:");
+     Serial.print(waterFlow);
+     Serial.println("   L");
      set_used_water();
+     delay(500);
  }
 }
 
@@ -69,7 +75,7 @@ void ConnectWiFi(){
     Serial.println(WiFi.localIP()); //print LAN IP
 }
 
-void set_used_water(){
+void set_used_water(uint32_t amount){
   Contract contract(&web3,CONTRACT_ADDRESS);
   contract.SetPrivateKey(PRIVATE_KEY);
   string addr = MY_ADDRESS;
@@ -82,7 +88,7 @@ void set_used_water(){
   string toStr = CONTRACT_ADDRESS;
   string valueStr = "0x00";
 
-  string p = contract.SetupContractData("set_used_water(uint256)",300);
+  string p = contract.SetupContractData("set_used_water(uint256)",amount);
 
   string result = contract.SendTransaction(nonceVal, gasPriceVal, gasLimitVal, &toStr, &valueStr, &p);
 
@@ -138,4 +144,9 @@ bool timer(){
   szTime2[32] = szTime1[32];
   //past_Date[32] = present_Date[32];
   delay(10000);
+}
+
+void pulse()   //measure the quantity of square wave
+{
+  waterFlow += 1.0 / 450.0;
 }
