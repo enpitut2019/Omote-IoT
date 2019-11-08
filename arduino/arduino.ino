@@ -25,6 +25,8 @@ void ConnectWiFi();
 void set_used_water();
 bool timer();
 
+volatile double waterFlow;
+
 void setup() {
   Serial.begin(9600);
   waterFlow = 0;
@@ -39,17 +41,13 @@ void setup() {
 
 
 void loop(){
-<<<<<<< HEAD
-
-=======
- if(timer() == true){
+ if(timer()){
      Serial.print("waterFlow:");
      Serial.print(waterFlow);
      Serial.println("   L");
-     set_used_water();
+     set_used_water(waterFlow);
      delay(500);
  }
->>>>>>> 1f23b6ca5fc1f338f9cb4e2c6d53af08639ba714
 }
 
 void ConnectWiFi(int amountof_water){
@@ -79,7 +77,7 @@ void ConnectWiFi(int amountof_water){
     Serial.println(WiFi.localIP()); //print LAN IP
 }
 
-void set_used_water(uint32_t amount){
+void set_used_water(double _waterFlow){
   Contract contract(&web3,CONTRACT_ADDRESS);
   contract.SetPrivateKey(PRIVATE_KEY);
   string addr = MY_ADDRESS;
@@ -91,12 +89,7 @@ void set_used_water(uint32_t amount){
   memset(dataStr, 0, 100);
   string toStr = CONTRACT_ADDRESS;
   string valueStr = "0x00";
-
-<<<<<<< HEAD
-  string p = contract.SetupContractData("set_used_water(uint256)",amountof_water);
-=======
-  string p = contract.SetupContractData("set_used_water(uint256)",amount);
->>>>>>> 1f23b6ca5fc1f338f9cb4e2c6d53af08639ba714
+  string p = contract.SetupContractData("set_used_water(uint256)", _waterFlow);
 
   string result = contract.SendTransaction(nonceVal, gasPriceVal, gasLimitVal, &toStr, &valueStr, &p);
 
