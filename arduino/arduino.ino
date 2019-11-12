@@ -12,7 +12,9 @@
 #define CONTRACT_ADDRESS "0x200Ed6bc284F778E6c4ad3A22dE0ddc5b2a8239a"
 #define ETHERSCAN_TX "https://rinkeby.etherscan.io/tx/"
 
-const char* ssid = "eduroam"; // Eduroam SSID
+//const char* ssid = "eduroam"; // Eduroam SSID
+const char ssid[] = "logitec2nd49";//_____追加
+const char passwd[] = "1C3HCA519832B";//_____追加
 const char* host = "arduino.php5.sk"; //external server domain for HTTP connection after authentification
 int counter = 0;
 
@@ -45,23 +47,24 @@ void loop(){
      Serial.print("waterFlow:");
      Serial.print(waterFlow);
      Serial.println("   L");
-     set_used_water(waterFlow);
+     //set_used_water(waterFlow);
      delay(500);
  }
 }
 
-void ConnectWiFi(int amountof_water){
-    Serial.println();
+void ConnectWiFi(){
+    Serial.println("");
     Serial.print("Connecting to network: ");
     Serial.println(ssid);
-    WiFi.disconnect(true);  //disconnect form wifi to set new wifi connection
-    WiFi.mode(WIFI_STA); //init wifi mode
-    esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY)); //provide identity
-    esp_wifi_sta_wpa2_ent_set_username((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY)); //provide username --> identity and username is same
-    esp_wifi_sta_wpa2_ent_set_password((uint8_t *)EAP_PASSWORD, strlen(EAP_PASSWORD)); //provide password
-    esp_wpa2_config_t config = WPA2_CONFIG_INIT_DEFAULT(); //set config settings to default
-    esp_wifi_sta_wpa2_ent_enable(&config); //set config settings to enable function
-    WiFi.begin(ssid); //connect to wifi
+//    WiFi.disconnect(true);  //disconnect form wifi to set new wifi connection
+//    WiFi.mode(WIFI_STA); //init wifi mode
+//    esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY)); //provide identity
+//    esp_wifi_sta_wpa2_ent_set_username((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY)); //provide username --> identity and username is same
+//    esp_wifi_sta_wpa2_ent_set_password((uint8_t *)EAP_PASSWORD, strlen(EAP_PASSWORD)); //provide password
+//    esp_wpa2_config_t config = WPA2_CONFIG_INIT_DEFAULT(); //set config settings to default
+//    esp_wifi_sta_wpa2_ent_enable(&config); //set config settings to enable function
+//    WiFi.begin(ssid); //connect to wifi
+    WiFi.begin(ssid, passwd); //____________追加
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
         Serial.print(".");
@@ -77,18 +80,18 @@ void ConnectWiFi(int amountof_water){
     Serial.println(WiFi.localIP()); //print LAN IP
 }
 
-void set_used_water(double _waterFlow){
+void set_used_water(int _waterFlow){
   Contract contract(&web3,CONTRACT_ADDRESS);
   contract.SetPrivateKey(PRIVATE_KEY);
   string addr = MY_ADDRESS;
 
   uint32_t nonceVal = (uint32_t)web3.EthGetTransactionCount(&addr);
-  uint32_t gasPriceVal = 141006540;
+  unsigned long long gasPriceVal = 141006540;
   uint32_t gasLimitVal = 3000000;
   uint8_t dataStr[100];
   memset(dataStr, 0, 100);
   string toStr = CONTRACT_ADDRESS;
-  string valueStr = "0x00";
+  uint256_t valueStr = "0x00";
   string p = contract.SetupContractData("set_used_water(uint256)", _waterFlow);
 
   string result = contract.SendTransaction(nonceVal, gasPriceVal, gasLimitVal, &toStr, &valueStr, &p);
