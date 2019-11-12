@@ -29,6 +29,7 @@ void set_used_water();
 bool timer();
 
 volatile double waterFlow;
+volatile double preWaterFlow;
 
 void setup() {
   Serial.begin(9600);
@@ -48,7 +49,7 @@ void loop(){
  if(timer()){
     Serial.print("waterFlow: ");
     Serial.print(waterFlow);
-    Serial.println(" ml");
+    Serial.println(" L");
     set_used_water(waterFlow);
  }
 }
@@ -84,7 +85,7 @@ void ConnectWiFi(){
     Serial.println("");
 }
 
-void set_used_water(int _waterFlow){
+void set_used_water(double _waterFlow){
 //  Serial.println("Sending Transaction...");
 //  Contract contract(&web3, "");
 //  contract.SetPrivateKey(PRIVATE_KEY);
@@ -105,27 +106,36 @@ void set_used_water(int _waterFlow){
 //  Serial.println("---トランザクションの送信に成功---");
 //  Serial.println("");
 
-//_____________________
+
   Serial.println("Sending Transaction...");
+//  int nowWaterFlow = (int)_waterFlow - (int)preWaterFlow;//今月の使用量を整数で計算
+  int nowWaterFlow = (int)_waterFlow * 100 - (int)preWaterFlow * 100;//デモ用
+
   Contract contract(&web3,CONTRACT_ADDRESS);
   contract.SetPrivateKey(PRIVATE_KEY);
   string addr = MY_ADDRESS;
   uint32_t nonceVal = (uint32_t)web3.EthGetTransactionCount(&addr);
-  unsigned long long gasPriceVal = 141006540ULL;
+  unsigned long long gasPriceVal = 1000000000ULL;
   uint32_t gasLimitVal = 3000000;
   uint8_t dataStr[100];
   memset(dataStr, 0, 100);
   string toStr = CONTRACT_ADDRESS;
   string valueStr = "0x00";
-  string p = contract.SetupContractData("set_used_water(uint256)", _waterFlow);
+//  string p = contract.SetupContractData("set_used_water(uint256)", nowWaterFlow);
+string p = contract.SetupContractData("set_used_water(uint256)", (int)_waterFlow);
   string result = contract.SendTransaction(nonceVal, gasPriceVal, gasLimitVal, &toStr, &valueStr, &p);
 
   Serial.println(result.c_str());
   string transactionHash = web3.getString(&result);
+  if(transactionHash == "") {
+    Serial.println("error");//エラー処理
+  } else {
+  preWaterFlow = _waterFlow;//水量を記録
   Serial.println("TX on Etherscan:");
   Serial.print(ETHERSCAN_TX);
   Serial.println(transactionHash.c_str());
   Serial.println("---トランザクションの送信に成功---");
+  }
   Serial.println("");
 //__________________________
 }
