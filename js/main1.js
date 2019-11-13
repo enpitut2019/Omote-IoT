@@ -309,4 +309,3 @@ function dispLoadning(msg){
 function removeLoading(){
 	$("#loading").remove();
 }
-

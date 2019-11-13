@@ -5,9 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <link href="./server.css" rel="stylesheet">
+
     <link href="css/resistpage.css" rel="stylesheet">
     <script src="./serverindex.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main1.js"></script>
 </head>
 <body>
 <header class="head">
@@ -19,6 +20,7 @@
     <br>
     <p>個人情報登録フォーム
     <p>登録情報を入力してください
+
 
     <div class="userdata">
         <form method="post">
