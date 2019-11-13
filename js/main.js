@@ -13,6 +13,8 @@ function init() {
 			web3.eth.getAccounts((error, result) => {
 				$('#accounts').text('アカウントアドレス: '+result)
 				account = result[0]
+				//ethアカウント入力部分にデフォルトで表示させる
+				$("div.userdata input.eth").attr('value',account)
 			})
 		} else {
 			document.write('Install <a href="https://metamask.io">METAMASK</a>')
@@ -308,3 +310,18 @@ function removeLoading(){
 	$("#loading").remove();
 }
 
+
+
+
+function getOutput() {
+   $.ajax({
+      url:'myAjax.php',
+      complete: function (response) {
+          $('#output').html(response.responseText);
+      },
+      error: function () {
+          $('#output').html('Bummer: there was an error!');
+      }
+  });
+  return false;
+}
