@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <link href="./server.css" rel="stylesheet">
+    <link href="css/resistpage.css" rel="stylesheet">
     <script src="./serverindex.js"></script>
     <script src="js/main.js"></script>
 </head>
