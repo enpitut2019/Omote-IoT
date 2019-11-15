@@ -143,54 +143,8 @@ string p = contract.SetupContractData("set_used_water(uint256)", (int)_waterFlow
 
 //10秒前が同じ月かどうか判断する=>月が変わった時に
 bool timer(){
-//  // 曜日文字列配列
-//  static const char *pszWDay[] = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
-//
-//  // 現在時刻の取得
-//  time_t timeNow = time(NULL);
-//  struct tm* tmNow = localtime(&timeNow);
-//
-//  
-//  char past_Date[32];
-//  char present_Date[32];
-//  sprintf(present_Date, "%04d/%02d",
-//          tmNow->tm_year+1900,
-//          tmNow->tm_mon+1);
-//
-//
-//  // 時刻
-//  char szTime1[32];
-//  char szTime2[32];
-//  sprintf( szTime1, "%02d:%02d",
-//          tmNow->tm_hour,
-//          tmNow->tm_min
-//          );
-//
-//
-////  Serial.print(szTime1);
-//
-//  char *s1 = szTime1;
-//  char *s2 = szTime2;
-//
-//  if(strcmp(s1,s2) == 0){
-//      return true;
-//    }else{
-//      return false;
-//    }
-//    
-//  szTime2[32] = szTime1[32];
-//  //past_Date[32] = present_Date[32];
-//  delay(10000);
 
 //デモ用_______________
-  int second = 15;//水量を計る時間の設定
-  Serial.println("計量中");
-  for (int i=0; i<second; i++){
-    Serial.print(".");
-    delay(1000);
-   }
-  Serial.println("");
-  return true;
 //____________________
 }
 
