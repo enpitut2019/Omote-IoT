@@ -94,8 +94,7 @@ void set_used_water(double _waterFlow){
   contract.SetPrivateKey(PRIVATE_KEY);
   string addr = MY_ADDRESS;
   uint32_t nonceVal = (uint32_t)web3.EthGetTransactionCount(&addr);
-//  unsigned long long gasPriceVal = 1000000000ULL;
-  unsigned long long gasPriceVal = 0ULL;
+  unsigned long long gasPriceVal = 1000000000ULL;
   uint32_t gasLimitVal = 3000000;
   uint8_t dataStr[100];
   memset(dataStr, 0, 100);
@@ -108,30 +107,37 @@ void set_used_water(double _waterFlow){
   Serial.println(result.c_str());
   string transactionHash = web3.getString(&result);
   if(web3.isError(&result)) {
-    Serial.println("トランザクションの送信に失敗");//エラー処理
+    //エラー処理
+    Serial.println("トランザクションの送信に失敗");
+    
   } else {
   preWaterFlow = _waterFlow;//水量を記録
-  Serial.println("TX on Etherscan:");
-  Serial.print(ETHERSCAN_TX);
-  Serial.println(transactionHash.c_str());
-  Serial.println("---トランザクションの送信に成功---");
+    Serial.println("TX on Etherscan:");
+    Serial.print(ETHERSCAN_TX);
+    Serial.println(transactionHash.c_str());
+    Serial.println("---トランザクションの送信に成功---");
+  }
+//pending
+  Serial.print("Pending");
+  string resultReceipt;
+  while(true) {
+    resultReceipt = web3.getTransactionReceipt(&transactionHash);
+    if(!web3.isNull(&resultReceipt)) {
+      Serial.println("");
+      if(!web3.getReceiptStatus(&resultReceipt)) {
+        //エラー処理
+        Serial.println("---Fail---");
+     
+      } else {
+        Serial.println("---Success---");
+      }
+      break;
+    }
+    Serial.print(".");
+    delay(500);
   }
   Serial.println("");
-
-  
-  Serial.println(transactionHash.c_str());
-  string resultReceipt = web3.getTransactionReceipt(&transactionHash);
-  Serial.println(resultReceipt.c_str());
-  
-
-  string transactionReceipt = web3.getString(&resultReceipt);
-  Serial.println(transactionReceipt.c_str());
-
-  
-  
-  Serial.println("TEST");
-  
-    
+  Serial.println("");
 }
 
 
