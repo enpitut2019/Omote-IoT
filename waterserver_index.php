@@ -5,7 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <link href="./server.css" rel="stylesheet">
+
+    <link href="css/resistpage.css" rel="stylesheet">
     <script src="./serverindex.js"></script>
+    <script src="js/main1.js"></script>
 </head>
 <body>
 <header class="head">
@@ -19,19 +22,21 @@
     <p>登録情報を入力してください
 
 
-    <form method="post">
-        name<br>
-        <input type="text" name="name"><br>
-        TEL<br>
-        <input type="text" name="tel"><br>
-        address<br>
-        <input type="text" name="address"><br>
-        mail<br>
-        <input type="text" name="mail"><br>
-        eth<br>
-        <input type="text" name="eth"><br>
-        <input type="submit" name="submit" value="送信">
-    </form>
+    <div class="userdata">
+        <form method="post">
+            name<br>
+            <input type="text" name="name"><br>
+            TEL<br>
+            <input type="text" name="tel"><br>
+            address<br>
+            <input type="text" name="address"><br>
+            mail<br>
+            <input type="text" name="mail"><br>
+            eth<br>
+            <input type="text" name="eth" class="eth"><br>
+            <input type="submit" name="submit" value="送信">
+        </form>
+    </div>
     <?php
         function insert(){
         try{
@@ -44,13 +49,14 @@
     die();
     }
 
-
+    //フォームから受け取った値を変数に代入
     $name=$_POST['name'];
     $tel=$_POST['tel'];
     $address=$_POST['address'];
     $mail=$_POST['mail'];
     $eth=$_POST['eth'];
 
+    //データベースにinsert
     $sql = "INSERT INTO water_users (name, phone, address, mail, eth) VALUES (:name, :tel, :address, :mail, :eth)";
     $stmh = $pdo->prepare($sql);
     $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, 'eth' => $eth);
