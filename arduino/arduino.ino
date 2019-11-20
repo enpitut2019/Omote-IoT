@@ -104,37 +104,36 @@ void set_used_water(double _waterFlow){
 //  string p = contract.SetupContractData("set_used_water(uint256)", (int)_waterFlow);
   string result = contract.SendTransaction(nonceVal, gasPriceVal, gasLimitVal, &toStr, &valueStr, &p);
 
-  Serial.println(result.c_str());
-  string transactionHash = web3.getString(&result);
   if(web3.isError(&result)) {
     //エラー処理
-    Serial.println("トランザクションの送信に失敗");
+    Serial.println("---Sending Failed---");
+    Serial.println(web3.getError(&result).c_str());
     
   } else {
-  preWaterFlow = _waterFlow;//水量を記録
+    preWaterFlow = _waterFlow;//水量を記録
+    string transactionHash = web3.getString(&result);
+    Serial.println("---Sended---");
     Serial.println("TX on Etherscan:");
     Serial.print(ETHERSCAN_TX);
     Serial.println(transactionHash.c_str());
-    Serial.println("---トランザクションの送信に成功---");
-  }
-//pending
-  Serial.print("Pending");
-  string resultReceipt;
-  while(true) {
-    resultReceipt = web3.getTransactionReceipt(&transactionHash);
-    if(!web3.isNull(&resultReceipt)) {
-      Serial.println("");
-      if(!web3.getReceiptStatus(&resultReceipt)) {
-        //エラー処理
-        Serial.println("---Fail---");
-     
-      } else {
-        Serial.println("---Success---");
+  //pending
+    Serial.print("Pending");
+    string resultReceipt;
+    while(true) {
+      resultReceipt = web3.getTransactionReceipt(&transactionHash);
+      if(!web3.isNull(&resultReceipt)) {
+        Serial.println("");
+        if(!web3.getReceiptStatus(&resultReceipt)) {
+          //エラー処理
+          Serial.println("---Fail---");
+       
+        } else {
+          Serial.println("---Success---");
+        }
+        break;
       }
-      break;
+      Serial.print(".");
     }
-    Serial.print(".");
-    delay(500);
   }
   Serial.println("");
   Serial.println("");
@@ -184,7 +183,7 @@ bool timer(){
 
 //デモ用_______________
   int second = 15;//水量を計る時間の設定
-  Serial.println("計量中");
+  Serial.println("Measuring");
   for (int i=0; i<second; i++){
     Serial.print(".");
     delay(1000);
