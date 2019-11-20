@@ -3,13 +3,13 @@
 #include <Contract.h>
 #include <time.h>
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
-#define EAP_IDENTITY "K8802r0Q@tsukuba.f.eduroam.jp" //if connecting from another corporation, use identity@organisation.domain in Eduroam 
-#define EAP_PASSWORD "gw7duKQx8]1r" //your Eduroam password
+#define EAP_IDENTITY "KBD01P0Q@tsukuba.f.eduroam.jp" //if connecting from another corporation, use identity@organisation.domain in Eduroam 
+#define EAP_PASSWORD "4Y6Tm![QUWCF" //your Eduroam password
 //芳賀シンヤのINFURAの情報
 #define INFURA_HOST "rinkeby.infura.io"
 #define INFURA_PATH  "/v3/672082360bbc4bb0a584be860d9e1f85"
 #define MY_ADDRESS "0x61666605cE04f4D5e845165692D8a71C026d9a34"
-#define CONTRACT_ADDRESS "0x200Ed6bc284F778E6c4ad3A22dE0ddc5b2a8239a"
+#define CONTRACT_ADDRESS "0x2ba328dc9a760e5f0a384c59efc89de6ed08284c"
 #define ETHERSCAN_TX "https://rinkeby.etherscan.io/tx/"
 //________________
 //const char* ssid = "eduroam"; // Eduroam SSID
@@ -86,30 +86,9 @@ void ConnectWiFi(){
 }
 
 void set_used_water(double _waterFlow){
-//  Serial.println("Sending Transaction...");
-//  Contract contract(&web3, "");
-//  contract.SetPrivateKey(PRIVATE_KEY);
-//  string addr = MY_ADDRESS;
-//  uint32_t nonceVal = (uint32_t)web3.EthGetTransactionCount(&addr); //obtain the next nonce
-//  uint256_t weiValue = 10; //send 0.25 eth
-//  unsigned long long gasPriceVal = 1000000000ULL;
-//  uint32_t  gasLimitVal = 90000;
-//  string emptyString = "";
-//  string toAddress = "0xcE192a3cA53853f49c003d7ddcc63fDfA4c8adC6";
-//  string result = contract.SendTransaction(nonceVal, gasPriceVal, gasLimitVal, &toAddress, &weiValue, &emptyString);
-//  Serial.println(result.c_str());
-//
-//  string transactionHash = web3.getString(&result);
-//  Serial.println("TX on Etherscan:");
-//  Serial.print(ETHERSCAN_TX);
-//  Serial.println(transactionHash.c_str());
-//  Serial.println("---トランザクションの送信に成功---");
-//  Serial.println("");
-
-
   Serial.println("Sending Transaction...");
 //  int nowWaterFlow = (int)_waterFlow - (int)preWaterFlow;//今月の使用量を整数で計算
-  int nowWaterFlow = (int)_waterFlow * 100 - (int)preWaterFlow * 100;//デモ用
+  int nowWaterFlow = _waterFlow * 100 - preWaterFlow * 100;//デモ用
 
   Contract contract(&web3,CONTRACT_ADDRESS);
   contract.SetPrivateKey(PRIVATE_KEY);
@@ -121,23 +100,43 @@ void set_used_water(double _waterFlow){
   memset(dataStr, 0, 100);
   string toStr = CONTRACT_ADDRESS;
   string valueStr = "0x00";
-//  string p = contract.SetupContractData("set_used_water(uint256)", nowWaterFlow);
-string p = contract.SetupContractData("set_used_water(uint256)", (int)_waterFlow);
+  string p = contract.SetupContractData("set_used_water(uint256)", nowWaterFlow);
+//  string p = contract.SetupContractData("set_used_water(uint256)", (int)_waterFlow);
   string result = contract.SendTransaction(nonceVal, gasPriceVal, gasLimitVal, &toStr, &valueStr, &p);
 
-  Serial.println(result.c_str());
-  string transactionHash = web3.getString(&result);
-  if(transactionHash == "") {
-    Serial.println("error");//エラー処理
+  if(web3.isError(&result)) {
+    //エラー処理
+    Serial.println("---Sending Failed---");
+    Serial.println(web3.getError(&result).c_str());
+    
   } else {
-  preWaterFlow = _waterFlow;//水量を記録
-  Serial.println("TX on Etherscan:");
-  Serial.print(ETHERSCAN_TX);
-  Serial.println(transactionHash.c_str());
-  Serial.println("---トランザクションの送信に成功---");
+    preWaterFlow = _waterFlow;//水量を記録
+    string transactionHash = web3.getString(&result);
+    Serial.println("---Sended---");
+    Serial.println("TX on Etherscan:");
+    Serial.print(ETHERSCAN_TX);
+    Serial.println(transactionHash.c_str());
+  //pending
+    Serial.print("Pending");
+    string resultReceipt;
+    while(true) {
+      resultReceipt = web3.getTransactionReceipt(&transactionHash);
+      if(!web3.isNull(&resultReceipt)) {
+        Serial.println("");
+        if(!web3.getReceiptStatus(&resultReceipt)) {
+          //エラー処理
+          Serial.println("---Fail---");
+       
+        } else {
+          Serial.println("---Success---");
+        }
+        break;
+      }
+      Serial.print(".");
+    }
   }
   Serial.println("");
-//__________________________
+  Serial.println("");
 }
 
 
@@ -177,6 +176,18 @@ bool timer(){
     
   past_Date[32] = present_Date[32];
   delay(10000);
+  
+//デモ用_______________
+  int second = 15;//水量を計る時間の設定
+  Serial.println("Measuring");
+  for (int i=0; i<second; i++){
+    Serial.print(".");
+    delay(1000);
+   }
+  Serial.println("");
+  return true;
+//____________________
+  
 }
 
 void pulse()   //measure the quantity of square wave
