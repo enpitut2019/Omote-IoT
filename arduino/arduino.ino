@@ -144,8 +144,6 @@ string p = contract.SetupContractData("set_used_water(uint256)", (int)_waterFlow
 //10秒前が同じ月かどうか判断する=>月が変わった時に
 bool timer(){
 
-//デモ用_______________
-//____________________
 }
 
 void pulse()   //measure the quantity of square wave
