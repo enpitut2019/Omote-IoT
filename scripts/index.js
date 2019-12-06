@@ -165,6 +165,12 @@ function display_graph(amount) {
 	for (var i = len-12; i < len; i++) {
 		label.push(((month + 12 - (len - i) % 12) % 12 + 1) + "月");
 	}
+	if (len < 12) {
+		for (var i = 0; i < 12-len; i++) {
+			amount_of_water.unshift(0);
+		}
+		len = 12;
+	}
 	var ctx = document.getElementById('ex_chart');
 	var data = {
 			labels: label,
@@ -172,7 +178,7 @@ function display_graph(amount) {
 				label: '水使用量',
 				data: amount_of_water.slice(len-12,len),
 				borderColor: 'rgba(70, 210, 255, 1)',
-				backgroundColor: 'rgba(70, 210, 255, 0.5)'
+				backgroundColor: 'rgba(70, 210, 255, 0.8)'
 			}]
 	};
 	var options = {
