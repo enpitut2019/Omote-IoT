@@ -14,9 +14,6 @@
 //________________
 //const char* ssid = "eduroam"; // Eduroam SSID
 //________________
-const char ssid[] = "logitec2nd49";//_____追加
-const char passwd[] = "1C3HCA519832B";//_____追加
-const char* host = "arduino.php5.sk"; //external server domain for HTTP connection after authentification
 int counter = 0;
 
 //芳賀シンヤの秘密鍵
