@@ -7,16 +7,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <script src="js/main.js"></script>
+    <link href="styles/common.css" rel="stylesheet">
+    <script src="scripts/common.js"></script>
+    <script src="scripts/index.js"></script>
 </head>
 <body>
-<div class="p-3">
-    <header class="head">
-        <h1>
-            <b>水道自動決済アプリケーション
-        </h1>
-    </header>
+	<header>
+		<nav class="navbar navbar-expand-md">
+			<div class="px-5">
+				<a class="navbar-brand" href="/"><img
+					src="../images/omotekensuido.png" alt="面研水道"></a>
+			</div>
+			<button type="button" class="navbar-toggler" data-toggle="collapse"
+				data-target="#bs-navi" aria-controls="bs-navi" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="bs-navi">
+				<ul class="navbar-nav ml-auto"></ul>
+				<ul class="navbar-nav mr-5">
+					<div class="px-4 h5">
+						<li class="nav-item" style="border-bottom: 1.5px solid #f5f5f5"><a
+							class="nav-link" href="../">ホーム</a></li>
+					</div>
+					<div class="px-4 h5">
+						<li class="nav-item" style="border-bottom: 1.5px solid #f5f5f5"><a
+							class="nav-link" href="#">使い方</a></li>
+					</div>
+					<div class="px-4 h5">
+						<li class="nav-item" style="border-bottom: 1.5px solid #f5f5f5"><a
+							class="nav-link" href="#">登録情報</a></li>
+					</div>
+					<div class="px-4 h5">
+						<li class="nav-item" style="border-bottom: 1.5px solid #f5f5f5"><a
+							class="nav-link" href="htmls/charge.html">入金</a></li>
+					</div>
+				</ul>
+			</div>
+		</nav>
+	</header>
+    <div class="p-3">
     <div class="main">
         <div id="networkid"></div>
         <div id="accounts"></div>
@@ -58,7 +89,7 @@
             <br>
             <div id="balance" class="h5"></div>
             <form>
-                <input type="text" id="deposit"> <input type="button"
+                <input type="text" id="charge"> <input type="button"
                                                         value="送金" onclick="Deposit()">
                 <div class="button"></div>
             </form>
@@ -82,8 +113,23 @@
         </div>
     </div>
 
+    <a href="htmls/charge.html">テスト</a>
     <a href="waterserver_index.php">登録ページはこちら</a>
-    <footer class="footer">omete_IoT</footer>
-</div>
+    </div>
+    	<footer>
+		<div class="bottom section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-3 mx-auto">
+						<a class="navbar-brand"
+							href="http://www.risk.tsukuba.ac.jp/omote-lab/"><img
+							src="../images/omotelab-tsukuba-2.png" class="img-fluid"
+							alt="omotelab"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
 </body>
 </html>
