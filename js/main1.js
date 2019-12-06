@@ -75,20 +75,43 @@ function setAmountofWater(){
 function Deposit() {
 	var input = $('#deposit').val();
 	dispLoadning(msg);
-	contract.deposit.sendTransaction({from:account,to:contractAddress,value:web3.toWei(myEscape(input), "wei")},(error,result) => {
+	contract.deposit.sendTransaction({from:account,to:contractAddress,value:web3.toWei(myEscape(input), "wei")},(error,transactionHash) => {
 		if(!error){
-			web3.eth.filter('latest', function(error, result){
-				if (!error) {
-					removeLoading();
-				} else {
-					console.error(error)
-					removeLoading();
-				}
-			  })
-			}else{
-				console.error(error);
-				removeLoading();
-			}
+            var timerId = setInterval(function(){
+				web3.eth.getTransactionReceipt(transactionHash,(error,resultReceipt) => {
+                	if(resultReceipt !== null) {
+	                	web3.eth.getTransactionReceipt(transactionHash,(error,resultReceipt) => {
+                        	if(resultReceipt == false){
+                            	//エラー処理
+                            	removeLoading();
+								console.log("--failed--");
+								clearInterval(timerId);
+	                     	} else {
+                                removeLoading();
+								console.log("---Success---");
+								clearInterval(timerId);
+                            }
+                        });
+					}
+				});
+			},500);
+		}else{
+			console.log(error);
+			removeLoading();
+		}
+		// if(!error){
+		// 	web3.eth.filter('latest', function(error, result){
+		// 		if (!error) {
+		// 			removeLoading();
+		// 		} else {
+		// 			console.error(error)
+		// 			removeLoading();
+		// 		}
+		// 	  })
+		// 	}else{
+		// 		console.error(error);
+		// 		removeLoading();
+		// 	}
 	});
 }
 

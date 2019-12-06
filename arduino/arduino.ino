@@ -15,6 +15,7 @@
 const char* ssid = "eduroam"; // Eduroam SSID
 //________________
 const char* host = "arduino.php5.sk"; //external server domain for HTTP connection after authentification
+
 int counter = 0;
 
 //芳賀シンヤの秘密鍵
