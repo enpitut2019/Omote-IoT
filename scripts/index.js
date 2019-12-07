@@ -12,13 +12,15 @@ $(function(){
 		});
 		reset_form();
 	});
+	setInterval(function(){getUserwallet();},3000);
 });
 
 //水の量セット
 function setAmountofWater(){
 	var input = $('#amountofWater').val();
-	dispLoadning(msg);
+	dispLoadning();
 	contract.set_used_water.sendTransaction(myEscape(input),{from:account},(error, result) => {
+		console.log(result)
 		if(!error){
 		web3.eth.filter('latest', function(error, result){
 			if (!error) {
@@ -33,7 +35,6 @@ function setAmountofWater(){
 			removeLoading();
 		}
 		});
-
 }
 
 ////当月の使用した水の量を受け取る

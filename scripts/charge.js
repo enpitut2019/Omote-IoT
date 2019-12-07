@@ -15,4 +15,5 @@ $(function(){
 	init().then(result => {
 		getUserwallet();
 	});
+	setInterval(function(){getUserwallet();},3000);
 });
