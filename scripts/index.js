@@ -15,27 +15,27 @@ $(function(){
 	setInterval(function(){getUserwallet();},3000);
 });
 
-//水の量セット
-function setAmountofWater(){
-	var input = $('#amountofWater').val();
-	dispLoadning();
-	contract.set_used_water.sendTransaction(myEscape(input),{from:account},(error, result) => {
-		console.log(result)
-		if(!error){
-		web3.eth.filter('latest', function(error, result){
-			if (!error) {
-				removeLoading();
-			} else {
-				console.error(error)
-				removeLoading();
-			}
-		  })
-		}else{
-			console.error(error);
-			removeLoading();
-		}
-		});
-}
+////水の量セット
+//function setAmountofWater(){
+//	var input = $('#amountofWater').val();
+//	dispLoadning();
+//	contract.set_used_water.sendTransaction(myEscape(input),{from:account},(error, result) => {
+//		console.log(result)
+//		if(!error){
+//		web3.eth.filter('latest', function(error, result){
+//			if (!error) {
+//				removeLoading();
+//			} else {
+//				console.error(error)
+//				removeLoading();
+//			}
+//		  })
+//		}else{
+//			console.error(error);
+//			removeLoading();
+//		}
+//		});
+//}
 
 ////当月の使用した水の量を受け取る
 //function getUsedWater(){
@@ -207,31 +207,32 @@ function display_graph(amount) {
 	});
 }
 
-//ストップウォッチの機能
-//ストップウォッチのリセット機能
-function reset_form() {
-	console.log(document.form_sw+ "A")
-	if(sw_status == 1)start_count();
-	timer = 0;
-	document.form_sw.amountofWater.value = 0;
-}
 
-function start_count(){
-	if(sw_status == 0){
-		document.form_sw.bstart.value = "stop";
-		sw_status = 1;
-		timerID = setInterval("count_up()",100);
-	}else{
-		document.form_sw.bstart.value = "start";
-		sw_status = 0;
-		clearInterval(timerID);
-	}
-}
-
-function count_up(){
-	timer++;
-	document.form_sw.amountofWater.value = timer;
-}
+////ストップウォッチの機能
+////ストップウォッチのリセット機能
+//function reset_form() {
+//	console.log(document.form_sw+ "A")
+//	if(sw_status == 1)start_count();
+//	timer = 0;
+//	document.form_sw.amountofWater.value = 0;
+//}
+//
+//function start_count(){
+//	if(sw_status == 0){
+//		document.form_sw.bstart.value = "stop";
+//		sw_status = 1;
+//		timerID = setInterval("count_up()",100);
+//	}else{
+//		document.form_sw.bstart.value = "start";
+//		sw_status = 0;
+//		clearInterval(timerID);
+//	}
+//}
+//
+//function count_up(){
+//	timer++;
+//	document.form_sw.amountofWater.value = timer;
+//}
 
 
 

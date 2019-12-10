@@ -49,12 +49,12 @@
 	</header>
 	<div class="p-3">
 		<div class="main">
-			<div id="networkid"></div>
+<!-- 			<div id="networkid"></div>
 			<div id="accounts"></div>
-			<div id="txhash"></div>
+			<div id="txhash"></div> -->
 			<br>
+			<p class="h3 text-center">使用履歴</p>
 			<div class="mx-auto" style="width: 640px;">
-				<h3 class="text-center">使用履歴</h3>
 				<div class="text-right px-3">
 					<a href="htmls/charge.html">全期間</a>
 				</div>
@@ -88,34 +88,21 @@
 			<br> <br>
 			<div class="mx-auto" style="width: 720px;">
 				<canvas id="ex_chart"></canvas>
-				<br>
-				<div id="balance" class="h5"></div>
-				<form>
-					<input type="text" id="charge"> <input type="button"
-						value="送金" onclick="Deposit()">
-					<div class="button"></div>
-				</form>
-				<br> <br>
-				<div id="unpaid" class="text-danger h5"></div>
-				<div id="sendUnpaid"></div>
-				<br> <br>
-				<p class="h5">使用量入力</p>
-				<form name="form_sw">
-					<div id="onWorking" class="text-danger h4"></div>
-					<input type="text" id="amountofWater" class="inputWater"> <input
-						type="button" value='送信' onclick="setAmountofWater()"
-						class="inputWater"> <input type="button" name="bstart"
-						value="start" onclick="start_count()" class="inputWater"></input>
-					<input type="button" name="reset" value="reset"
-						onclick="reset_form()" class="inputWater"></input>
-				</form>
-				<br> <br> <br>
+			</div>
+			<br> <br> <br>
+			<div class="border border-dark rounded py-3 mx-auto"
+				style="width: 500px;">
+				<div class="text-center">
+					<p class="h5">現在の残高</p>
+					<p class="h2 py-2" id="balance"></p>
+					<p class="h5">
+						<a href="htmls/charge.html">入金(チャージ)→</a>
+					</p>
+				</div>
 			</div>
 		</div>
-
-		<a href="htmls/charge.html">テスト</a> <a href="htmls/waterserver_index.php">登録ページはこちら</a>
+	<a href="htmls/waterserver_index.php">登録ページはこちら</a>
 	</div>
-
 	<footer>
 		<div class="bottom section-padding">
 			<div class="container">
@@ -130,6 +117,5 @@
 			</div>
 		</div>
 	</footer>
-
 </body>
 </html>
