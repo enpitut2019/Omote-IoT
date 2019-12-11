@@ -1,7 +1,6 @@
 var account;
 var wallet;
 var sw_status = 0;
-var msg = "now sending Transaction...."
 function init() {
 	return new Promise(resolve => {
 		if (typeof web3 !== 'undefined') {
@@ -26,56 +25,30 @@ function init() {
 	});
 }
 
-//pending中に表示する
-function dispLoadning(msg){
-	if(msg == undefined){
-		var msg = "";
-	}
-
-	var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";
-	if($("#loading").length == 0){
-		$("body").append("<div id='loading'>" + dispMsg + "</div>");
-	}
-}
-
-//アニメーションを削除
-function removeLoading(){
-	$("#loading").remove();
-}
-
-//depositする
-function Deposit() {
-	var input = $('#charge').val();
-	dispLoadning(msg);
-	contract.deposit.sendTransaction({from:account,to:contractAddress,value:web3.toWei(input, "wei")},(error,result) => {
-		if(!error){
-			web3.eth.filter('latest', function(error, result){
-				if (!error) {
-					removeLoading();
-					location.href = '../';
-				} else {
-					console.error(error)
-					removeLoading();
-					location.href = '../';
-				}
-			  })
-			}else{
-				console.error(error);
-				removeLoading();
-				location.href = '../';
-			}
-	});
-}
-
 //デポジットされたethを受け取る
 function getUserwallet() {
 	contract.get_wallet.call({from:account},(error, result) => {
 		if(!error) {
-			console.log(account);
 			$('#balance').text(result + 'wei')
-			console.log(result)
 			wallet = Number(result);
 		}
+	});
+}
+
+//使用した水の量と料金の履歴を受け取る
+function getHistoryofWater() {
+	return new Promise(resolve => {
+		contract.get_history_water.call({from:account},(error,result1) => {
+			if(!error) {
+				console.log(result1)
+				contract.get_history_charge.call({from:account},(error,result2) => {
+					if(!error) {
+						console.log(result2)
+						resolve([result1, result2]);
+					}
+				});
+			}
+		});
 	});
 }
 

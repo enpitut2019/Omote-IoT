@@ -8,6 +8,9 @@ nav {
 nav>div>ul>div>li>a {
     color: #f5f5f5;
 }
+.borderBottom{
+    border-bottom: 1.5px solid #f5f5f5;
+}
 .navbar-toggler{
   border-color: #f5f5f5;
 }
@@ -37,8 +40,8 @@ footer {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgb(0, 0, 0);
-    opacity: 0.5;
+    background-color: rgb(0, 0, 0, 1.0);
+    opacity: 0.8;
 }
    
 #loading .loadingMsg {
@@ -46,9 +49,18 @@ footer {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-    padding-top: 140px;
-    background: url("../gif-load.gif") center center no-repeat;
+    padding-top: 180px;   
 }
+.loadGif {
+    background: url("../images/gif-load.gif") center center no-repeat;
+}
+.successIcon {
+    background: url("../images/success.png") center center no-repeat;
+}
+.failIcon {
+    background: url("../images/fail.png") center center no-repeat;
+}
+    
 
 
 

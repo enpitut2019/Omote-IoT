@@ -10,31 +10,31 @@ $(function(){
 			displayHistoryTable(result);
 			display_graph(result);
 		});
-		reset_form();
 	});
+	setInterval(function(){getUserwallet();},3000);
 });
 
-//水の量セット
-function setAmountofWater(){
-	var input = $('#amountofWater').val();
-	dispLoadning(msg);
-	contract.set_used_water.sendTransaction(myEscape(input),{from:account},(error, result) => {
-		if(!error){
-		web3.eth.filter('latest', function(error, result){
-			if (!error) {
-				removeLoading();
-			} else {
-				console.error(error)
-				removeLoading();
-			}
-		  })
-		}else{
-			console.error(error);
-			removeLoading();
-		}
-		});
-
-}
+////水の量セット
+//function setAmountofWater(){
+//	var input = $('#amountofWater').val();
+//	dispLoadning();
+//	contract.set_used_water.sendTransaction(myEscape(input),{from:account},(error, result) => {
+//		console.log(result)
+//		if(!error){
+//		web3.eth.filter('latest', function(error, result){
+//			if (!error) {
+//				removeLoading();
+//			} else {
+//				console.error(error)
+//				removeLoading();
+//			}
+//		  })
+//		}else{
+//			console.error(error);
+//			removeLoading();
+//		}
+//		});
+//}
 
 ////当月の使用した水の量を受け取る
 //function getUsedWater(){
@@ -105,29 +105,11 @@ function getOnWorking() {
 	});
 }
 
-//使用した水の量と料金の履歴を受け取る
-function getHistoryofWater() {
-	return new Promise(resolve => {
-		contract.get_history_water.call({from:account},(error,result1) => {
-			if(!error) {
-				console.log(result1)
-				contract.get_history_charge.call({from:account},(error,result2) => {
-					if(!error) {
-						console.log(result2)
-						resolve([result1, result2]);
-					}
-				});
-			}
-		});
-	});
-}
-
 //使用した水の量と料金の履歴を表示
 function displayHistoryTable(amount) {
 	var amount_of_water = amount[0];
 	var amount_of_charge = amount[1];
 	var len = amount_of_water.length;
-	console.log(typeof(amount_of_charge[0]));
 	if(len > 0) {
 		$('#amount1').text(amount_of_water[len-1]);
 		$('#charge1').text(Number(amount_of_charge[len-1]).toLocaleString());
@@ -165,6 +147,12 @@ function display_graph(amount) {
 	for (var i = len-12; i < len; i++) {
 		label.push(((month + 12 - (len - i) % 12) % 12 + 1) + "月");
 	}
+	if (len < 12) {
+		for (var i = 0; i < 12-len; i++) {
+			amount_of_water.unshift(0);
+		}
+		len = 12;
+	}
 	var ctx = document.getElementById('ex_chart');
 	var data = {
 			labels: label,
@@ -172,7 +160,7 @@ function display_graph(amount) {
 				label: '水使用量',
 				data: amount_of_water.slice(len-12,len),
 				borderColor: 'rgba(70, 210, 255, 1)',
-				backgroundColor: 'rgba(70, 210, 255, 0.5)'
+				backgroundColor: 'rgba(70, 210, 255, 0.8)'
 			}]
 	};
 	var options = {
@@ -200,31 +188,32 @@ function display_graph(amount) {
 	});
 }
 
-//ストップウォッチの機能
-//ストップウォッチのリセット機能
-function reset_form() {
-	console.log(document.form_sw+ "A")
-	if(sw_status == 1)start_count();
-	timer = 0;
-	document.form_sw.amountofWater.value = 0;
-}
 
-function start_count(){
-	if(sw_status == 0){
-		document.form_sw.bstart.value = "stop";
-		sw_status = 1;
-		timerID = setInterval("count_up()",100);
-	}else{
-		document.form_sw.bstart.value = "start";
-		sw_status = 0;
-		clearInterval(timerID);
-	}
-}
-
-function count_up(){
-	timer++;
-	document.form_sw.amountofWater.value = timer;
-}
+////ストップウォッチの機能
+////ストップウォッチのリセット機能
+//function reset_form() {
+//	console.log(document.form_sw+ "A")
+//	if(sw_status == 1)start_count();
+//	timer = 0;
+//	document.form_sw.amountofWater.value = 0;
+//}
+//
+//function start_count(){
+//	if(sw_status == 0){
+//		document.form_sw.bstart.value = "stop";
+//		sw_status = 1;
+//		timerID = setInterval("count_up()",100);
+//	}else{
+//		document.form_sw.bstart.value = "start";
+//		sw_status = 0;
+//		clearInterval(timerID);
+//	}
+//}
+//
+//function count_up(){
+//	timer++;
+//	document.form_sw.amountofWater.value = timer;
+//}
 
 
 
