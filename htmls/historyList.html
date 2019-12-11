@@ -9,7 +9,7 @@
 <link href="../styles/bootstrap.css" rel="stylesheet">
 <link href="../styles/common.css" rel="stylesheet">
 <script src="../scripts/common.js"></script>
-<script src="../scripts/charge.js"></script>
+<script src="../scripts/historyList.js"></script>
 </head>
 <body>
 	<header>
@@ -28,61 +28,45 @@
 				<ul class="navbar-nav ml-auto"></ul>
 				<ul class="navbar-nav mr-5">
 					<div class="px-4 h5">
-						<li class="nav-item borderBottom"><a
-							class="nav-link" href="../">ホーム</a></li>
+						<li class="nav-item borderBottom"><a class="nav-link"
+							href="../">ホーム</a></li>
 					</div>
 					<div class="px-4 h5">
-						<li class="nav-item borderBottom"><a
-							class="nav-link" href="#">使い方</a></li>
+						<li class="nav-item borderBottom"><a class="nav-link"
+							href="#">使い方</a></li>
 					</div>
 					<div class="px-4 h5">
-						<li class="nav-item borderBottom"><a
-							class="nav-link" href="#">登録情報</a></li>
+						<li class="nav-item borderBottom"><a class="nav-link"
+							href="#">登録情報</a></li>
 					</div>
 					<div class="px-4 h5">
-						<li class="nav-item borderBottom"><a
-							class="nav-link" href="./charge.html">入金</a></li>
+						<li class="nav-item borderBottom"><a class="nav-link"
+							href="./charge.html">入金</a></li>
 					</div>
 				</ul>
 			</div>
 		</nav>
 	</header>
-	<!-- 	<div class="ml-auto">
-		<div id="networkid"></div>
-		<div id="accounts"></div>
-	</div> -->
 	<br>
+	<p class="h3 text-center">使用履歴(全期間)</p>
 	<br>
-	<br>
-	<div class="mx-auto">
-		<div class="text-center">
-			<h3>入金（チャージ）</h3>
-		</div>
-		<br>
-		<div class="border border-dark rounded py-3" style="width: 400px;">
-			<div class="text-center py-2">
-				<p class="h5">現在の残高</p>
-				<p class="h2" id="balance"></p>
-			</div>
-			<br>
-			<form>
-				<div class="form-group mx-auto" style="width: 225px;">
-					<label for="charge">入金額(wei):</label>
-					<div id="error" class="text-danger"></div>
-					<input type="number" class="form-control" id="charge"
-						placeholder="1000">
-				</div>
-				<div class="text-center">
-					<button type="button" class="btn btn-primary"
-						onclick="chargeButton()">送金</button>
-				</div>
-			</form>
-		</div>
-		<div class="py-3">
-			<p>・入金(チャージ)したい金額を<span class="text-danger">半角数字</span>で入力してください</p>
-			<!-- <p>・チャージしたethereumはいつでも引き出すことができます</p> -->
-		</div>
+	<div class="mx-auto" style="width: 640px;">
+		<table class="table table-bordered">
+			<thead class="thead-light">
+				<tr>
+					<th>年/月</th>
+					<th>使用量</th>
+					<th>料金(wei)</th>
+				</tr>
+			</thead>
+			<tbody id="tbodyID">
+			</tbody>
+		</table>
 	</div>
+	<br>
+
+	<div id='a'></div>
+
 	<footer>
 		<div class="bottom section-padding">
 			<div class="container">
@@ -99,3 +83,4 @@
 	</footer>
 </body>
 </html>
+

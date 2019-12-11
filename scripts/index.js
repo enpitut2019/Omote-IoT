@@ -10,7 +10,6 @@ $(function(){
 			displayHistoryTable(result);
 			display_graph(result);
 		});
-		reset_form();
 	});
 	setInterval(function(){getUserwallet();},3000);
 });
@@ -106,29 +105,11 @@ function getOnWorking() {
 	});
 }
 
-//使用した水の量と料金の履歴を受け取る
-function getHistoryofWater() {
-	return new Promise(resolve => {
-		contract.get_history_water.call({from:account},(error,result1) => {
-			if(!error) {
-				console.log(result1)
-				contract.get_history_charge.call({from:account},(error,result2) => {
-					if(!error) {
-						console.log(result2)
-						resolve([result1, result2]);
-					}
-				});
-			}
-		});
-	});
-}
-
 //使用した水の量と料金の履歴を表示
 function displayHistoryTable(amount) {
 	var amount_of_water = amount[0];
 	var amount_of_charge = amount[1];
 	var len = amount_of_water.length;
-	console.log(typeof(amount_of_charge[0]));
 	if(len > 0) {
 		$('#amount1').text(amount_of_water[len-1]);
 		$('#charge1').text(Number(amount_of_charge[len-1]).toLocaleString());

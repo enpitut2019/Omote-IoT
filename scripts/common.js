@@ -35,6 +35,23 @@ function getUserwallet() {
 	});
 }
 
+//使用した水の量と料金の履歴を受け取る
+function getHistoryofWater() {
+	return new Promise(resolve => {
+		contract.get_history_water.call({from:account},(error,result1) => {
+			if(!error) {
+				console.log(result1)
+				contract.get_history_charge.call({from:account},(error,result2) => {
+					if(!error) {
+						console.log(result2)
+						resolve([result1, result2]);
+					}
+				});
+			}
+		});
+	});
+}
+
 var myEscape = function (str) {
 	return str
 	.replace(/&/g, '&amp;')
