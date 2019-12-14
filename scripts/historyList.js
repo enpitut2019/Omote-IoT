@@ -29,5 +29,5 @@ function dispHistory() {
 		tr.innerHTML = '<tr><td>'+label[i]+'</td><td>'+waterHistory[i]+'</td><td>'+chargeHistoryJpy[i]+'</td></tr>';
 		tbody.appendChild(tr);
 	}
-	state = true;
+	histState = true;
 }

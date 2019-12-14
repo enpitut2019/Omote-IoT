@@ -104,7 +104,11 @@
 			<div class="border border-dark rounded py-3 mx-auto"
 				style="width: 500px;">
 				<div class="text-center">
-					<p class="h5">現在の残高</p>
+					<div class="h5">
+						現在の残高
+						<button type="button" class="btn btn-secondary rounded-pill btn-sm"
+							onclick="convertEthToJpyWal()">切替</button>
+					</div>
 					<p class="h2 py-2" id="balance"></p>
 					<p class="h5">
 						<a href="htmls/charge.html">入金(チャージ)→</a>

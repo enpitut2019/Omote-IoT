@@ -1,6 +1,7 @@
 $(function(){
 	init().then(result => {
 		setCurrentJpy().then(result2 => {
+			walletState = true;
 			dispUserwallet();
 		});
 	});
@@ -43,6 +44,9 @@ function removeLoading(){
 //depositする
 function Deposit() {
 	var input = $('#charge').val();
+	if(walletState) {
+		input = Math.floor(input * 1 * Math.pow(10, 18)/currentPrice);//wei
+	}
 	dispLoadning();
 	contract.deposit.sendTransaction({from:account,to:contractAddress,value:web3.toWei(input, "wei")},(error,transactionHash) => {
 		dispUserwallet();
@@ -83,4 +87,18 @@ function chargeButton() {
 		$('#error').text("");
 		Deposit();
 	}
+}
+
+//ethereumと円の変換(wallet)
+function convertEthToJpyWal() {
+	if(walletState) {
+		walletState = false;
+		$('#deposit').text("入金額(wei)");
+	} else {
+		walletState = true;
+		$('#deposit').text("入金額(JPY)");
+	}
+	document.form.reset();
+	dispUserwallet();
+
 }

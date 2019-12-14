@@ -1,9 +1,8 @@
 var account;
 var currentPrice;
 var waterHistory;
-var chargeHistory;
-var chargeHistoryJpy;
-var state;
+var chargeHistory, chargeHistoryJpy;
+var histState, walletState;
 
 function init() {
 	return new Promise(resolve => {
@@ -33,8 +32,12 @@ function init() {
 function dispUserwallet() {
 	contract.get_wallet.call({from:account},(error, result) => {
 		if(!error) {
-			//$('#balance').text((Math.floor(currentPrice * result * Math.pow(10, -17))/10).toLocaleString() + '(JPY)')
-			$('#balance').text(Math.floor((currentPrice * result * Math.pow(10, -4))/10).toLocaleString() + '(JPY)')//デモ用
+			if(walletState) {
+				$('#balance').text((Math.floor(currentPrice * result * Math.pow(10, -17))/10).toLocaleString() + '(JPY)')
+//				$('#balance').text(Math.floor((currentPrice * result * Math.pow(10, -4))/10).toLocaleString() + '(JPY)')//デモ用
+			} else {
+				$('#balance').text(Math.floor(result).toLocaleString() + '(wei)')
+			}
 		}
 	});
 }
@@ -63,7 +66,7 @@ function setHistory(result) {
 	chargeHistoryJpy = [];
 	var len = chargeHistory.length;
 	for (var i = 0; i < len; i++) {
-		// chargeHistoryJpy.push(Math.floor(chargeHistory[i] * current_price * Math.pow(10, -17))/10);
+//		chargeHistoryJpy.push(Math.floor(chargeHistory[i] * current_price * Math.pow(10, -17))/10);
 		chargeHistoryJpy.push(Math.floor(chargeHistory[i] * current_price * Math.pow(10, -4))/10);//デモ用
 	}
 }
@@ -90,18 +93,18 @@ function setCurrentJpy() {
 function convertEthToJpy() {
 	len = $("#histTable tbody").children().length;
 	var tbody = document.getElementById('tbodyID');
-	if(state) {
+	if(histState) {
 		$('#unit').text("料金(wei)");
 		for (var i = 0; i < len; i++) {
 			tbody.rows[i].cells[2].innerText = chargeHistory[i];
 		}
-		state = false;
+		histState = false;
 	} else {
 		$('#unit').text("料金(JPY)");
 		for (var i = 0; i < len; i++) {
 			tbody.rows[i].cells[2].innerText = chargeHistoryJpy[i];
 		}
-		state = true;
+		histState = true;
 	}
 }
 

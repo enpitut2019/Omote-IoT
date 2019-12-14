@@ -2,6 +2,7 @@ $(function(){
 	init().then(result => {
 		//getUsedWater();
 		setCurrentJpy().then(result => {
+			walletState = true;
 			dispUserwallet();
 		});
 		getNotPayCount();
@@ -150,4 +151,14 @@ function displayGraph() {
 		data: data,
 		options: options
 	});
+}
+
+//ethereumと円の変換(wallet)
+function convertEthToJpyWal() {
+	if(walletState) {
+		walletState = false;
+	} else {
+		walletState = true;
+	}
+	dispUserwallet();
 }
