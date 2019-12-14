@@ -1,3 +1,12 @@
+$(function(){
+	init().then(result => {
+		setCurrentJpy().then(result2 => {
+			dispUserwallet();
+		});
+	});
+	setInterval(function(){dispUserwallet();},3000);
+});
+
 //pending中に表示する
 function dispLoadning(){
 	var msg = "now sending Transaction...."
@@ -36,7 +45,7 @@ function Deposit() {
 	var input = $('#charge').val();
 	dispLoadning();
 	contract.deposit.sendTransaction({from:account,to:contractAddress,value:web3.toWei(input, "wei")},(error,transactionHash) => {
-		getUserwallet();
+		dispUserwallet();
 		if(!error){
 			var timerId = setInterval(function(){
 				web3.eth.getTransactionReceipt(transactionHash,(error,resultReceipt) => {
@@ -75,10 +84,3 @@ function chargeButton() {
 		Deposit();
 	}
 }
-
-$(function(){
-	init().then(result => {
-		getUserwallet();
-	});
-	setInterval(function(){getUserwallet();},3000);
-});
