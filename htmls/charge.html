@@ -37,7 +37,7 @@
 					</div>
 					<div class="px-4 h5">
 						<li class="nav-item borderBottom"><a
-							class="nav-link" href="../htmls/information_confirm.php">登録情報</a></li>
+							class="nav-link" href="#">登録情報</a></li>
 					</div>
 					<div class="px-4 h5">
 						<li class="nav-item borderBottom"><a
@@ -61,13 +61,17 @@
 		<br>
 		<div class="border border-dark rounded py-3" style="width: 400px;">
 			<div class="text-center py-2">
-				<p class="h5">現在の残高</p>
+				<div class="h5">
+					現在の残高
+					<button type="button" class="btn btn-secondary rounded-pill btn-sm"
+						onclick="convertEthToJpyWal()">切替</button>
+				</div>
 				<p class="h2" id="balance"></p>
 			</div>
 			<br>
-			<form>
+			<form name="form">
 				<div class="form-group mx-auto" style="width: 225px;">
-					<label for="charge">入金額(wei):</label>
+					<label for="charge" id='deposit'>入金額(JPY):</label>
 					<div id="error" class="text-danger"></div>
 					<input type="number" class="form-control" id="charge"
 						placeholder="1000">
