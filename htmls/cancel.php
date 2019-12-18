@@ -37,7 +37,7 @@
                 </div>
                 <div class="px-4 h5">
                     <li class="nav-item" style="border-bottom: 1.5px solid #f5f5f5"><a
-                                class="nav-link" href="../htmls/information_confirm.php">登録情報</a></li>
+                                class="nav-link" href="#">登録情報</a></li>
                 </div>
                 <div class="px-4 h5">
                     <li class="nav-item" style="border-bottom: 1.5px solid #f5f5f5"><a
@@ -51,7 +51,7 @@
     <div class="mx-auto" style="width: 600px;">
         <br>
         <h2>登録情報確認フォーム</h2>
-        <? echo $_GET['et']; ?>
+
         <?php
         try{
             // データベースへ接続
@@ -63,8 +63,7 @@
             die();
         }
         try{
-            $your_eth=$_GET['et'];
-            $sql = "SELECT * FROM water_users where eth=" . $your_eth;
+            $sql = "SELECT * FROM water_users";
             $stmh = $pdo->prepare($sql);
             $stmh->execute();
         }catch(PDOException $Exception){
@@ -78,26 +77,25 @@
         $eth=$eth['eth'];
         ?>
         <div class="form-group">
-            <label>名前:</label><br>
-            <?= htmlspecialchars($name) ?>
+            <label>お名前:</label>
+            <input type="text" readonly class="form-control" value='<?= htmlspecialchars($name) ?>'>
         </div>
         <div class="form-group">
-            <label>電話番号</label><br>
-            <?= htmlspecialchars($tel) ?>
+            <label>電話番号</label>
+            <input type="text" readonly class="form-control" value='<?= htmlspecialchars($tel) ?>'>
         </div>
         <div class="form-group">
-            <label>住所</label><br>
-            <?= htmlspecialchars($address) ?>
+            <label>住所</label>
+            <input type="text" readonly class="form-control" value='<?= htmlspecialchars($address) ?>'>
         </div>
         <div class="form-group">
-            <label>メールアドレス</label><br>
-            <?= htmlspecialchars($mail) ?>
+            <label>メールアドレス</label>
+            <input type="text" readonly class="form-control" value='<?= htmlspecialchars($mail) ?>'>
         </div>
         <div class="form-group">
-            <label>ethのアカウント</label><br>
-            <?= htmlspecialchars($eth) ?>
+            <label>ethのアカウント</label>
+            <input type="text" readonly class="form-control" value='<?= htmlspecialchars($eth) ?>'>
         </div>
-
 
         解約しますか？<br>
         <div>
@@ -148,3 +146,4 @@
 </footer>
 </body>
 </html>
+
