@@ -37,7 +37,7 @@
                 </div>
                 <div class="px-4 h5">
                     <li class="nav-item" style="border-bottom: 1.5px solid #f5f5f5"><a
-                                class="nav-link" href="#">登録情報</a></li>
+                                class="nav-link" href="../htmls/information_confirm.php">登録情報</a></li>
                 </div>
                 <div class="px-4 h5">
                     <li class="nav-item" style="border-bottom: 1.5px solid #f5f5f5"><a
@@ -51,7 +51,7 @@
     <div class="mx-auto" style="width: 600px;">
         <br>
         <h2>登録情報確認フォーム</h2>
-
+        <? echo $_GET['et']; ?>
         <?php
         try{
             // データベースへ接続
@@ -63,7 +63,8 @@
             die();
         }
         try{
-            $sql = "SELECT * FROM water_users";
+            $your_eth=$_GET['et'];
+            $sql = "SELECT * FROM water_users where eth=" . $your_eth;
             $stmh = $pdo->prepare($sql);
             $stmh->execute();
         }catch(PDOException $Exception){
@@ -96,6 +97,7 @@
             <label>ethのアカウント</label><br>
             <?= htmlspecialchars($eth) ?>
         </div>
+
 
         解約しますか？<br>
         <div>
@@ -146,4 +148,3 @@
 </footer>
 </body>
 </html>
-
