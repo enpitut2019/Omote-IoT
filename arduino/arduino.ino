@@ -18,7 +18,7 @@ const char* host = "arduino.php5.sk"; //external server domain for HTTP connecti
 
 int counter = 0;
 
-//芳賀シンヤの秘密鍵
+//芳賀シンヤの秘密鍵//水道局の秘密鍵
 const char *PRIVATE_KEY = "2D3E4CC5AC1A653FF47A97922B6ED91BC8E42428CF5FE5637506FB20F8635DEA";
 
 Web3 web3(INFURA_HOST, INFURA_PATH);
