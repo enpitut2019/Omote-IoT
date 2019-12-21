@@ -43,13 +43,13 @@ footer {
     background-color: rgb(0, 0, 0, 1.0);
     opacity: 0.8;
 }
-   
+
 #loading .loadingMsg {
     color:rgb(255,255,255);
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-    padding-top: 180px;   
+    padding-top: 180px;
 }
 .loadGif {
     background: url("../images/gif-load.gif") center center no-repeat;
@@ -60,7 +60,23 @@ footer {
 .failIcon {
     background: url("../images/fail.png") center center no-repeat;
 }
-    
+
+@media screen and (max-width:480px) {
+	img{
+	  width: 200px;
+	  height: auto;
+	}
+	.bdr-charge {
+		width: 300px;
+	}
+}
+
+@media screen and (min-width:481px) {
+	.bdr-charge {
+		width: 400px;
+	}
+}
+
 
 
 
