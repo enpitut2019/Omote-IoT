@@ -60,38 +60,8 @@
         $tel=$_POST['tel'];
         $address=$_POST['address'];
         $mail=$_POST['mail'];
-        $eth=$_POST['eth'];
-        ?>
+        $acounteth=$_POST['eth'];
 
-
-        <div class="form-group">
-            <label>お名前:</label>
-            <input type="text" readonly class="form-control" value='<?= htmlspecialchars($name) ?>'>
-        </div>
-        <div class="form-group">
-            <label>電話番号</label>
-            <input type="text" readonly class="form-control" value='<?= htmlspecialchars($tel) ?>'>
-        </div>
-        <div class="form-group">
-            <label>住所</label>
-            <input type="text" readonly class="form-control" value='<?= htmlspecialchars($address) ?>'>
-        </div>
-        <div class="form-group">
-            <label>メールアドレス</label>
-            <input type="text" readonly class="form-control" value='<?= htmlspecialchars($mail) ?>'>
-        </div>
-        <div class="form-group">
-            <label>ethのアカウント</label>
-            <input type="text" readonly class="form-control" value='<?= htmlspecialchars($eth) ?>'>
-        </div>
-
-        以上の内容でよろしいでしょうか<br>
-        <div class="rebutton">
-            　　<button type="submit" name="submit" class="btn btn-primary">登録</button><br>
-        </div>
-
-        <?php
-        /*
         function insert(){
             try{
                 // データベースへ接続
@@ -103,17 +73,48 @@
                 die();
             }
 
+            $name=$_POST['firstname'] . $_POST['lastname'];
+            $tel=$_POST['tel'];
+            $address=$_POST['address'];
+            $mail=$_POST['mail'];
+            $acounteth=$_POST['eth'];
 
             //データベースにinsert
-            $sql = "INSERT INTO water_users (name, tel, address, mail, eth) VALUES (:name, :tel, :address, :mail, :eth)";
+            $sql = "INSERT INTO water_users ( name, tel, address, mail, eth) VALUES (:name,:tel,:address,:mail,:eth)";
             $stmh = $pdo->prepare($sql);
-            $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, 'eth' => $eth);
+            $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth);
             $stmh->execute($params);
+            echo "登録されました";
         }
 
-        if(isset($_POST["submit"])) { insert(); }*/
         ?>
 
+
+        <div class="form-group">
+            <label>お名前:</label>
+            <input type="text"  class="form-control" value='<?= htmlspecialchars($name) ?>'>
+        </div>
+        <div class="form-group">
+            <label>電話番号</label>
+            <input type="text" class="form-control" value='<?= htmlspecialchars($tel) ?>'>
+        </div>
+        <div class="form-group">
+            <label>住所</label>
+            <input type="text"  class="form-control" value='<?= htmlspecialchars($address) ?>'>
+        </div>
+        <div class="form-group">
+            <label>メールアドレス</label>
+            <input type="text"  class="form-control" value='<?= htmlspecialchars($mail) ?>'>
+        </div>
+        <div class="form-group">
+            <label>ethのアカウント</label>
+            <input type="text"  class="form-control" value='<?= htmlspecialchars($acounteth) ?>'>
+        </div>
+
+        以上の内容でよろしいでしょうか<br>
+        <div class="rebutton">
+            　　<button type="submit" name="submit" class="btn btn-primary" onclick="<? insert(); ?>">登録</button><br>
+        </div>
     </div>
 </div>
 <a href="waterserver_index.php">戻る</a>
@@ -133,4 +134,3 @@
 	</footer>
 </body>
 </html>
-

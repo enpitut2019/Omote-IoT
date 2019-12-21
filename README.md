@@ -12,7 +12,7 @@
 - 芳賀 慎也 
 
 # デプロイ先URL
-https://nameless-oasis-61053.herokuapp.com/?
+https://omotekensuido.herokuapp.com/
 
 # アプリケーションの使い方
 まずこのアプリケーションはMETAMASKと連携しているため、ユーザ側でMETAMASKのインストールをする必要があります。
