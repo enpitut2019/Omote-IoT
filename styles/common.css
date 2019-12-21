@@ -43,8 +43,20 @@ footer {
 	}
 }
 
-@media screen and (min-width:481px) {
+@media screen and (max-width:640px) and (min-width:480px) {
 	.bdr-charge {
 		width: 400px;
+	}
+	.list-width {
+		width: 480px;
+	}
+}
+
+@media screen and (min-width:641px) {
+	.bdr-charge {
+		width: 400px;
+	}
+	.list-width {
+		width: 640px;
 	}
 }
