@@ -1,7 +1,6 @@
 $(function(){
 	init().then(result => {
 		setCurrentJpy().then(result2 => {
-			walletState = true;
 			dispUserwallet();
 		});
 	});
