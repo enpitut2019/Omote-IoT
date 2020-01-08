@@ -52,7 +52,6 @@
     <div class="mx-auto" style="width: 600px;">
         <br>
         <h2>登録情報確認フォーム</h2>
-        <? echo $_GET['et']; ?>
         <?php
         try{
             // データベースへ接続
@@ -64,7 +63,6 @@
             die();
         }
         try{
-            $your_eth=$_GET['et'];
             $sql = "SELECT * FROM water_users where eth=" . $your_eth;
             $stmh = $pdo->prepare($sql);
             $stmh->execute();

@@ -61,6 +61,7 @@
         $address=$_POST['address'];
         $mail=$_POST['mail'];
         $acounteth=$_POST['eth'];
+        $password=$_POST['password'];
 
         function insert(){
             try{
@@ -78,11 +79,12 @@
             $address=$_POST['address'];
             $mail=$_POST['mail'];
             $acounteth=$_POST['eth'];
+            $password=$_POST['password'];
 
             //データベースにinsert
-            $sql = "INSERT INTO water_users ( name, tel, address, mail, eth) VALUES (:name,:tel,:address,:mail,:eth)";
+            $sql = "INSERT INTO water_users ( name, tel, address, mail, eth, password) VALUES (:name,:tel,:address,:mail,:eth,:password)";
             $stmh = $pdo->prepare($sql);
-            $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth);
+            $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password);
             $stmh->execute($params);
             echo "登録されました";
         }
@@ -109,6 +111,10 @@
         <div class="form-group">
             <label>ethのアカウント</label>
             <input type="text"  class="form-control" value='<?= htmlspecialchars($acounteth) ?>'>
+        </div>
+        <div class="form-group">
+            <label>パスワード</label>
+            <input type="text"  class="form-control" value='<?= htmlspecialchars($password) ?>'>
         </div>
 
         以上の内容でよろしいでしょうか<br>

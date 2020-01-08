@@ -53,12 +53,12 @@
 
         <h2>情報確認ページ</h2>
 
-        あなたのethのアカウントを入力してください。
+        あなたのパスワードを入力してください。
         <div class="border rounded">
             <div class="form-group">
                 <form method="POST" action="information.php">
-                    <label class="mt-4">アカウントアドレス：</label><br>
-                    <input type="text" name="acount" class="acount form-control" required>
+                    <label class="mt-4">パスワード：</label><br>
+                    <input type="text" name="password" class="password form-control" required>
                         <button type="submit" class="btn btn-primary">情報を見る</button>
                         <br>
                 </form>
