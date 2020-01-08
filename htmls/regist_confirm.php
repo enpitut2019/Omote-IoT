@@ -54,6 +54,16 @@
         <br>
         <h2>登録情報確認フォーム</h2>
 
+    <?
+    //フォームから受け取った値を変数に代入
+    $name=$_POST['firstname'] . $_POST['lastname'];
+    $tel=$_POST['tel'];
+    $address=$_POST['address'];
+    $mail=$_POST['mail'];
+    $acounteth=$_POST['eth'];
+    $password=$_POST['password'];
+    ?>
+
 
     <form method="POST" action="regist.php">
         <div class="form-group">
