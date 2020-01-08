@@ -55,13 +55,6 @@
         <h2>登録情報確認フォーム</h2>
 
     <?
-    //フォームから受け取った値を変数に代入
-    $name=$_POST['firstname'] . $_POST['lastname'];
-    $tel=$_POST['tel'];
-    $address=$_POST['address'];
-    $mail=$_POST['mail'];
-    $acounteth=$_POST['eth'];
-    $password=$_POST['password'];
 
     function insert(){
         try{
@@ -74,12 +67,6 @@
             die();
         }
 
-        $name=$_POST['firstname'] . $_POST['lastname'];
-        $tel=$_POST['tel'];
-        $address=$_POST['address'];
-        $mail=$_POST['mail'];
-        $acounteth=$_POST['eth'];
-        $password=$_POST['password'];
 
         //データベースにinsert
         $sql = "INSERT INTO water_users ( name, tel, address, mail, eth, password) VALUES (:name,:tel,:address,:mail,:eth,:password)";
