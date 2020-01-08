@@ -80,7 +80,8 @@
                 </form>
             </div>
         </div>
-
+    </div>
+</div>
         <a href="../index.html">使用量確認ページはこちら</a>
 	<footer>
 		<div class="bottom section-padding">

@@ -116,7 +116,6 @@
             <label>パスワード</label>
             <input type="text"  class="form-control" value='<?= htmlspecialchars($password) ?>'>
         </div>
-
         以上の内容でよろしいでしょうか<br>
     </div>
 </div>
