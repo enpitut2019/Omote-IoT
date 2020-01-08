@@ -82,30 +82,13 @@ function setCurrentJpy() {
 				Ethereum = json[0];
 				current_price = Ethereum["current_price"];
 				currentPrice = current_price;
+				histState = true;
+				walletState = true;
 				resolve();
 			}
 		});
 
 	});
-}
-
-//ethereumと円の変換
-function convertEthToJpy() {
-	len = $("#histTable tbody").children().length;
-	var tbody = document.getElementById('tbodyID');
-	if(histState) {
-		$('#unit').text("料金(wei)");
-		for (var i = 0; i < len; i++) {
-			tbody.rows[i].cells[2].innerText = chargeHistory[i];
-		}
-		histState = false;
-	} else {
-		$('#unit').text("料金(JPY)");
-		for (var i = 0; i < len; i++) {
-			tbody.rows[i].cells[2].innerText = chargeHistoryJpy[i];
-		}
-		histState = true;
-	}
 }
 
 var myEscape = function (str) {
