@@ -112,7 +112,7 @@
         </div>
 
         以上の内容でよろしいでしょうか<br>
-        <div class="rebutton">
+        <div class="button">
             　　<button type="submit" name="submit" class="btn btn-primary" onclick="<? insert(); ?>">登録</button><br>
         </div>
     </div>
