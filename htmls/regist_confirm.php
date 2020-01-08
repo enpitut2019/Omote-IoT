@@ -117,10 +117,8 @@
             <input type="text"  class="form-control" value='<?= htmlspecialchars($password) ?>'>
         </div>
         以上の内容でよろしいでしょうか<br>
-        <div class="conf-button">
-            <button type="submit" name="submit" class="btn btn-primary" onclick="<? insert(); ?>">確認</button>
+            <button>確認</button>
             <br>
-        </div>
     </div>
 </div>
 	<footer>
