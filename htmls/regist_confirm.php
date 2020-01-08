@@ -62,10 +62,41 @@
     $mail=$_POST['mail'];
     $acounteth=$_POST['eth'];
     $password=$_POST['password'];
+
+    function insert(){
+        try{
+            // データベースへ接続
+            $dbinfo = parse_url(getenv('DATABASE_URL'));
+            $dsn = 'pgsql:host=' . $dbinfo['host'] . ';dbname=' . substr($dbinfo['path'], 1);
+            $pdo = new PDO($dsn, $dbinfo['user'], $dbinfo['pass']);
+        }catch (PDOException $e){
+            print('Error:'.$e->getMessage());
+            die();
+        }
+
+        $name=$_POST['firstname'] . $_POST['lastname'];
+        $tel=$_POST['tel'];
+        $address=$_POST['address'];
+        $mail=$_POST['mail'];
+        $acounteth=$_POST['eth'];
+        $password=$_POST['password'];
+
+        //データベースにinsert
+        $sql = "INSERT INTO water_users ( name, tel, address, mail, eth, password) VALUES (:name,:tel,:address,:mail,:eth,:password)";
+        $stmh = $pdo->prepare($sql);
+        $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password);
+        $stmh->execute($params);
+        echo "登録されました";
+    }
+
+    if($_REQUEST[submit] == TRUE){
+        insert();
+    }
+
     ?>
 
 
-    <form method="POST" action="regist.php">
+    <form method="POST" action="">
         <div class="form-group">
             <label>お名前:</label>
             <input type="text"  class="form-control" value='<?= htmlspecialchars($name) ?>'>
