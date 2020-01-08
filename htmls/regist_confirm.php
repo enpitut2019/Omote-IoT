@@ -56,6 +56,15 @@
 
     <?
 
+    //フォームから受け取った値を変数に代入
+    $name=$_POST['firstname'] . $_POST['lastname'];
+    $tel=$_POST['tel'];
+    $address=$_POST['address'];
+    $mail=$_POST['mail'];
+    $acounteth=$_POST['eth'];
+    $password=$_POST['password'];
+
+
     function insert(){
         try{
             // データベースへ接続
