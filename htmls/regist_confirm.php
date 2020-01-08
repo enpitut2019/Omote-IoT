@@ -119,7 +119,7 @@
 
         以上の内容でよろしいでしょうか<br>
         a
-        
+        a
         <button onclick="<? insert(); ?>">登録</button><br>
         <div class="rebutton">
             　　<button class="btn btn-primary" onclick="<? insert(); ?>">登録</button><br>
