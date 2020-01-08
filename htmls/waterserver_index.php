@@ -70,6 +70,8 @@
                     <input type="text" name="mail" class="mail form-control" required><br>
                     <label class="mt-4">ethのアカウント：</label><br>
                     <input type="text" name="eth" class="eth form-control" required><br>
+                    <label class="mt-4>パスワード：</label><br>
+                    <input type="text" name="password" class="password form-control" required><br>
                     <div class="conf-button">
                         <button type="submit" name="submit" class="btn btn-primary">確認</button>
                         <br>
