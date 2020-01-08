@@ -63,7 +63,7 @@
         $acounteth=$_POST['eth'];
         $password=$_POST['password'];
 
-        function insert(){
+        public function insert(){
             try{
                 // データベースへ接続
                 $dbinfo = parse_url(getenv('DATABASE_URL'));
@@ -119,7 +119,7 @@
         以上の内容でよろしいでしょうか<br>
         <button>確認</button>
         <div class="rebutton">
-            <button type="submit" name="submit" class="btn btn-primary">登録</button>
+            <button type="submit" name="submit" class="btn btn-primary" onclick="insert()">登録</button>
             <br>
         </div>
     </div>
