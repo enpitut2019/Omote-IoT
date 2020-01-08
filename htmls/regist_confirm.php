@@ -118,7 +118,9 @@
         </div>
 
         以上の内容でよろしいでしょうか<br>
-        <button class="btn btn-primary" onclick="<? insert(); ?>">登録</button><br>
+        a
+        
+        <button onclick="<? insert(); ?>">登録</button><br>
         <div class="rebutton">
             　　<button class="btn btn-primary" onclick="<? insert(); ?>">登録</button><br>
         </div>
