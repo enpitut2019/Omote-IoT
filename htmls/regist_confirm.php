@@ -34,7 +34,7 @@
                 </div>
                 <div class="px-4 h5">
                     <li class="nav-item" style="border-bottom: 1.5px solid #f5f5f5"><a
-                                class="nav-link" href="#">使い方</a></li>
+                                class="nav-link" href="../htmls/howto.html">使い方</a></li>
                 </div>
                 <div class="px-4 h5">
                     <li class="nav-item" style="border-bottom: 1.5px solid #f5f5f5"><a
@@ -111,7 +111,7 @@
         </div>
 
         以上の内容でよろしいでしょうか<br>
-        <div class="rebutton">
+        <div class="button">
             　　<button type="submit" name="submit" class="btn btn-primary" onclick="<? insert(); ?>">登録</button><br>
         </div>
     </div>
