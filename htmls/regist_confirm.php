@@ -118,16 +118,8 @@
         </div>
 
         以上の内容でよろしいでしょうか<br>
-        a
-        a
-        <button onclick="<? insert(); ?>">登録</button><br>
-        <div class="rebutton">
-            　　<button class="btn btn-primary" onclick="<? insert(); ?>">登録</button><br>
-        </div>
     </div>
-    <a href="waterserver_index.php">戻る</a>
 </div>
-<a href="waterserver_index.php">戻る</a>
 	<footer>
 		<div class="bottom section-padding">
 			<div class="container">
