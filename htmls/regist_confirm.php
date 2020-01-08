@@ -5,10 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-    <link href="../css/server.css" rel="stylesheet">
+    <link href="../styles/server.css" rel="stylesheet">
     <link href="../styles/registpage.css" rel="stylesheet">
-    <script src="../js/bootstrap.bundle.js"></script>
-    <link href="../css/bootstrap.css" rel="stylesheet">
+    <script src="../scripts/bootstrap.bundle.js"></script>
+    <link href="../styles/bootstrap.css" rel="stylesheet">
     <script src="../scripts/serverindex.js"></script>
     <link href="../styles/common.css" rel="stylesheet">
     <script src="../scripts/common.js"></script>
