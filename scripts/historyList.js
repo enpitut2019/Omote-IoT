@@ -29,5 +29,23 @@ function dispHistory() {
 		tr.innerHTML = '<tr><td>'+label[i]+'</td><td>'+waterHistory[i]+'</td><td>'+chargeHistoryJpy[i]+'</td></tr>';
 		tbody.appendChild(tr);
 	}
-	histState = true;
+}
+
+//ethereumと円の変換
+function convertEthToJpy() {
+	len = $("#histTable tbody").children().length;
+	var tbody = document.getElementById('tbodyID');
+	if(histState) {
+		$('#unit').text("料金(wei)");
+		for (var i = 0; i < len; i++) {
+			tbody.rows[i].cells[2].innerText = chargeHistory[i];
+		}
+		histState = false;
+	} else {
+		$('#unit').text("料金(JPY)");
+		for (var i = 0; i < len; i++) {
+			tbody.rows[i].cells[2].innerText = chargeHistoryJpy[i];
+		}
+		histState = true;
+	}
 }

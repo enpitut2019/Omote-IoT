@@ -2,7 +2,6 @@ $(function(){
 	init().then(result => {
 		//getUsedWater();
 		setCurrentJpy().then(result => {
-			walletState = true;
 			dispUserwallet();
 		});
 		getNotPayCount();
@@ -112,9 +111,11 @@ function displayGraph() {
 	for (var i = len-12; i < len; i++) {
 		label.push(((month + 12 - (len - i) % 12) % 12 + 1) + "月");
 	}
+	chargeHistoryJpy1 = chargeHistoryJpy;
 	if (len < 12) {
 		for (var i = 0; i < 12-len; i++) {
 			waterHistory.unshift(0);
+			chargeHistoryJpy1.unshift(0);
 		}
 		len = 12;
 	}
@@ -141,7 +142,7 @@ function displayGraph() {
 				bodyFontSize: 12,
 				callbacks: {
 					title: function (tooltipItem, data){
-						return ("料金:" + chargeHistoryJpy.slice(len-12,len)[tooltipItem[0].index] + "(JPY)");
+						return ("料金:" + chargeHistoryJpy1.slice(len-12,len)[tooltipItem[0].index] + "(JPY)");
 					}
 				}
 			}
@@ -161,4 +162,23 @@ function convertEthToJpyWal() {
 		walletState = true;
 	}
 	dispUserwallet();
+}
+
+//ethereumと円の変換
+function convertEthToJpy() {
+	len = chargeHistory.length;
+	var tbody = document.getElementById('tbodyID');
+	if(histState) {
+		$('#unit').text("料金(wei)");
+		for (var i = 0; i < 3; i++) {
+			tbody.rows[i].cells[2].innerText = chargeHistory[len - i - 1];
+		}
+		histState = false;
+	} else {
+		$('#unit').text("料金(JPY)");
+		for (var i = 0; i < 3; i++) {
+			tbody.rows[i].cells[2].innerText = chargeHistoryJpy[len - i - 1];
+		}
+		histState = true;
+	}
 }
