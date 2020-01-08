@@ -56,6 +56,15 @@
 
     <?
 
+    //フォームから受け取った値を変数に代入
+    $name=$_POST['firstname'] . $_POST['lastname'];
+    $tel=$_POST['tel'];
+    $address=$_POST['address'];
+    $mail=$_POST['mail'];
+    $acounteth=$_POST['eth'];
+    $password=$_POST['password'];
+
+
     function insert(){
         try{
             // データベースへ接続
@@ -66,6 +75,14 @@
             print('Error:'.$e->getMessage());
             die();
         }
+
+        //フォームから受け取った値を変数に代入
+        $name=$_POST['firstname'] . $_POST['lastname'];
+        $tel=$_POST['tel'];
+        $address=$_POST['address'];
+        $mail=$_POST['mail'];
+        $acounteth=$_POST['eth'];
+        $password=$_POST['password'];
 
 
         //データベースにinsert
@@ -86,27 +103,27 @@
     <form method="POST" action="">
         <div class="form-group">
             <label>お名前:</label>
-            <input type="text"  class="form-control" value='<?= htmlspecialchars($name) ?>'>
+            <input type="text"  class="form-control" value='<?= htmlspecialchars($_POST['firstname'] . $_POST['lastname']) ?>'>
         </div>
         <div class="form-group">
             <label>電話番号</label>
-            <input type="text" class="form-control" value='<?= htmlspecialchars($tel) ?>'>
+            <input type="text" class="form-control" value='<?= htmlspecialchars($_POST['tel']) ?>'>
         </div>
         <div class="form-group">
             <label>住所</label>
-            <input type="text"  class="form-control" value='<?= htmlspecialchars($address) ?>'>
+            <input type="text"  class="form-control" value='<?= htmlspecialchars($_POST['address']) ?>'>
         </div>
         <div class="form-group">
             <label>メールアドレス</label>
-            <input type="text"  class="form-control" value='<?= htmlspecialchars($mail) ?>'>
+            <input type="text"  class="form-control" value='<?= htmlspecialchars($_POST['mail']) ?>'>
         </div>
         <div class="form-group">
             <label>ethのアカウント</label>
-            <input type="text"  class="form-control" value='<?= htmlspecialchars($acounteth) ?>'>
+            <input type="text"  class="form-control" value='<?= htmlspecialchars($_POST['eth']) ?>'>
         </div>
         <div class="form-group">
             <label>パスワード</label>
-            <input type="text"  class="form-control" value='<?= htmlspecialchars($password) ?>'>
+            <input type="text"  class="form-control" value='<?= htmlspecialchars($_POST['password']) ?>'>
         </div>
         以上の内容でよろしいでしょうか<br>
             <input name="submit" type="submit" value="登録">
