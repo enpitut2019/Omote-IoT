@@ -117,8 +117,6 @@
             <input type="text"  class="form-control" value='<?= htmlspecialchars($password) ?>'>
         </div>
         以上の内容でよろしいでしょうか<br>
-            <button>確認</button>
-            <br>
     </div>
 </div>
 	<footer>
