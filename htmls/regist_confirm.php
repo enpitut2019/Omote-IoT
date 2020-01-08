@@ -64,8 +64,6 @@
     $acounteth=$_POST['eth'];
     $password=$_POST['password'];
 
-    echo $name;
-
 
     function insert(){
         try{
@@ -86,6 +84,8 @@
         $acounteth=$_POST['eth'];
         $password=$_POST['password'];
 
+
+        echo $name;
 
         //データベースにinsert
         $sql = "INSERT INTO water_users ( name, tel, address, mail, eth, password) VALUES (:name,:tel,:address,:mail,:eth,:password)";
