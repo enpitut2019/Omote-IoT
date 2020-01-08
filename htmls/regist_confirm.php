@@ -116,14 +116,9 @@
             <label>パスワード</label>
             <input type="text"  class="form-control" value='<?= htmlspecialchars($password) ?>'>
         </div>
-
         以上の内容でよろしいでしょうか<br>
-        <div class="conf-button">
-            　　<button class="btn btn-primary" onclick="<? insert(); ?>">登録</button><br>
-        </div>
     </div>
 </div>
-<a href="waterserver_index.php">戻る</a>
 	<footer>
 		<div class="bottom section-padding">
 			<div class="container">
