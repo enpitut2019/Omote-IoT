@@ -54,44 +54,8 @@
         <br>
         <h2>登録情報確認フォーム</h2>
 
-        <?php
-        //フォームから受け取った値を変数に代入
-        $name=$_POST['firstname'] . $_POST['lastname'];
-        $tel=$_POST['tel'];
-        $address=$_POST['address'];
-        $mail=$_POST['mail'];
-        $acounteth=$_POST['eth'];
-        $password=$_POST['password'];
 
-        function insert(){
-            try{
-                // データベースへ接続
-                $dbinfo = parse_url(getenv('DATABASE_URL'));
-                $dsn = 'pgsql:host=' . $dbinfo['host'] . ';dbname=' . substr($dbinfo['path'], 1);
-                $pdo = new PDO($dsn, $dbinfo['user'], $dbinfo['pass']);
-            }catch (PDOException $e){
-                print('Error:'.$e->getMessage());
-                die();
-            }
-
-            $name=$_POST['firstname'] . $_POST['lastname'];
-            $tel=$_POST['tel'];
-            $address=$_POST['address'];
-            $mail=$_POST['mail'];
-            $acounteth=$_POST['eth'];
-            $password=$_POST['password'];
-
-            //データベースにinsert
-            $sql = "INSERT INTO water_users ( name, tel, address, mail, eth, password) VALUES (:name,:tel,:address,:mail,:eth,:password)";
-            $stmh = $pdo->prepare($sql);
-            $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password);
-            $stmh->execute($params);
-            echo "登録されました";
-        }
-
-        ?>
-
-
+    <form method="POST" action="regist.php">
         <div class="form-group">
             <label>お名前:</label>
             <input type="text"  class="form-control" value='<?= htmlspecialchars($name) ?>'>
@@ -117,10 +81,9 @@
             <input type="text"  class="form-control" value='<?= htmlspecialchars($password) ?>'>
         </div>
         以上の内容でよろしいでしょうか<br>
-        <div class="rebutton">
-            <button type="submit" name="submit" class="btn btn-primary" onclick="<? insert() ?>">登録</button>
+            <input name="submit" type="submit" value="登録">
             <br>
-        </div>
+    </form>
     </div>
 </div>
 	<footer>
