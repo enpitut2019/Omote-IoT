@@ -118,10 +118,12 @@
         </div>
 
         以上の内容でよろしいでしょうか<br>
-        <div class="conf-button">
+        <button class="btn btn-primary" onclick="<? insert(); ?>">登録</button><br>
+        <div class="rebutton">
             　　<button class="btn btn-primary" onclick="<? insert(); ?>">登録</button><br>
         </div>
     </div>
+    <a href="waterserver_index.php">戻る</a>
 </div>
 <a href="waterserver_index.php">戻る</a>
 	<footer>
