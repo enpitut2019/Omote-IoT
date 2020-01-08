@@ -118,6 +118,10 @@
         </div>
         以上の内容でよろしいでしょうか<br>
         <button>確認</button>
+        <div class="rebutton">
+            <button type="submit" name="submit" class="btn btn-primary">登録</button>
+            <br>
+        </div>
     </div>
 </div>
 	<footer>
