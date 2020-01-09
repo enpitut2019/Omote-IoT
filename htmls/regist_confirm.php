@@ -77,14 +77,14 @@
         }
 
         //フォームから受け取った値を変数に代入
-        global $name;
-        global $tel;
-        global $address;
-        global $mail;
-        global $acounteth;
-        global $password;
-        
-        echo $name;
+        //$name=$_POST['firstname'] . $_POST['lastname'];
+        $tel=$_POST['tel'];
+        $address=$_POST['address'];
+        $mail=$_POST['mail'];
+        $acounteth=$_POST['eth'];
+        $password=$_POST['password'];
+        $name='a';
+
 
         //データベースにinsert
         $sql = "INSERT INTO water_users ( name, tel, address, mail, eth, password) VALUES (:name,:tel,:address,:mail,:eth,:password)";
