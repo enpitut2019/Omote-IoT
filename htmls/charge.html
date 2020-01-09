@@ -35,7 +35,7 @@
 					</div>
 					<div class="px-md-2 px-lg-4 h5">
 						<li class="nav-item borderBottom"><a
-							class="nav-link" href="#">使い方</a></li>
+							class="nav-link" href="./howto.html">使い方</a></li>
 					</div>
 					<div class="px-md-2 px-lg-4 h5">
 						<li class="nav-item borderBottom"><a
