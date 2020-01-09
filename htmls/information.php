@@ -55,7 +55,6 @@
 
         <?php
 
-            $your_pass=$_POST['password'];
             try {
 // データベースへ接続
                 $dbinfo = parse_url(getenv('DATABASE_URL'));
@@ -65,7 +64,8 @@
                 print('Error:' . $e->getMessage());
                 die();
             }
-                $sql = "SELECT * FROM water_users where password=" . $your_pass;
+                $sql = "SELECT * FROM water_users where password=" . $_POST['password'];
+                echo $sql;
                 //$sql = "SELECT * FROM water_users where eth=" . $your_eth;
                 $stmh = $pdo->prepare($sql);
                 $stmh->execute();
