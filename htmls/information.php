@@ -64,7 +64,7 @@
                 print('Error:' . $e->getMessage());
                 die();
             }
-                $sql = "SELECT * FROM water_users where password=" . $_POST['password'];
+                $sql = "SELECT * FROM water_users where password='" . $_POST['password'] . "'";
                 echo $sql;
                 //$sql = "SELECT * FROM water_users where eth=" . $your_eth;
                 $stmh = $pdo->prepare($sql);
