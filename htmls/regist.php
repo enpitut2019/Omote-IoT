@@ -40,13 +40,28 @@ function insert(){
     $stmh = $pdo->prepare($sql);
     $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password);
     $stmh->execute($params);
-    echo "登録されました";
+    echo '登録されました。';
 }
 
-if($_REQUEST[submit] == TRUE){
+if(isset($_POST['submit'])){
     insert();
 }
 
 ?>
+<a href="../index.html">使用量確認ページはこちら</a>
+<footer>
+    <div class="bottom section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-3 mx-auto">
+                    <a class="navbar-brand"
+                       href="http://www.risk.tsukuba.ac.jp/omote-lab/"><img
+                                src="../images/omotelab-tsukuba-2.png" class="img-fluid"
+                                alt="omotelab"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

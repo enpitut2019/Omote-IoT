@@ -93,7 +93,7 @@
             <input type="text" name="password" class="form-control" value='<?= htmlspecialchars($_POST['password']) ?>'>
         </div>
         以上の内容でよろしいでしょうか<br>
-            <input name="submit" type="submit" value="登録">
+        <button name="submit" type="submit" class="btn btn-primary">登録</button>
             <br>
     </form>
     </div>
