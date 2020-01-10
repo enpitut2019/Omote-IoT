@@ -70,6 +70,8 @@
                 $stmh = $pdo->prepare($sql);
                 $stmh->execute(array(":password" => $_POST['password']));
                 $rows=$stmh->fetch();
+                echo "name = ".$rows['name'].PHP_EOL;
+
 
         ?>
         <table>
