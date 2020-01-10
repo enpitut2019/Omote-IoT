@@ -64,66 +64,33 @@
     $acounteth=$_POST['eth'];
     $password=$_POST['password'];
 
-
-    function insert(){
-        try{
-            // データベースへ接続
-            $dbinfo = parse_url(getenv('DATABASE_URL'));
-            $dsn = 'pgsql:host=' . $dbinfo['host'] . ';dbname=' . substr($dbinfo['path'], 1);
-            $pdo = new PDO($dsn, $dbinfo['user'], $dbinfo['pass']);
-        }catch (PDOException $e){
-            print('Error:'.$e->getMessage());
-            die();
-        }
-
-        //フォームから受け取った値を変数に代入
-        //$name=$_POST['firstname'] . $_POST['lastname'];
-        $tel=$_POST['tel'];
-        $address=$_POST['address'];
-        $mail=$_POST['mail'];
-        $acounteth=$_POST['eth'];
-        $password=$_POST['password'];
-        $name='a';
-
-        //データベースにinsert
-        $sql = "INSERT INTO water_users ( name, tel, address, mail, eth, password) VALUES (:name,:tel,:address,:mail,:eth,:password)";
-        $stmh = $pdo->prepare($sql);
-        $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password);
-        $stmh->execute($params);
-        echo "登録されました";
-    }
-
-    if($_REQUEST[submit] == TRUE){
-        insert();
-    }
-
     ?>
 
 
-	    <form method="POST" action="">
+	    <form method="POST" action="regist.php">
 	        <div class="form-group">
 	            <label>お名前:</label>
-	            <input type="text"  class="form-control" value='<?= htmlspecialchars($_POST['firstname'] . $_POST['lastname']) ?>'>
+	            <input type="text" name="name" class="form-control" value='<?= htmlspecialchars($_POST['firstname'] . $_POST['lastname']) ?>'>
 	        </div>
 	        <div class="form-group">
 	            <label>電話番号</label>
-	            <input type="text" class="form-control" value='<?= htmlspecialchars($_POST['tel']) ?>'>
+	            <input type="text" name="tel" class="form-control" value='<?= htmlspecialchars($_POST['tel']) ?>'>
 	        </div>
 	        <div class="form-group">
 	            <label>住所</label>
-	            <input type="text"  class="form-control" value='<?= htmlspecialchars($_POST['address']) ?>'>
+	            <input type="text" name="address" class="form-control" value='<?= htmlspecialchars($_POST['address']) ?>'>
 	        </div>
 	        <div class="form-group">
 	            <label>メールアドレス</label>
-	            <input type="text"  class="form-control" value='<?= htmlspecialchars($_POST['mail']) ?>'>
+	            <input type="text" name="mail" class="form-control" value='<?= htmlspecialchars($_POST['mail']) ?>'>
 	        </div>
 	        <div class="form-group">
 	            <label>ethのアカウント</label>
-	            <input type="text"  class="form-control" value='<?= htmlspecialchars($_POST['eth']) ?>'>
+	            <input type="text" name="eth" class="form-control" value='<?= htmlspecialchars($_POST['eth']) ?>'>
 	        </div>
 	        <div class="form-group">
 	            <label>パスワード</label>
-	            <input type="password"  class="form-control" value='<?= htmlspecialchars($_POST['password']) ?>'>
+	            <input type="password" name="password" class="form-control" value='<?= htmlspecialchars($_POST['password']) ?>'>
 	        </div>
 	        <p>以上の内容で登録します</p><br>
 			<div class="text-center">
