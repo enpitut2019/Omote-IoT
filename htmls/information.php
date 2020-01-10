@@ -68,10 +68,8 @@
                 echo $sql;
                 //$sql = "SELECT * FROM water_users where eth=" . $your_eth;
                 $stmh = $pdo->prepare($sql);
-                $result=$stmh->execute();
-                $rows = pg_fetch_array($result, NULL, PGSQL_ASSOC);
-                print($rows['id']);
-                print($rows['name']);
+                $stmh->execute();
+                $rows=$stmh->fetchAll();
 
         ?>
         <table>
