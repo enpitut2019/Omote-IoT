@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>水道管理アプリ</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-    <link href="../styles/server.css" rel="stylesheet">
-    <link href="../styles/registpage.css" rel="stylesheet">
-    <script src="../scripts/bootstrap.bundle.js"></script>
-    <link href="../styles/bootstrap.css" rel="stylesheet">
-    <script src="../scripts/serverindex.js"></script>
-    <link href="../styles/common.css" rel="stylesheet">
-    <script src="../scripts/common.js"></script>
-</head>
-<body>
 <?php
 function insert(){
     try{
@@ -48,6 +33,21 @@ if(isset($_POST['submit'])){
 }
 
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>水道管理アプリ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <link href="../styles/server.css" rel="stylesheet">
+    <link href="../styles/registpage.css" rel="stylesheet">
+    <script src="../scripts/bootstrap.bundle.js"></script>
+    <link href="../styles/bootstrap.css" rel="stylesheet">
+    <script src="../scripts/serverindex.js"></script>
+    <link href="../styles/common.css" rel="stylesheet">
+    <script src="../scripts/common.js"></script>
+</head>
+<body>
 <a href="../index.html">使用量確認ページはこちら</a>
 <footer>
     <div class="bottom section-padding">

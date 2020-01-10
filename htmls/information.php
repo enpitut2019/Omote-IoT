@@ -65,12 +65,9 @@
                 die();
             }
                 $sql = "SELECT name,tel,address,mail,eth FROM water_users where password=:password";
-                echo $sql;
-                //$sql = "SELECT * FROM water_users where eth=" . $your_eth;
                 $stmh = $pdo->prepare($sql);
                 $stmh->execute(array(":password" => $_POST['password']));
                 $rows=$stmh->fetch();
-                echo "name = ".$rows['name'].PHP_EOL;
 
 
         ?>
