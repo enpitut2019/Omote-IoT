@@ -79,7 +79,7 @@ if(isset($_POST['submit'])){
         </div>
     </nav>
 </header>
-<br><br><br>
+<br><br><br><br>
 <h3 class="text-center">登録しました</h3>
 <footer>
     <div class="bottom section-padding">
