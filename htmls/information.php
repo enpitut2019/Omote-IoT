@@ -69,34 +69,40 @@
                 //$sql = "SELECT * FROM water_users where eth=" . $your_eth;
                 $stmh = $pdo->prepare($sql);
                 $stmh->execute();
-                $name=$stmh->fetch(PDO::FETCH_ASSOC)['name'];
-                $tel=$stmh->fetch(PDO::FETCH_ASSOC)['tel'];
-                $address=$stmh->fetch(PDO::FETCH_ASSOC)['address'];
-                $mail=$stmh->fetch(PDO::FETCH_ASSOC)['mail'];
-                $eth=$stmh->fetch(PDO::FETCH_ASSOC)['eth'];
+                $arr=pg_fetch_all($stmh);
+                $array=[];
+
+                //データの出力
+                $i=0;
+                foreach($arr as $rows){
+                    foreach($rows as $value){
+                        $array[$i]=$value;
+                        $i++;
+                    }
+                }
 
         ?>
         <table>
             <tbody>
                 <div class="form-group">
                     <label>名前:</label><br>
-                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($name) ?>'>
+                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($array[0]) ?>'>
                 </div>
                 <div class="form-group">
                     <label>電話番号</label><br>
-                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($tel) ?>'>
+                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($array[1]) ?>'>
                 </div>
                 <div class="form-group">
                     <label>住所</label><br>
-                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($address) ?>'>
+                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($array[2]) ?>'>
                 </div>
                 <div class="form-group">
                     <label>メールアドレス</label><br>
-                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($mail) ?>'>
+                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($array[3]) ?>'>
                 </div>
                 <div class="form-group">
                     <label>ethのアカウント</label><br>
-                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($eth) ?>'>
+                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($array[4]) ?>'>
                 </div>
             </tbody>
         </table>
