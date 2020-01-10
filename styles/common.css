@@ -50,6 +50,9 @@ footer {
 	.bdr-charge {
 		width: 300px;
 	}
+	.bdr-info {
+		width: 300px;
+	}
 	.bdr-howto {
 		width: 300px;
 	}
@@ -62,10 +65,13 @@ footer {
 	.bdr-charge {
 		width: 400px;
 	}
+	.bdr-info {
+		width: 400px;
+	}
 	.list-width {
 		width: 480px;
 	}
-	.bdr-howto {
+	.bdr-width {
 		width: 480px;
 	}
 	.img-howto {
@@ -77,10 +83,13 @@ footer {
 	.bdr-charge {
 		width: 400px;
 	}
+	.bdr-info {
+		width: 640px;
+	}
 	.list-width {
 		width: 640px;
 	}
-	.bdr-howto {
+	.bdr-width {
 		width: 640px;
 	}
 	.img-howto {
@@ -91,7 +100,7 @@ footer {
 	.list-width {
 		width: 800px;
 	}
-	.bdr-howto {
+	.bdr-width {
 		width: 800px;
 	}
 

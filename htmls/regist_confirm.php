@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-    <link href="../styles/registpage.css" rel="stylesheet">
     <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/bootstrap.css" rel="stylesheet">
     <script src="../scripts/serverindex.js"></script>
@@ -34,7 +33,7 @@
 					</div>
 					<div class="px-md-2 px-lg-4 h5">
 						<li class="nav-item borderBottom"><a
-							class="nav-link" href="#">使い方</a></li>
+							class="nav-link" href="./howto.html">使い方</a></li>
 					</div>
 					<div class="px-md-2 px-lg-4 h5">
 						<li class="nav-item borderBottom"><a
@@ -48,15 +47,17 @@
 			</div>
 		</nav>
 	</header>
-<div class="main">
-    <div class="mx-auto" style="width: 600px;">
+	<br><br><br>
+	<h3 class="text-center">登録情報確認フォーム</h3>
+	<br>
+	<div class="mx-auto bdr-info">
+		<div class="border border-dark rounded p-4">
         <br>
-        <h2>登録情報確認フォーム</h2>
 
-    <?
+	    <?
 
-    //フォームから受け取った値を変数に代入
-    $name=$_POST['firstname'] . $_POST['lastname'];
+	    //フォームから受け取った値を変数に代入
+	    $name=$_POST['firstname'] . $_POST['lastname'];
     $tel=$_POST['tel'];
     $address=$_POST['address'];
     $mail=$_POST['mail'];
@@ -65,40 +66,39 @@
 
     ?>
 
-
-    <form method="POST" action="regist.php">
-        <div class="form-group">
-            <label>お名前:</label>
-            <input type="text" name="name"  class="form-control" value='<?= htmlspecialchars($_POST['firstname'] . $_POST['lastname']) ?>'>
-        </div>
-        <div class="form-group">
-            <label>電話番号</label>
-            <input type="text" name="tel" class="form-control" value='<?= htmlspecialchars($_POST['tel']) ?>'>
-        </div>
-        <div class="form-group">
-            <label>住所</label>
-            <input type="text" name="address"  class="form-control" value='<?= htmlspecialchars($_POST['address']) ?>'>
-        </div>
-        <div class="form-group">
-            <label>メールアドレス</label>
-            <input type="text" name="mail" class="form-control" value='<?= htmlspecialchars($_POST['mail']) ?>'>
-        </div>
-        <div class="form-group">
-            <label>ethのアカウント</label>
-            <input type="text" name="eth" class="form-control" value='<?= htmlspecialchars($_POST['eth']) ?>'>
-        </div>
-        <div class="form-group">
-            <label>パスワード</label>
-            <input type="text" name="password" class="form-control" value='<?= htmlspecialchars($_POST['password']) ?>'>
-        </div>
-        以上の内容でよろしいでしょうか<br>
-        <div class="conf-button">
-            <button name="submit" type="submit" class="btn btn-primary">登録</button>
-            <br>
-        </div>
-    </form>
+	    <form method="POST" action="regist.php">
+	        <div class="form-group">
+	            <label>お名前:</label>
+	            <input type="text" name="name" class="form-control" value='<?= htmlspecialchars($_POST['firstname'] . $_POST['lastname']) ?>'>
+	        </div>
+	        <div class="form-group">
+	            <label>電話番号</label>
+	            <input type="text" name="tel" class="form-control" value='<?= htmlspecialchars($_POST['tel']) ?>'>
+	        </div>
+	        <div class="form-group">
+	            <label>住所</label>
+	            <input type="text" name="address" class="form-control" value='<?= htmlspecialchars($_POST['address']) ?>'>
+	        </div>
+	        <div class="form-group">
+	            <label>メールアドレス</label>
+	            <input type="text" name="mail" class="form-control" value='<?= htmlspecialchars($_POST['mail']) ?>'>
+	        </div>
+	        <div class="form-group">
+	            <label>ethのアカウント</label>
+	            <input type="text" name="eth" class="form-control" value='<?= htmlspecialchars($_POST['eth']) ?>'>
+	        </div>
+	        <div class="form-group">
+	            <label>パスワード</label>
+	            <input type="password" name="password" class="form-control" value='<?= htmlspecialchars($_POST['password']) ?>'>
+	        </div>
+	        <p>以上の内容で登録します</p><br>
+			<div class="text-center">
+				<button type="submit" name="submit" class="btn btn-primary">登録</button>
+			</div>
+	    </form>
+	    </div>
     </div>
-</div>
+    <br>
 	<footer>
 		<div class="bottom section-padding">
 			<div class="container">

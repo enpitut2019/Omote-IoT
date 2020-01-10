@@ -19,7 +19,6 @@ function insert(){
     $password=$_POST['password'];
     $name='a';
 
-
     //データベースにinsert
     $sql = "INSERT INTO water_users ( name, tel, address, mail, eth, password) VALUES (:name,:tel,:address,:mail,:eth,:password)";
     $stmh = $pdo->prepare($sql);
@@ -30,13 +29,13 @@ function insert(){
 if(isset($_POST['submit'])){
     insert();
 }
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>水道管理アプリ</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/bootstrap.css" rel="stylesheet">
@@ -66,7 +65,7 @@ if(isset($_POST['submit'])){
                 </div>
                 <div class="px-md-2 px-lg-4 h5">
                     <li class="nav-item borderBottom"><a
-                                class="nav-link" href="#">使い方</a></li>
+                                class="nav-link" href="./howto.html">使い方</a></li>
                 </div>
                 <div class="px-md-2 px-lg-4 h5">
                     <li class="nav-item borderBottom"><a
