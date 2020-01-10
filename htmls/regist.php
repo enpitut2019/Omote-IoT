@@ -79,7 +79,8 @@ if(isset($_POST['submit'])){
         </div>
     </nav>
 </header>
-<h2 class="registed_h2">登録されました</h2>
+<br><br><br>
+<h3 class="text-center">登録しました</h3>
 <footer>
     <div class="bottom section-padding">
         <div class="container">
