@@ -78,11 +78,11 @@
 
         //フォームから受け取った値を変数に代入
         //$name=$_POST['firstname'] . $_POST['lastname'];
-        global $tel;	        $tel=$_POST['tel'];
-        global $address;	        $address=$_POST['address'];
-        global $mail;	        $mail=$_POST['mail'];
-        global $acounteth;	        $acounteth=$_POST['eth'];
-        global $password;	        $password=$_POST['password'];
+        $tel=$_POST['tel'];
+        $address=$_POST['address'];
+        $mail=$_POST['mail'];
+        $acounteth=$_POST['eth'];
+        $password=$_POST['password'];
         $name='a';
 
         //データベースにinsert
