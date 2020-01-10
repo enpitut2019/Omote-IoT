@@ -63,38 +63,44 @@
             print('Error:' . $e->getMessage());
             die();
         }
-        $sql = "SELECT * FROM water_users where password=" . $_POST['password'];
+        $sql = "SELECT name,tel,address,mail,eth FROM water_users where password='" . $_POST['password'] . "'";
         echo $sql;
         // $sql = "SELECT * FROM water_users where eth=" . $your_eth;
         $stmh = $pdo->prepare($sql);
         $stmh->execute();
+        $name=$stmh->fetch(PDO::FETCH_ASSOC)['name'];
+        $tel=$stmh->fetch(PDO::FETCH_ASSOC)['tel'];
+        $address=$stmh->fetch(PDO::FETCH_ASSOC)['address'];
+        $mail=$stmh->fetch(PDO::FETCH_ASSOC)['mail'];
+        $eth=$stmh->fetch(PDO::FETCH_ASSOC)['eth'];
+        $password=$stmh->fetch(PDO::FETCH_ASSOC)['password'];
 
         ?>
 	        <table>
 	            <tbody>
 	                <div class="form-group">
 	                    <label>名前:</label><br>
-	                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($stmh->fetch(PDO::FETCH_ASSOC)['name']) ?>'>
+	                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($name) ?>'>
 	                </div>
 	                <div class="form-group">
 	                    <label>電話番号</label><br>
-	                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($stmh->fetch(PDO::FETCH_ASSOC)['tel']) ?>'>
+	                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($tel) ?>'>
 	                </div>
 	                <div class="form-group">
 	                    <label>住所</label><br>
-	                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($stmh->fetch(PDO::FETCH_ASSOC)['address']) ?>'>
+	                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($address) ?>'>
 	                </div>
 	                <div class="form-group">
 	                    <label>メールアドレス</label><br>
-	                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($stmh->fetch(PDO::FETCH_ASSOC)['mail']) ?>'>
+	                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($mail) ?>'>
 	                </div>
 	                <div class="form-group">
 	                    <label>イーサリアムアドレス</label><br>
-	                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($stmh->fetch(PDO::FETCH_ASSOC)['eth']) ?>'>
+	                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($eth) ?>'>
 	                </div>
 	                <div class="form-group">
 	                    <label>パスワード</label><br>
-	                    <input type="password" readonly class="form-control" value='<?= htmlspecialchars($stmh->fetch(PDO::FETCH_ASSOC)['password']) ?>'>
+	                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($password) ?>'>
 	                </div>
 	            </tbody>
 	        </table>
