@@ -76,7 +76,7 @@
             <tbody>
                 <div class="form-group">
                     <label>名前:</label><br>
-                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($stmh->fetch(PDO::FETCH_ASSOC)['name']) ?>'>
+                    <input type="text" readonly class="form-control" value='<?= htmlspecialchars($stmh->fetch(PDO::FETCH_ASSOC)['tel']) ?>'>
                 </div>
                 <div class="form-group">
                     <label>電話番号</label><br>
