@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-    <link href="../styles/server.css" rel="stylesheet">
     <link href="../styles/registpage.css" rel="stylesheet">
     <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/bootstrap.css" rel="stylesheet">
@@ -93,8 +92,10 @@
             <input type="text" name="password" class="form-control" value='<?= htmlspecialchars($_POST['password']) ?>'>
         </div>
         以上の内容でよろしいでしょうか<br>
-        <button name="submit" type="submit" class="btn btn-primary">登録</button>
+        <div class="conf-button">
+            <button name="submit" type="submit" class="btn btn-primary">登録</button>
             <br>
+        </div>
     </form>
     </div>
 </div>

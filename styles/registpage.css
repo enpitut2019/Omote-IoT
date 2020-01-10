@@ -1,5 +1,6 @@
-.rebutton button {
+.conf-button button {
     margin-left: 250px;
-    padding-left: 10px;
+    margin-top: 20px;
+    width:100px;
     float: unset;
 }

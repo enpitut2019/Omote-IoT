@@ -23,6 +23,11 @@ nav>div>ul>div>li>a {
 .bottom {
     background-color: #00bfff;
 }
+.registed_h2{
+	margin-left: 250px;
+	margin-top: 20px;
+	float: unset;
+}
 body, #wrapper {
   display: flex;
   flex-direction: column;
