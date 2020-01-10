@@ -81,7 +81,6 @@ if(isset($_POST['submit'])){
     </nav>
 </header>
 <h2 class="registed_h2">登録されました</h2>
-<a href="../index.html">使用量確認ページはこちら</a>
 <footer>
     <div class="bottom section-padding">
         <div class="container">
