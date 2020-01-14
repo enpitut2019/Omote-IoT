@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/bootstrap.css" rel="stylesheet">
-    <script src="../scripts/watersever_index.js"></script>
+    <script src="../scripts/waterserver_index.js"></script>
     <script src="../scripts/serverindex.js"></script>
     <link href="../styles/common.css" rel="stylesheet">
     <script src="../scripts/common.js"></script>
@@ -73,7 +73,7 @@
 							required><br> <label>メールアドレス:</label> <input
 							type="text" name="mail" class="mail form-control" required><br>
 						<label>イーサリアムアドレス:</label> <input type="text" name="eth"
-							class="eth form-control" id="EtheAddress" readonly required><br> <label>パスワード:</label>
+							class="eth form-control" id="EtheAddress" readonly><br> <label>パスワード:</label>
 						<input type="password" name="password" class="password form-control"
 							required><br> <label>パスワード確認:</label> <input
 							type="password" class="password form-control" required><br>
