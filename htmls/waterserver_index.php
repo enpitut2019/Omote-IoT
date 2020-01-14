@@ -7,7 +7,6 @@
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/bootstrap.css" rel="stylesheet">
-    <link href="../styles/waterserver_index.css" rel="stylesheet">
     <script src="../scripts/watersever_index.js"></script>
     <script src="../scripts/serverindex.js"></script>
     <link href="../styles/common.css" rel="stylesheet">
