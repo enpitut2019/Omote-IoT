@@ -65,7 +65,7 @@ function setHistory(result) {
 	chargeHistoryJpy = [];
 	var len = chargeHistory.length;
 	for (var i = 0; i < len; i++) {
-		chargeHistoryJpy.push(Math.floor(chargeHistory[i] * current_price * Math.pow(10, -15))/1000);
+		chargeHistoryJpy.push(Math.floor(chargeHistory[i] * current_price * Math.pow(10, -18))/1);
 	}
 }
 

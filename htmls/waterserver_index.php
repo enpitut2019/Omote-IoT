@@ -67,16 +67,16 @@
 								<input type="text" name="firstname" class="firstname form-control" placeholder="名" required>
 							</div>
 						</div><br>
-						<label>電話番号:</label> <input type="text" name="tel"
+						<label>電話番号:</label> <input type="tel" name="tel"
 							class="tel form-control" placeholder="09012345678" required><br> <label>住所:</label>
 						<input type="text" name="address" class="address form-control"
 							required><br> <label>メールアドレス:</label> <input
-							type="text" name="mail" class="mail form-control" required><br>
+							type="email" name="mail" class="mail form-control" required><br>
 						<label>イーサリアムアドレス:</label> <input type="text" name="eth"
 							class="eth form-control" id="EtheAddress" readonly><br> <label>パスワード:</label>
-						<input type="password" name="password" class="password form-control"
+						<input type="password" name="password" class="password form-control" minlength="6" maxlength="20"
 							required><br> <label>パスワード確認:</label> <input
-							type="password" class="password form-control" required><br>
+							type="password" class="password form-control" minlength="6" maxlength="20" required><br>
 						<div class="text-center">
 							<button type="submit" name="submit" class="btn btn-primary">確認</button>
 						</div>

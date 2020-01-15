@@ -81,7 +81,7 @@
 	        </div>
 	        <div class="form-group">
 	            <label>メールアドレス</label>
-	            <input type="text" name="mail" class="form-control" value='<?= htmlspecialchars($_POST['eth']) ?>' readonly>
+	            <input type="text" name="mail" class="form-control" value='<?= htmlspecialchars($_POST['mail']) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>ethのアカウント</label>

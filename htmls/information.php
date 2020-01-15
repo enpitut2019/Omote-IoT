@@ -93,7 +93,7 @@
                     </div>
 	                <div class="form-group">
 	                    <label>パスワード</label><br>
-	                    <input type="password" readonly class="form-control" value='<?= htmlspecialchars(rows['password']) ?>'>
+	                    <input type="password" readonly class="form-control" value='<?= htmlspecialchars($rows['password']) ?>'>
 	                </div>
 	            </tbody>
 	        </table>
