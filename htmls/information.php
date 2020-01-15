@@ -69,6 +69,10 @@
 //             $stmh->execute(array(":password" => $_POST['password']));
             $stmh->execute(array(":eth" => $_POST['eth']));
             $rows=$stmh->fetch();
+            if($rows['password'] != $_POST['password']){
+                $error="パスワードが違います";
+                $rows=array(':name' => $error, ':tel' => $error, ':address' => $error, ':mail' => $error, ':eth' => $acounteth, ':password' => '');
+            }
 
         ?>
 	        <table>
