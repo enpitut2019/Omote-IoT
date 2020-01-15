@@ -53,20 +53,21 @@
 	<br>
 	<div class="mx-auto bdr-info">
 		<div class="border border-dark rounded p-4">
-			<div class="form-group">
-				<label>イーサリアムアドレス:</label> <input type="text" name="eth"
+			<form method="POST" action="information.php">
+				<div class="form-group">
+					<label>イーサリアムアドレス:</label> <input type="text" name="eth"
 						class="eth form-control" id="EtheAddress" readonly>
-			</div>
-			<div class="form-group">
-				<form method="POST" action="information.php">
-					<label>パスワード:</label> <input type="password"
-						name="password" class="password form-control" required>
-						<br>
+				</div>
+				<div class="form-group">
+
+					<label>パスワード:</label> <input type="password" name="password"
+						class="password form-control" required> <br>
 					<div class="text-center">
-					<button type="submit" class="btn btn-primary">登録情報確認</button>
+						<button type="submit" class="btn btn-primary">登録情報確認</button>
 					</div>
-				</form>
-			</div>
+
+				</div>
+			</form>
 		</div>
 		<div class="py-3">
 			<!-- <p>・メッセージ表示</p> -->
