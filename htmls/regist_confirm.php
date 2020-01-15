@@ -68,28 +68,28 @@
 
 	    <form method="POST" action="regist.php">
 	        <div class="form-group">
-	            <label>お名前:</label>
-	            <input type="text" name="name" class="form-control" value='<?= htmlspecialchars($_POST['firstname'] . $_POST['lastname']) ?>'>
+	            <label>氏名:</label>
+	            <input type="text" name="name" class="form-control" value='<?= htmlspecialchars($_POST['firstname'] . $_POST['lastname']) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>電話番号</label>
-	            <input type="text" name="tel" class="form-control" value='<?= htmlspecialchars($_POST['tel']) ?>'>
+	            <input type="text" name="tel" class="form-control" value='<?= htmlspecialchars($_POST['tel']) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>住所</label>
-	            <input type="text" name="address" class="form-control" value='<?= htmlspecialchars($_POST['address']) ?>'>
+	            <input type="text" name="address" class="form-control" value='<?= htmlspecialchars($_POST['address']) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>メールアドレス</label>
-	            <input type="text" name="mail" class="form-control" value='<?= htmlspecialchars($_POST['mail']) ?>'>
+	            <input type="text" name="mail" class="form-control" value='<?= htmlspecialchars($_POST['eth']) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>ethのアカウント</label>
-	            <input type="text" name="eth" class="form-control" value='<?= htmlspecialchars($_POST['eth']) ?>'>
+	            <input type="text" name="eth" class="form-control" value='<?= htmlspecialchars($_POST['eth']) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>パスワード</label>
-	            <input type="password" name="password" class="form-control" value='<?= htmlspecialchars($_POST['password']) ?>'>
+	            <input type="password" name="password" class="form-control" value='<?= htmlspecialchars($_POST['password']) ?>' readonly>
 	        </div>
 	        <p>以上の内容で登録します</p><br>
 			<div class="text-center">

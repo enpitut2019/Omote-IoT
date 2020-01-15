@@ -33,7 +33,7 @@ function dispUserwallet() {
 	contract.get_wallet.call({from:account},(error, result) => {
 		if(!error) {
 			if(walletState) {
-				$('#balance').text((Math.floor(currentPrice * result * Math.pow(10, -15))/1000).toLocaleString() + '(JPY)')
+				$('#balance').text((Math.floor(currentPrice * result * Math.pow(10, -18))/1).toLocaleString() + '(JPY)')
 			} else {
 				$('#balance').text((Math.floor(result * Math.pow(10, -15))/1000).toLocaleString() + '(ETH)')
 			}
