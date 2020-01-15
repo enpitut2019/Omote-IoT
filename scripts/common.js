@@ -33,9 +33,9 @@ function dispUserwallet() {
 	contract.get_wallet.call({from:account},(error, result) => {
 		if(!error) {
 			if(walletState) {
-				$('#balance').text((Math.floor(currentPrice * result * Math.pow(10, -16))/100).toLocaleString() + '(JPY)')
+				$('#balance').text((Math.floor(currentPrice * result * Math.pow(10, -15))/1000).toLocaleString() + '(JPY)')
 			} else {
-				$('#balance').text((Math.floor(result * Math.pow(10, -16))/100).toLocaleString() + '(ETH)')
+				$('#balance').text((Math.floor(result * Math.pow(10, -15))/1000).toLocaleString() + '(ETH)')
 			}
 		}
 	});
@@ -65,7 +65,7 @@ function setHistory(result) {
 	chargeHistoryJpy = [];
 	var len = chargeHistory.length;
 	for (var i = 0; i < len; i++) {
-		chargeHistoryJpy.push(Math.floor(chargeHistory[i] * current_price * Math.pow(10, -16))/100);
+		chargeHistoryJpy.push(Math.floor(chargeHistory[i] * current_price * Math.pow(10, -15))/1000);
 	}
 }
 

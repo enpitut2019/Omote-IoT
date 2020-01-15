@@ -177,7 +177,7 @@ function convertEthToJpy() {
 	if(histState) {
 		$('#unit').text("料金(ETH)");
 		for (var i = 0; i < iter; i++) {
-			tbody.rows[i].cells[2].innerText = Math.floor(chargeHistory[len - i - 1] * Math.pow(10, -16))/100;
+			tbody.rows[i].cells[2].innerText = Math.floor(chargeHistory[len - i - 1] * Math.pow(10, -15))/1000;
 		}
 		histState = false;
 	} else {
