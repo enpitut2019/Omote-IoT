@@ -52,6 +52,8 @@
 	<div class="mx-auto bdr-info">
 		<div class="border border-dark rounded p-4">
         <br>
+        <div class="text-danger"><?php echo htmlspecialchars($errorMessage, ENT_QUOTES); ?></font></div>
+        <br>
 
         <?php
         try {
@@ -70,8 +72,7 @@
             $stmh->execute(array(":eth" => $_POST['eth']));
             $rows=$stmh->fetch();
             if($rows['password'] != $_POST['password']){
-                $error="パスワードが違います";
-                $rows=array(':name' => $error, ':tel' => $error, ':address' => $error, ':mail' => $error, ':eth' => $acounteth, ':password' => '');
+                $errorMessage="パスワードが違います";
             }
 
         ?>
