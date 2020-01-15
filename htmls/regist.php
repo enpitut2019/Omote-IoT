@@ -11,7 +11,7 @@ function insert(){
     }
 
     //フォームから受け取った値を変数に代入
-    $name=$_POST['firstname'] . $_POST['lastname'];
+    $name=$_POST['name'];
     $tel=$_POST['tel'];
     $address=$_POST['address'];
     $mail=$_POST['mail'];

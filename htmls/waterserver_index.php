@@ -76,7 +76,7 @@
 							class="eth form-control" id="EtheAddress" readonly><br> <label>パスワード:</label>
 						<input type="password" name="password" class="password form-control" minlength="6" maxlength="20"
 							required><br> <label>パスワード確認:</label> <input
-							type="password" class="password form-control" minlength="6" maxlength="20" required><br>
+							type="password" class="password form-control" name="confirm" oninput="CheckPassword(this)" required><br>
 						<div class="text-center">
 							<button type="submit" name="submit" class="btn btn-primary">確認</button>
 						</div>
