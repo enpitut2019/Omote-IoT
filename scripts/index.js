@@ -169,9 +169,9 @@ function convertEthToJpy() {
 	len = chargeHistory.length;
 	var tbody = document.getElementById('tbodyID');
 	if(histState) {
-		$('#unit').text("料金(wei)");
+		$('#unit').text("料金(ETH)");
 		for (var i = 0; i < 3; i++) {
-			tbody.rows[i].cells[2].innerText = chargeHistory[len - i - 1];
+			tbody.rows[i].cells[2].innerText = Math.floor(chargeHistory[len - i - 1] * Math.pow(10, -16))/100;
 		}
 		histState = false;
 	} else {

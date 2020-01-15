@@ -94,7 +94,7 @@ function chargeButton() {
 function convertEthToJpyWal() {
 	if(walletState) {
 		walletState = false;
-		$('#deposit').text("入金額(wei)");
+		$('#deposit').text("入金額(ETH)");
 	} else {
 		walletState = true;
 		$('#deposit').text("入金額(JPY)");
