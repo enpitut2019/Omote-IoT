@@ -54,8 +54,8 @@
 	<div class="mx-auto bdr-info">
 		<div class="border border-dark rounded p-4">
 			<div class="form-group">
-				<label>イーサリアムアドレス:</label> <input type="text" class="form-control"
-					id="EtheAddress" readonly>
+				<label>イーサリアムアドレス:</label> <input type="text" name="eth"
+						class="form-control" id="EtheAddress" readonly>
 			</div>
 			<div class="form-group">
 				<form method="POST" action="information.php">
