@@ -10,7 +10,7 @@ function init() {
 			web3 = new Web3(web3.currentProvider);
 			ethereum.enable()
 			abi = [{"constant":false,"inputs":[],"name":"deposit","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"pay_unpaid_charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"set_history","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"newSender","type":"address"}],"name":"set_sender","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_amount_of_water","type":"uint256"}],"name":"set_used_water","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"_user","type":"address"},{"name":"_diameter","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"constant":true,"inputs":[],"name":"admin","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"basic_rate","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"calc_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_amount_of_water","type":"uint256"}],"name":"calc_commodity_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_amount_of_water","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_history_charge","outputs":[{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_history_water","outputs":[{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_not_pay_counter","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_on_working","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_unpaid_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_user_info","outputs":[{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256[]"},{"name":"","type":"uint256[]"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_wallet","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"history_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"history_water","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"not_pay_counter","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"on_working","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"sender","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"unpaid_charge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"user","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"}];
-			contractAddress = "0x55ad44d35fd55c65468a1a60e00c06679b8068dd";
+			contractAddress = "0x67a1958e5907b463ec3e7e3daab8c9c0ca45ac95";
 			contract = web3.eth.contract(abi).at(contractAddress);
 			web3.version.getNetwork((error, result) => {
 				$('#networkid').text('ネットワークID: '+result)
@@ -33,10 +33,10 @@ function dispUserwallet() {
 	contract.get_wallet.call({from:account},(error, result) => {
 		if(!error) {
 			if(walletState) {
-				$('#balance').text((Math.floor(currentPrice * result * Math.pow(10, -17))/10).toLocaleString() + '(JPY)')
+				$('#balance').text((Math.floor(currentPrice * result * Math.pow(10, -16))/100).toLocaleString() + '(JPY)')
 //				$('#balance').text(Math.floor((currentPrice * result * Math.pow(10, -4))/10).toLocaleString() + '(JPY)')//デモ用
 			} else {
-				$('#balance').text((Math.floor(result * Math.pow(10, -8))/10).toLocaleString() + '(gwei)')
+				$('#balance').text((Math.floor(result * Math.pow(10, -7))/100).toLocaleString() + '(ETH)')
 			}
 		}
 	});
@@ -66,8 +66,8 @@ function setHistory(result) {
 	chargeHistoryJpy = [];
 	var len = chargeHistory.length;
 	for (var i = 0; i < len; i++) {
-//		chargeHistoryJpy.push(Math.floor(chargeHistory[i] * current_price * Math.pow(10, -17))/10);
-		chargeHistoryJpy.push(Math.floor(chargeHistory[i] * current_price * Math.pow(10, -4))/10);//デモ用
+		chargeHistoryJpy.push(Math.floor(chargeHistory[i] * current_price * Math.pow(10, -16))/100);
+//		chargeHistoryJpy.push(Math.floor(chargeHistory[i] * current_price * Math.pow(10, -4))/10);//デモ用
 	}
 }
 

@@ -45,6 +45,8 @@ function Deposit() {
 	var input = $('#charge').val();
 	if(walletState) {
 		input = Math.floor(input * 1 * Math.pow(10, 18)/currentPrice);//wei
+	} else {
+		input = input * Math.pow(10, 18);//ETH
 	}
 	dispLoadning();
 	contract.deposit.sendTransaction({from:account,to:contractAddress,value:web3.toWei(input, "wei")},(error,transactionHash) => {
