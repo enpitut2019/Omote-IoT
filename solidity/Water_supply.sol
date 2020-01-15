@@ -8,7 +8,7 @@ contract Water_supply {
     uint amount_of_water;//当月の使用量
     uint diameter;//口径（０から９の数字で） 
     uint wallet;//財布
-    uint[] public basic_rate = [1296,1620,2700,3510,7560,16200,42120,93960,234900,446040];//基本料金
+    uint[] public basic_rate = [1296*(10**13),1620*(10**13),2700*(10**13),3510*(10**13),7560*(10**13),16200*(10**13),42120*(10**13),93960*(10**13),234900*(10**13),446040*(10**13)];//基本料金
     uint[] public history_water;//水の量の履歴
     uint[] public history_charge;//支払の履歴
     uint public unpaid_charge;//未払いの料金
@@ -94,20 +94,20 @@ contract Water_supply {
             if(_amount_of_water <= 10){
                 return 0;
             }else{
-                return 151;
+                return 151 * (10**13);
             }
 
         }else{
             if(_amount_of_water <= 20){
-                return 151;
+                return 151 * (10**13);
             } else if(_amount_of_water <=40) {
-                return 194;
+                return 194 * (10**13);
             } else if(_amount_of_water <=100) {
-                return 237;
+                return 237 * (10**13);
             } else if(_amount_of_water <=500) {
-                return 280;
+                return 280 * (10**13);
             } else {
-                return 324;
+                return 324 * (10**13);
             }
         }
     }
@@ -125,7 +125,6 @@ contract Water_supply {
         diameter = 1;
         payment();
     }
-    
 
     //履歴の更新
     function set_history() public {
@@ -175,5 +174,4 @@ contract Water_supply {
     function get_on_working() public view returns(bool){
         return on_working;
     }
-
 }

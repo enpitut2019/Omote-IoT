@@ -69,7 +69,7 @@
             $stmh->execute(array(":eth" => $_POST['eth']));
             $rows=$stmh->fetch();
             if($rows['password'] != $_POST['password']){
-                echo  '<br><div class="text-danger">', 'パスワードが違います', '</div><br>';
+                echo  '<div class="text-danger">', 'パスワードが違います', '</div><br>';
                 $rows=array();
             }
 
