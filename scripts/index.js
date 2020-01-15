@@ -111,7 +111,7 @@ function displayGraph() {
 	for (var i = len-12; i < len; i++) {
 		label.push(((month + 12 - (len - i) % 12) % 12 + 1) + "月");
 	}
-	chargeHistoryJpy1 = chargeHistoryJpy;
+	chargeHistoryJpy1 = chargeHistoryJpy.slice(0, chargeHistoryJpy.length);
 	if (len < 12) {
 		for (var i = 0; i < 12-len; i++) {
 			waterHistory.unshift(0);
@@ -167,16 +167,22 @@ function convertEthToJpyWal() {
 //ethereumと円の変換
 function convertEthToJpy() {
 	len = chargeHistory.length;
+	iter = 0;
+	if(len < 3) {
+		iter = len;
+	} else {
+		iter = 3;
+	}
 	var tbody = document.getElementById('tbodyID');
 	if(histState) {
 		$('#unit').text("料金(ETH)");
-		for (var i = 0; i < 3; i++) {
+		for (var i = 0; i < iter; i++) {
 			tbody.rows[i].cells[2].innerText = Math.floor(chargeHistory[len - i - 1] * Math.pow(10, -16))/100;
 		}
 		histState = false;
 	} else {
 		$('#unit').text("料金(JPY)");
-		for (var i = 0; i < 3; i++) {
+		for (var i = 0; i < iter; i++) {
 			tbody.rows[i].cells[2].innerText = chargeHistoryJpy[len - i - 1];
 		}
 		histState = true;
