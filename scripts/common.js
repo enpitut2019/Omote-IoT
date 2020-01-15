@@ -36,7 +36,7 @@ function dispUserwallet() {
 				$('#balance').text((Math.floor(currentPrice * result * Math.pow(10, -16))/100).toLocaleString() + '(JPY)')
 //				$('#balance').text(Math.floor((currentPrice * result * Math.pow(10, -4))/10).toLocaleString() + '(JPY)')//デモ用
 			} else {
-				$('#balance').text((Math.floor(result * Math.pow(10, -7))/100).toLocaleString() + '(ETH)')
+				$('#balance').text((Math.floor(result * Math.pow(10, -16))/100).toLocaleString() + '(ETH)')
 			}
 		}
 	});
