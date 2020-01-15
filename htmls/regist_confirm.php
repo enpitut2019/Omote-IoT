@@ -93,7 +93,16 @@
 	        </div>
 	        <p>以上の内容で登録します</p><br>
 			<div class="text-center">
-				<button type="submit" name="submit" class="btn btn-primary">登録</button>
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<button type="button" onclick="history.back()" name="submit" class="btn btn-secondary">戻る</button>
+						</div>
+						<div class="col">
+							<button type="submit" name="submit" class="btn btn-primary">登録</button>
+						</div>
+					</div>
+				</div>
 			</div>
 	    </form>
 	    </div>

@@ -59,7 +59,7 @@
 			</div>
 			<div class="form-group">
 				<form method="POST" action="information.php">
-					<label>パスワード:</label> <input type="text"
+					<label>パスワード:</label> <input type="password"
 						name="password" class="password form-control" required>
 						<br>
 					<div class="text-center">
