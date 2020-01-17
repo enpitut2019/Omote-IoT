@@ -188,3 +188,45 @@ function convertEthToJpy() {
 		histState = true;
 	}
 }
+
+//スマートコントラクトをデプロイ
+function deploy() {
+	web3 = new Web3();
+	// プライベートネットワークと接続
+	if (!web3.currentProvider) {
+	    web3.setProvider(new web3.providers.HttpProvider("https://rinkeby.infura.io/v3/cd0900b970ae499abc551ea6214f35bb"));
+	}
+	var file = "/solidity/Water_supply_bytecode";
+	var bytecode;
+	var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+            	bytecode = rawFile.responseText;
+            }
+        }
+    }
+    rawFile.send(null);
+    console.log(bytecode.length)
+//	// コンパイル
+//	let compiledContract = solc.compile(source, 1);
+//	// ABIを取得(配列のキーはなぜか頭に:が必要でした)
+//	let abi = compiledContract.contracts[':TestContract'].interface;
+//	// コントラクトのバイトコードの取得(頭に0xを付けないと後述のAPIで弾かれる)
+//	let bytecode = "0x" + compiledContract.contracts[':TestContract'].bytecode;
+	// デプロイに必要なGasを問い合わせる
+	let gasEstimate = web3.eth.estimateGas({data: bytecode});
+    console.log(gasEstimate)
+	// コントラクトオブジェクトの生成
+	let TestContract = web3.eth.contract(JSON.parse(abi));
+	console.log(TestContract)
+	// デプロイアカウントのLockを外す
+//	web3.personal.unlockAccount(web3.eth.accounts[0], "<アカウントのパス>");
+	// ネットワークにデプロイ
+	// コンストラクタがある場合は、ハッシュの前の引数にコンストラクタのパラメタを渡すことで初期化可能
+	TestContract.new({from: web3.eth.accounts[0], data:bytecode, gas:gasEstimate });
+}
