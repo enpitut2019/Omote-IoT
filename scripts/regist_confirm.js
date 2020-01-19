@@ -1,3 +1,5 @@
+var transactionHash;
+
 $(function(){
 	init().then(result => {
 		console.log($('#name').val())
@@ -90,6 +92,7 @@ function deploy() {
 }
 
 function send(){
+	console.log(transactionHash)
 	$.ajax({
 		  type: 'POST',
 		  url: 'regist.php',
