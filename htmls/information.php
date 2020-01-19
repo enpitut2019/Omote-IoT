@@ -4,9 +4,8 @@
     <title>水道管理アプリ</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-    <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/bootstrap.css" rel="stylesheet">
-    <script src="../scripts/serverindex.js"></script>
+    <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/common.css" rel="stylesheet">
     <script src="../scripts/common.js"></script>
 </head>

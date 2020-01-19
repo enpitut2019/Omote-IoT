@@ -9,7 +9,6 @@
     <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/common.css" rel="stylesheet">
     <script src="../scripts/common.js"></script>
-    <script src="../scripts/serverindex.js"></script>
     <script src="../scripts/information_confirm.js"></script>
 </head>
 <body>

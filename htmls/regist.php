@@ -36,11 +36,11 @@ if(isset($_POST['submit'])){
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-    <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/bootstrap.css" rel="stylesheet">
-    <script src="../scripts/regist.js"></script>
+    <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/common.css" rel="stylesheet">
     <script src="../scripts/common.js"></script>
+    <script src="../scripts/regist.js"></script>
 <!--     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.5-rc.0/dist/web3.min.js"></script> -->
 <!-- 	<script src="https://cdn.jsdelivr.net/gh/ethereumjs/browser-builds/dist/ethereumjs-tx/ethereumjs-tx-1.3.3.min.js"></script> -->
 </head>
