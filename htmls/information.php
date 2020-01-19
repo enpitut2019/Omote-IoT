@@ -66,10 +66,10 @@
 //             $stmh->execute(array(":password" => $_POST['password']));
             $stmh->execute(array(":eth" => $_POST['eth']));
             $rows=$stmh->fetch();
-            if($rows['password'] != $_POST['password']){
-                echo  '<div class="text-danger">', 'パスワードが違います', '</div><br>';
-                $rows=array();
-            }
+//             if($rows['password'] != $_POST['password']){
+//                 echo  '<div class="text-danger">', 'パスワードが違います', '</div><br>';
+//                 $rows=array();
+//             }
 
         ?>
 	        <table>
