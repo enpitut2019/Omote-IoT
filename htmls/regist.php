@@ -41,6 +41,8 @@ if(isset($_POST['submit'])){
     <script src="../scripts/regist.js"></script>
     <link href="../styles/common.css" rel="stylesheet">
     <script src="../scripts/common.js"></script>
+<!--     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.5-rc.0/dist/web3.min.js"></script> -->
+<!-- 	<script src="https://cdn.jsdelivr.net/gh/ethereumjs/browser-builds/dist/ethereumjs-tx/ethereumjs-tx-1.3.3.min.js"></script> -->
 </head>
 <body>
 <header>
