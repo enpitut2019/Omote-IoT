@@ -96,7 +96,7 @@ function send(){
 		  data: {
 		    'name' : $('#name').val(),
 		    'tel' : $('#tel').val(),
-		    'address' $('#address').val(),
+		    'address' : $('#address').val(),
 		    'mail' : $('#mail').val(),
 		    'eth' : $('#eth').val(),
 		    'password' : $('#password').val(),
