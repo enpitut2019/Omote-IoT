@@ -72,7 +72,7 @@
 	    <form id="form_id" method="POST" action="regist.php">
 	        <div class="form-group">
 	            <label>氏名:</label>
-	            <input type="text" name="name" class="form-control" value='<?= htmlspecialchars($_POST['firstname'] . $_POST['lastname']) ?>' readonly>
+	            <input type="text" name="name" id="name"class="form-control" value='<?= htmlspecialchars($_POST['firstname'] . $_POST['lastname']) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>電話番号</label>
@@ -88,7 +88,7 @@
 	        </div>
 	        <div class="form-group">
 	            <label>ethのアカウント</label>
-	            <input type="text" name="eth" class="form-control" value='<?= htmlspecialchars($_POST['eth']) ?>' readonly>
+	            <input type="text" name="eth" id="EtheAddress" class="form-control" value='<?= htmlspecialchars($_POST['eth']) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>パスワード</label>
