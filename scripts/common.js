@@ -20,7 +20,6 @@ function init() {
 				account = result[0]
 				//ethアカウント入力部分にデフォルトで表示させる
 				$("div.userdata input.eth").attr('value',account)
-				console.log(name1)
 				resolve();
 			})
 		} else {
