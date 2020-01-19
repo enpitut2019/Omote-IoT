@@ -17,8 +17,10 @@ try {
         $rows=array();
     }
     $sample ='abc';
+    echo "Hello World";
+    echo $sample;
 ?>
 
-<script type="text/javascript">var name='<?php echo $sample; ?>';</script>
+<script type="text/javascript">var name1='<?php echo $sample; ?>';</script>
 <!-- <script type="text/javascript" src="../scripts/common.js"></script> -->
 
