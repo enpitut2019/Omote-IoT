@@ -64,7 +64,7 @@
         $tel=$_POST['tel'];
         $address=$_POST['address'];
         $mail=$_POST['mail'];
-        $acounteth=$_POST['eth'];
+        $eth=$_POST['eth'];
         $password=$_POST['password'];
 
         ?>
@@ -72,27 +72,27 @@
 	    <form id="form_id" method="POST" action="regist.php">
 	        <div class="form-group">
 	            <label>氏名:</label>
-	            <input type="text" name="name" id="name"class="form-control" value='<?= htmlspecialchars($_POST['firstname'] . $_POST['lastname']) ?>' readonly>
+	            <input type="text" name="name" id="name" class="form-control" value='<?= htmlspecialchars($name) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>電話番号</label>
-	            <input type="text" name="tel" class="form-control" value='<?= htmlspecialchars($_POST['tel']) ?>' readonly>
+	            <input type="text" name="tel" id="tel" class="form-control" value='<?= htmlspecialchars($tel) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>住所</label>
-	            <input type="text" name="address" class="form-control" value='<?= htmlspecialchars($_POST['address']) ?>' readonly>
+	            <input type="text" name="address" id="address" class="form-control" value='<?= htmlspecialchars($address) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>メールアドレス</label>
-	            <input type="text" name="mail" class="form-control" value='<?= htmlspecialchars($_POST['mail']) ?>' readonly>
+	            <input type="text" name="mail" id="mail" class="form-control" value='<?= htmlspecialchars($mail) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>ethのアカウント</label>
-	            <input type="text" name="eth" id="EtheAddress" class="form-control" value='<?= htmlspecialchars($_POST['eth']) ?>' readonly>
+	            <input type="text" name="eth" id="eth" class="form-control" value='<?= htmlspecialchars($eth) ?>' readonly>
 	        </div>
 	        <div class="form-group">
 	            <label>パスワード</label>
-	            <input type="password" name="password" class="form-control" value='<?= htmlspecialchars($_POST['password']) ?>' readonly>
+	            <input type="password" name="password" id="password" class="form-control" value='<?= htmlspecialchars($password) ?>' readonly>
 	        </div>
 	        <p>以上の内容で登録します</p><br>
 			<div class="text-center">

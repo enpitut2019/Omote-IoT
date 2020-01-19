@@ -90,23 +90,22 @@ function deploy() {
 }
 
 function send(){
-//	$.ajax({
-//		  type: 'POST',
-//		  url: 'regist.php',
-//		  data: {
-//		    'name' : value1,
-//		    'tel' : value2,
-//		    'address' : $_POST['address'],
-//		    'mail' : ,
-//		    'address' : ,
-//		    'eth' : ,
-//		    'password' : ,
-//		    'contractAddress' ;
-//		  },
-//		  success: function(data) {
-//		    alert(data);
-//		  }
-//		});
+	$.ajax({
+		  type: 'POST',
+		  url: 'regist.php',
+		  data: {
+		    'name' : $('#name').val(),
+		    'tel' : $('#tel').val(),
+		    'address' $('#address').val(): ,
+		    'mail' : $('#mail').val(),
+		    'eth' : $('#eth').val(),
+		    'password' : $('#password').val(),
+		    'contractAddress' : transactionHash;
+		  },
+		  success: function(data) {
+		    alert(data);
+		  }
+		});
 }
 //pending中に表示する
 function dispLoadning(){
