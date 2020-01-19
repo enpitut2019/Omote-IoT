@@ -12,15 +12,8 @@ try {
     $stmh = $pdo->prepare($sql);
     $stmh->execute(array(":eth" => $_POST['eth']));
     $rows=$stmh->fetch();
-    if($rows['password'] != $_POST['password']){
-        echo  '<div class="text-danger">', 'パスワードが違います', '</div><br>';
-        $rows=array();
-    }
-    $sample ='abc';
-    echo "Hello World";
-    echo $sample;
 ?>
 
-<script type="text/javascript">var name1='<?php echo $sample; ?>';</script>
+<script type="text/javascript">var name1='<?php echo $rows['name']; ?>';</script>
 <!-- <script type="text/javascript" src="../scripts/common.js"></script> -->
 
