@@ -15,6 +15,8 @@ try {
     echo $rows['name'];
 ?>
 
-<script type="text/javascript">var name1='<?php echo $rows['name']; ?>';</script>
+<script type="text/javascript">var name1='<?php echo $rows['name']; ?>';
+console.log(name1)
+</script>
 <!-- <script type="text/javascript" src="../scripts/common.js"></script> -->
 

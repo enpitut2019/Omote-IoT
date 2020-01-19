@@ -2,7 +2,6 @@ var transactionHash;
 
 $(function(){
 	init().then(result => {
-		console.log($('#name').val())
 	});
 });
 

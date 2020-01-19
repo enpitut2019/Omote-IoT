@@ -17,12 +17,13 @@ function insert(){
     $mail=$_POST['mail'];
     $acounteth=$_POST['eth'];
     $password=$_POST['password'];
-    $contractAddress=$_POST['contractAddress'];
+//     $contractAddress=$_POST['contractAddress'];
 
     //データベースにinsert
     $sql = "INSERT INTO water_users (name, tel, address, mail, eth, password, contractAddress) VALUES (:name,:tel,:address,:mail,:eth,:password,:contractAddress)";
     $stmh = $pdo->prepare($sql);
-    $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password, ':contractAddress' => $contractAddress);
+//     $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password, ':contractAddress' => $contractAddress);
+    $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password);
     $stmh->execute($params);
 }
 
