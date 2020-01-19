@@ -100,7 +100,7 @@ function send(){
 		    'mail' : $('#mail').val(),
 		    'eth' : $('#eth').val(),
 		    'password' : $('#password').val(),
-		    'contractAddress' : transactionHash;
+		    'contractAddress' : transactionHash
 		  },
 		  success: function(data) {
 		    alert(data);
