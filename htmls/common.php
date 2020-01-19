@@ -8,10 +8,11 @@ try {
     print('Error:' . $e->getMessage());
     die();
 }
-    $sql = "SELECT name,contractAddress FROM water_users where eth=:eth";
+    $sql = "SELECT name FROM water_users where eth=:eth";
     $stmh = $pdo->prepare($sql);
     $stmh->execute(array(":eth" => $_POST['eth']));
     $rows=$stmh->fetch();
+    echo $rows['name'];
 ?>
 
 <script type="text/javascript">var name1='<?php echo $rows['name']; ?>';</script>
