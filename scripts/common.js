@@ -5,6 +5,7 @@ var chargeHistory, chargeHistoryJpy;
 var histState, walletState;
 
 function init() {
+	console.log(name1)
 	return new Promise(resolve => {
 		if (typeof web3 !== 'undefined') {
 			web3 = new Web3(web3.currentProvider);
@@ -20,6 +21,7 @@ function init() {
 				account = result[0]
 				//ethアカウント入力部分にデフォルトで表示させる
 				$("div.userdata input.eth").attr('value',account)
+				console.log(name1)
 				resolve();
 			})
 		} else {

@@ -92,7 +92,6 @@ function deploy() {
 }
 
 function send(){
-	console.log(transactionHash)
 	$.ajax({
 		  type: 'POST',
 		  url: 'regist.php',
@@ -106,7 +105,7 @@ function send(){
 		    'contractAddress' : transactionHash
 		  },
 		  success: function(data) {
-		    alert(data);
+			  location.href = '../'
 		  }
 		});
 }
