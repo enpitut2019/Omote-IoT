@@ -38,7 +38,7 @@ if(isset($_POST['submit'])){
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/bootstrap.css" rel="stylesheet">
-    <script src="../scripts/serverindex.js"></script>
+    <script src="../scripts/regist.js"></script>
     <link href="../styles/common.css" rel="stylesheet">
     <script src="../scripts/common.js"></script>
 </head>
