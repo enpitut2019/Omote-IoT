@@ -61,8 +61,7 @@
             print('Error:' . $e->getMessage());
             die();
         }
-//             $sql = "SELECT name,tel,address,mail,eth,password FROM water_users where password=:password";
-            $sql = "SELECT name,tel,address,mail,eth,password FROM water_users where eth=:eth";
+            $sql = "SELECT name,tel,address,mail,eth,password,contractAddress FROM water_users where eth=:eth";
             $stmh = $pdo->prepare($sql);
 //             $stmh->execute(array(":password" => $_POST['password']));
             $stmh->execute(array(":eth" => $_POST['eth']));
@@ -98,6 +97,10 @@
 	                <div class="form-group">
 	                    <label>パスワード</label><br>
 	                    <input type="password" readonly class="form-control" value='<?= htmlspecialchars($rows['password']) ?>'>
+	                </div>
+	                <div class="form-group">
+	                    <label>コントラクトアドレス</label><br>
+	                    <input type="contractAddress" readonly class="form-control" value='<?= htmlspecialchars($rows['contractAddress']) ?>'>
 	                </div>
 	            </tbody>
 	        </table>

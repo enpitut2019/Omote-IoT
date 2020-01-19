@@ -17,11 +17,12 @@ function insert(){
     $mail=$_POST['mail'];
     $acounteth=$_POST['eth'];
     $password=$_POST['password'];
+    $contractAddress=$_POST['contractAddress'];
 
     //データベースにinsert
-    $sql = "INSERT INTO water_users ( name, tel, address, mail, eth, password) VALUES (:name,:tel,:address,:mail,:eth,:password)";
+    $sql = "INSERT INTO water_users (name, tel, address, mail, eth, password, contractAddress) VALUES (:name,:tel,:address,:mail,:eth,:password,:contractAddress)";
     $stmh = $pdo->prepare($sql);
-    $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password);
+    $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password, ':contractAddress' => $contractAddress);
     $stmh->execute($params);
 }
 
@@ -41,8 +42,6 @@ if(isset($_POST['submit'])){
     <link href="../styles/common.css" rel="stylesheet">
     <script src="../scripts/common.js"></script>
     <script src="../scripts/regist.js"></script>
-<!--     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.5-rc.0/dist/web3.min.js"></script> -->
-<!-- 	<script src="https://cdn.jsdelivr.net/gh/ethereumjs/browser-builds/dist/ethereumjs-tx/ethereumjs-tx-1.3.3.min.js"></script> -->
 </head>
 <body>
 <header>
