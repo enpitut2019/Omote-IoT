@@ -13,7 +13,6 @@ $(function(){
 			});
 		});
 	});
-//	setInterval(function(){dispUserwallet();},3000);
 });
 
 //未払い料金を支払う

@@ -93,7 +93,7 @@ function deploy() {
 function send(){
 	$.ajax({
 		  type: 'POST',
-		  url: '../htmls/regist.php',
+		  url: '../phps/regist.php',
 		  data: {
 		    'name' : $('#name').val(),
 		    'tel' : $('#tel').val(),
