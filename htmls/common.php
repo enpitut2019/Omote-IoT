@@ -8,11 +8,17 @@ try {
     print('Error:' . $e->getMessage());
     die();
 }
-//     $sql = "SELECT contractAddress FROM water_users where eth=:eth";
-    $sql = "SELECT name FROM water_users where eth=:eth";
+    $sql = "SELECT name,contractaddress FROM water_users where eth=:eth";
     $stmh = $pdo->prepare($sql);
     $stmh->execute(array(":eth" => $_POST['eth']));
     $rows=$stmh->fetch();
+
+    echo "<pre>";
+    var_dump($rows['name']);
+    echo "</pre>";
+    echo "<pre>";
+    var_dump($rows['contractaddress']);
+    echo "</pre>";
     echo $rows['name'] + "A";
 ?>
 
