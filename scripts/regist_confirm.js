@@ -91,23 +91,25 @@ function deploy() {
 }
 
 function send(){
-	$.ajax({
-		  type: 'POST',
-		  url: '../htmls/regist.php',
-		  data: {
-		    'name' : $('#name').val(),
-		    'tel' : $('#tel').val(),
-		    'address' : $('#address').val(),
-		    'mail' : $('#mail').val(),
-		    'eth' : $('#eth').val(),
-		    'password' : $('#password').val(),
-		    'contractAddress' : transactionHash
-		  },
-		  success: function(data) {
-			  location.href = '../'
-		  }
-		});
+	console.log(transactionHash)
+//	$.ajax({
+//		  type: 'POST',
+//		  url: '../htmls/regist.php',
+//		  data: {
+//		    'name' : $('#name').val(),
+//		    'tel' : $('#tel').val(),
+//		    'address' : $('#address').val(),
+//		    'mail' : $('#mail').val(),
+//		    'eth' : $('#eth').val(),
+//		    'password' : $('#password').val(),
+//		    'contractAddress' : transactionHash
+//		  },
+//		  success: function(data) {
+//			  location.href = '../'
+//		  }
+//		});
 }
+
 //pending中に表示する
 function dispLoadning(){
 	var msg = "登録処理中・・・"
