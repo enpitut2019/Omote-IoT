@@ -21,7 +21,7 @@ function init() {
 	});
 }
 
-//スマートコントラクトをデプロイ
+//スマートコントラクトをデプロイ(セキュリティ上問題があるのでNode.jsでサーバーで動かした方が良い)
 function deploy() {
 	web3 = new Web3();
 	if (!web3.currentProvider) {
