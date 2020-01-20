@@ -72,7 +72,6 @@ function deploy() {
 									removeLoading();
 									dispFailed();
 								} else {
-									console.log(resultReceipt)
 									contractAddress = resultReceipt.contractAddress;
 									clearInterval(timerId);
 									removeLoading();
@@ -105,8 +104,7 @@ function send(){
 		    'contractAddress' : contractAddress
 		  },
 		  success: function(data) {
-			  console.log(contractAddress)
-//			  location.href = '../'
+			  location.href = '../'
 		  }
 		});
 }

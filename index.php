@@ -50,6 +50,7 @@
 	</header>
 	<div class="p-3">
 			<br>
+			<div class="h3 text-center" id='noAccount'></div>
 			<div class="h3 text-center text-danger" id='onWorking'></div>
 			<br>
 			<p class="h3 text-center">使用履歴</p>
