@@ -64,7 +64,6 @@ function getUnpaidCharge() {
 function getOnWorking() {
 	contract.get_on_working.call({from:account},(error,result) => {
 		if(!error) {
-			console.log(result)
 			if(!result) {
 				$("#onWorking").text("停止中");
 			}
