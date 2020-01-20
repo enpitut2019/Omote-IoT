@@ -8,23 +8,20 @@ try {
     print('Error:' . $e->getMessage());
     die();
 }
-    $sql = "SELECT name,contractaddress FROM water_users where eth=:eth";
-    $stmh = $pdo->prepare($sql);
-    $stmh->execute(array(":eth" => $_POST['eth']));
-    $rows=$stmh->fetch();
+$sql = "SELECT name,contractaddress FROM water_users where eth=:eth";
+$stmh = $pdo->prepare($sql);
+$stmh->execute(array(":eth" => $_POST['eth']));
+$rows=$stmh->fetch();
 
-    echo "<pre>";
-    var_dump($rows['name']);
-    echo "</pre>";
-    echo "<pre>";
-    var_dump($rows['contractaddress']);
-    echo "</pre>";
-    echo $rows['name'] + "A";
+echo "<pre>";
+var_dump($rows['name']);
+echo "</pre>";
+echo "<pre>";
+var_dump($rows['contractaddress']);
+echo "</pre>";
+echo $rows['name'] + "A";
+
+$result = $rows['contractaddress'];
+echo $result;
+exit;
 ?>
-
-<script type="text/javascript">
-var name1='<?php echo $rows['name']; ?>';
-console.log(name1 + "B");
-</script>
-<!-- <script type="text/javascript" src="../scripts/common.js"></script> -->
-

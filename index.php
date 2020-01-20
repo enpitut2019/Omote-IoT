@@ -1,7 +1,3 @@
-<?php
-include("htmls/common.php");
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
