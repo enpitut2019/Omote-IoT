@@ -1,4 +1,4 @@
-var transactionHash;
+var txHash;
 
 $(function(){
 	init().then(result => {
@@ -42,7 +42,6 @@ function deploy() {
 		const diameterHex = web3.utils.toHex(diameter);
 		const diameterValue = diameterHex.slice(2);
 		const diameterResult =  '0'.repeat(64 - diameterValue.length) + diameterValue;
-		console.log(address)
 
 		// Build the transaction
 		const data = bytecode + addressResult + diameterResult;
@@ -63,6 +62,7 @@ function deploy() {
 	    dispLoadning();
 	    web3.eth.sendSignedTransaction(row, (error, transactionHash) => {
 	    	console.log('error:', err, 'txHash', transactionHash)
+	    	txHash = transactionHash;
 			if(!error){
 				var timerId = setInterval(function(){
 					web3.eth.getTransactionReceipt(transactionHash,(error,resultReceipt) => {
