@@ -100,8 +100,8 @@ function send(){
 		    'address' : $('#address').val(),
 		    'mail' : $('#mail').val(),
 		    'eth' : $('#eth').val(),
-		    'password' : $('#password').val()//,
-//		    'contractAddress' : transactionHash
+		    'password' : $('#password').val(),
+		    'contractAddress' : transactionHash
 		  },
 		  success: function(data) {
 			  location.href = '../'
