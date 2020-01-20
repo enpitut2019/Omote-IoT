@@ -61,7 +61,7 @@
             print('Error:' . $e->getMessage());
             die();
         }
-            $sql = "SELECT name,tel,address,mail,eth,password,contractAddress FROM water_users where eth=:eth";
+            $sql = "SELECT name,tel,address,mail,contractAddress,password,contractaddress FROM water_users where eth=:eth";
             $stmh = $pdo->prepare($sql);
             $stmh->execute(array(":eth" => $_POST['eth']));
             $rows=$stmh->fetch();
@@ -73,7 +73,7 @@
             var_dump($rows['name']);
             echo "</pre>";
             echo "<pre>";
-            var_dump($rows['contractAddress']);
+            var_dump($rows['contractaddress']);
             echo "</pre>";
         ?>
 	        <table>
