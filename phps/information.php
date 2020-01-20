@@ -4,9 +4,8 @@
     <title>水道管理アプリ</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-    <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/bootstrap.css" rel="stylesheet">
-    <script src="../scripts/serverindex.js"></script>
+    <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/common.css" rel="stylesheet">
     <script src="../scripts/common.js"></script>
 </head>
@@ -36,7 +35,7 @@
 					</div>
 					<div class="px-md-2 px-lg-4 h5">
 						<li class="nav-item borderBottom"><a
-							class="nav-link" href="./information_confirm.php">登録情報</a></li>
+							class="nav-link" href="../htmls/information_confirm.html">登録情報</a></li>
 					</div>
 					<div class="px-md-2 px-lg-4 h5">
 						<li class="nav-item borderBottom"><a
@@ -62,17 +61,14 @@
             print('Error:' . $e->getMessage());
             die();
         }
-//             $sql = "SELECT name,tel,address,mail,eth,password FROM water_users where password=:password";
-            $sql = "SELECT name,tel,address,mail,eth,password FROM water_users where eth=:eth";
+            $sql = "SELECT name,tel,address,mail,eth,password,contractaddress FROM water_users where eth=:eth";
             $stmh = $pdo->prepare($sql);
-//             $stmh->execute(array(":password" => $_POST['password']));
             $stmh->execute(array(":eth" => $_POST['eth']));
             $rows=$stmh->fetch();
             if($rows['password'] != $_POST['password']){
                 echo  '<div class="text-danger">', 'パスワードが違います', '</div><br>';
                 $rows=array();
             }
-
         ?>
 	        <table>
 	            <tbody>
@@ -99,6 +95,10 @@
 	                <div class="form-group">
 	                    <label>パスワード</label><br>
 	                    <input type="password" readonly class="form-control" value='<?= htmlspecialchars($rows['password']) ?>'>
+	                </div>
+	                <div class="form-group">
+	                    <label>コントラクトアドレス</label><br>
+						<input type="text" readonly class="form-control" value='<?= htmlspecialchars($rows['contractaddress']) ?>'>
 	                </div>
 	            </tbody>
 	        </table>

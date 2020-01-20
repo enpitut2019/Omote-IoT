@@ -4,7 +4,6 @@ $(function(){
 			dispUserwallet();
 		});
 	});
-	setInterval(function(){dispUserwallet();},3000);
 });
 
 //pending中に表示する
@@ -94,10 +93,10 @@ function chargeButton() {
 function convertEthToJpyWal() {
 	if(walletState) {
 		walletState = false;
-		$('#deposit').text("入金額(ETH)");
+		$('#deposit').text("入金額(ETH):");
 	} else {
 		walletState = true;
-		$('#deposit').text("入金額(JPY)");
+		$('#deposit').text("入金額(JPY):");
 	}
 	document.form.reset();
 	dispUserwallet();

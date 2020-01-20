@@ -5,10 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-    <link href="../styles/server.css" rel="stylesheet">
-    <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/bootstrap.css" rel="stylesheet">
-    <script src="../scripts/serverindex.js"></script>
+    <script src="../scripts/bootstrap.bundle.js"></script>
     <link href="../styles/common.css" rel="stylesheet">
     <script src="../scripts/common.js"></script>
 </head>
@@ -38,7 +36,7 @@
 					</div>
 					<div class="px-md-2 px-lg-4 h5">
 						<li class="nav-item borderBottom"><a
-							class="nav-link" href="./information_confirm.php">登録情報</a></li>
+							class="nav-link" href="../htmls/information_confirm.html">登録情報</a></li>
 					</div>
 					<div class="px-md-2 px-lg-4 h5">
 						<li class="nav-item borderBottom"><a

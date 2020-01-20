@@ -1,6 +1,5 @@
 $(function(){
 	init().then(result => {
-		//getUsedWater();
 		setCurrentJpy().then(result => {
 			dispUserwallet();
 		});
@@ -14,7 +13,6 @@ $(function(){
 			});
 		});
 	});
-	setInterval(function(){dispUserwallet();},3000);
 });
 
 //未払い料金を支払う
@@ -66,7 +64,6 @@ function getUnpaidCharge() {
 function getOnWorking() {
 	contract.get_on_working.call({from:account},(error,result) => {
 		if(!error) {
-			console.log(result)
 			if(!result) {
 				$("#onWorking").text("停止中");
 			}
