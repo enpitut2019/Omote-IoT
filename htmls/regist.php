@@ -14,13 +14,19 @@ $name=$_POST['name'];
 $tel=$_POST['tel'];
 $address=$_POST['address'];
 $mail=$_POST['mail'];
-$acounteth=$_POST['eth'];
+$eth=$_POST['eth'];
 $password=$_POST['password'];
 $contractAddress=$_POST['contractAddress'];
 
 //データベースにinsert
 $sql = "INSERT INTO water_users (name, tel, address, mail, eth, password, contractAddress) VALUES (:name,:tel,:address,:mail,:eth,:password,:contractAddress)";
 $stmh = $pdo->prepare($sql);
-$params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password, ':contractAddress' => $contractAddress);
+$params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $eth, ':password' => $password, ':contractAddress' => $contractAddress);
 $stmh->execute($params);
 ?>
+<script type="text/javascript">
+var name2='<?php echo $name; ?>';
+console.log(name2 + "C");
+var name1='<?php echo $contractAddress; ?>';
+console.log(name1 + "B");
+</script>

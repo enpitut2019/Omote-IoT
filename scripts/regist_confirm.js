@@ -91,6 +91,7 @@ function deploy() {
 }
 
 function send(){
+	console.log(txHash)
 	$.ajax({
 		  type: 'POST',
 		  url: '../htmls/regist.php',
