@@ -1,4 +1,4 @@
-var txHash;
+var contractAddress;
 
 $(function(){
 	init().then(result => {
@@ -69,7 +69,7 @@ function deploy() {
 							web3.eth.getTransactionReceipt(transactionHash,(error,resultReceipt) => {
 								if(!resultReceipt.status){
 									console.log(resultReceipt)
-							    	txHash = resultReceipt.contractAddress;
+							    	contractAddress = resultReceipt.contractAddress;
 									clearInterval(timerId);
 									removeLoading();
 									dispFailed();
@@ -102,10 +102,11 @@ function send(){
 		    'mail' : $('#mail').val(),
 		    'eth' : $('#eth').val(),
 		    'password' : $('#password').val(),
-		    'contractAddress' : txHash
+		    'contractAddress' : contractAddress
 		  },
 		  success: function(data) {
-			  location.href = '../'
+			  console.log(contractAddress)
+//			  location.href = '../'
 		  }
 		});
 }
