@@ -24,9 +24,3 @@ $stmh = $pdo->prepare($sql);
 $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $eth, ':password' => $password, ':contractAddress' => $contractAddress);
 $stmh->execute($params);
 ?>
-<script type="text/javascript">
-var name2='<?php echo $name; ?>';
-console.log(name2 + "C");
-var name1='<?php echo $contractAddress; ?>';
-console.log(name1 + "B");
-</script>

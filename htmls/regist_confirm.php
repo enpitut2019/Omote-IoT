@@ -103,7 +103,6 @@
 						</div>
 						<div class="col">
 							<button type="button" onclick="deploy()" class="btn btn-primary">登録</button>
-<!-- 							<button type="submit" name="submit" class="btn btn-primary">登録</button> -->
 						</div>
 					</div>
 				</div>
