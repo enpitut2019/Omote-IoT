@@ -91,23 +91,22 @@ function deploy() {
 }
 
 function send(){
-	console.log(txHash)
-//	$.ajax({
-//		  type: 'POST',
-//		  url: '../htmls/regist.php',
-//		  data: {
-//		    'name' : $('#name').val(),
-//		    'tel' : $('#tel').val(),
-//		    'address' : $('#address').val(),
-//		    'mail' : $('#mail').val(),
-//		    'eth' : $('#eth').val(),
-//		    'password' : $('#password').val(),
-//		    'contractAddress' : txHash
-//		  },
-//		  success: function(data) {
-//			  location.href = '../'
-//		  }
-//		});
+	$.ajax({
+		  type: 'POST',
+		  url: '../htmls/regist.php',
+		  data: {
+		    'name' : $('#name').val(),
+		    'tel' : $('#tel').val(),
+		    'address' : $('#address').val(),
+		    'mail' : $('#mail').val(),
+		    'eth' : $('#eth').val(),
+		    'password' : $('#password').val(),
+		    'contractAddress' : txHash
+		  },
+		  success: function(data) {
+			  location.href = '../'
+		  }
+		});
 }
 
 //pending中に表示する
