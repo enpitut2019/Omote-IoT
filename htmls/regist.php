@@ -20,7 +20,8 @@
 //     $contractAddress=$_POST['contractAddress'];
 
     //データベースにinsert
-    $sql = "INSERT INTO water_users (name, tel, address, mail, eth, password, contractAddress) VALUES (:name,:tel,:address,:mail,:eth,:password,:contractAddress)";
+//     $sql = "INSERT INTO water_users (name, tel, address, mail, eth, password, contractAddress) VALUES (:name,:tel,:address,:mail,:eth,:password,:contractAddress)";
+    $sql = "INSERT INTO water_users (name, tel, address, mail, eth, password) VALUES (:name,:tel,:address,:mail,:eth,:password)";
     $stmh = $pdo->prepare($sql);
 //     $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password, ':contractAddress' => $contractAddress);
     $params = array(':name' => $name, ':tel' => $tel, ':address' => $address, ':mail' => $mail, ':eth' => $acounteth, ':password' => $password);

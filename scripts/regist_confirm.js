@@ -104,7 +104,7 @@ function send(){
 //		    'contractAddress' : transactionHash
 		  },
 		  success: function(data) {
-			  location.href = '../htmls/regist.php'
+			  location.href = '../'
 		  }
 		});
 }
