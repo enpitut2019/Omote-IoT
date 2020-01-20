@@ -16,7 +16,8 @@ try {
     echo $rows['name'] + "A";
 ?>
 
-<script type="text/javascript">var name1='<?php echo $rows['name']; ?>';
+<script type="text/javascript">
+var name1='<?php echo $rows['name']; ?>';
 console.log(name1 + "B");
 </script>
 <!-- <script type="text/javascript" src="../scripts/common.js"></script> -->
