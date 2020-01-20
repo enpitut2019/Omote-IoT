@@ -16,7 +16,8 @@ $address=$_POST['address'];
 $mail=$_POST['mail'];
 $eth=$_POST['eth'];
 $password=$_POST['password'];
-$contractAddress=$_POST['contractAddress'];
+$contractAddress="";
+// $contractAddress=$_POST['contractAddress'];
 
 //データベースにinsert
 $sql = "INSERT INTO water_users (name, tel, address, mail, eth, password, contractAddress) VALUES (:name,:tel,:address,:mail,:eth,:password,:contractAddress)";
