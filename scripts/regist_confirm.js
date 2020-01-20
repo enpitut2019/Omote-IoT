@@ -68,12 +68,12 @@ function deploy() {
 						if(resultReceipt !== null) {
 							web3.eth.getTransactionReceipt(transactionHash,(error,resultReceipt) => {
 								if(!resultReceipt.status){
-									console.log(resultReceipt)
-							    	contractAddress = resultReceipt.contractAddress;
 									clearInterval(timerId);
 									removeLoading();
 									dispFailed();
 								} else {
+									console.log(resultReceipt)
+									contractAddress = resultReceipt.contractAddress;
 									clearInterval(timerId);
 									removeLoading();
 									dispSuccess();
