@@ -2,7 +2,6 @@ $(function(){
 	init().then(result => {
 		setCurrentJpy().then(result => {
 			dispUserwallet();
-			console.log(name1)
 		});
 		getNotPayCount();
 		getOnWorking();

@@ -8,15 +8,16 @@ try {
     print('Error:' . $e->getMessage());
     die();
 }
+//     $sql = "SELECT contractAddress FROM water_users where eth=:eth";
     $sql = "SELECT name FROM water_users where eth=:eth";
     $stmh = $pdo->prepare($sql);
     $stmh->execute(array(":eth" => $_POST['eth']));
     $rows=$stmh->fetch();
-    echo $rows['name'];
+    echo $rows['name'] + "A";
 ?>
 
 <script type="text/javascript">var name1='<?php echo $rows['name']; ?>';
-console.log(name1)
+console.log(name1 + "B");
 </script>
 <!-- <script type="text/javascript" src="../scripts/common.js"></script> -->
 
