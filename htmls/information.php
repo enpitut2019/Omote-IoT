@@ -69,8 +69,12 @@
                 echo  '<div class="text-danger">', 'パスワードが違います', '</div><br>';
                 $rows=array();
             }
-            echo $rows['name'];
-            echo $rows['contractAddress'];
+            echo "<pre>";
+            var_dump($rows['name']);
+            echo "</pre>";
+            echo "<pre>";
+            var_dump($rows['contractAddress']);
+            echo "</pre>";
         ?>
 	        <table>
 	            <tbody>
