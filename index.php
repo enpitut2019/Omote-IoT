@@ -113,7 +113,6 @@
 					</p>
 				</div>
 			</div>
-		<a href="htmls/regist_form.php">登録ページはこちら</a>
 	</div>
 	<footer>
 		<div class="bottom section-padding">

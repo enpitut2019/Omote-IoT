@@ -4,7 +4,7 @@ $(function(){
 			dispUserwallet();
 		});
 	});
-	setInterval(function(){dispUserwallet();},3000);
+//	setInterval(function(){dispUserwallet();},3000);
 });
 
 //pending中に表示する
