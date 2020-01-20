@@ -61,7 +61,7 @@
             print('Error:' . $e->getMessage());
             die();
         }
-            $sql = "SELECT name,tel,address,mail,contractAddress,password,contractaddress FROM water_users where eth=:eth";
+            $sql = "SELECT name,tel,address,mail,eth,password,contractaddress FROM water_users where eth=:eth";
             $stmh = $pdo->prepare($sql);
             $stmh->execute(array(":eth" => $_POST['eth']));
             $rows=$stmh->fetch();
@@ -69,12 +69,6 @@
                 echo  '<div class="text-danger">', 'パスワードが違います', '</div><br>';
                 $rows=array();
             }
-            echo "<pre>";
-            var_dump($rows['name']);
-            echo "</pre>";
-            echo "<pre>";
-            var_dump($rows['contractaddress']);
-            echo "</pre>";
         ?>
 	        <table>
 	            <tbody>
@@ -104,7 +98,7 @@
 	                </div>
 	                <div class="form-group">
 	                    <label>コントラクトアドレス</label><br>
-						<input type="text" readonly class="form-control" value='<?= htmlspecialchars($rows['contractAddress']) ?>'>
+						<input type="text" readonly class="form-control" value='<?= htmlspecialchars($rows['contractaddress']) ?>'>
 	                </div>
 	            </tbody>
 	        </table>
