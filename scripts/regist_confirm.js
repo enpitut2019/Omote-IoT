@@ -62,13 +62,14 @@ function deploy() {
 	    dispLoadning();
 	    web3.eth.sendSignedTransaction(row, (error, transactionHash) => {
 	    	console.log('error:', err, 'txHash', transactionHash)
-	    	txHash = transactionHash;
 			if(!error){
 				var timerId = setInterval(function(){
 					web3.eth.getTransactionReceipt(transactionHash,(error,resultReceipt) => {
 						if(resultReceipt !== null) {
 							web3.eth.getTransactionReceipt(transactionHash,(error,resultReceipt) => {
 								if(!resultReceipt.status){
+									console.log(resultReceipt)
+							    	txHash = resultReceipt.contractAddress;
 									clearInterval(timerId);
 									removeLoading();
 									dispFailed();
