@@ -14,6 +14,7 @@ contract Water_supply {
     uint public unpaid_charge;//未払いの料金
     uint public not_pay_counter = 0;//未払いの回数
     bool public on_working = true;//水道が動いているかどうか
+    uint public stop_counter = 0;//水道停止までの許容される未払い回数
 
     //コンストラクター
     constructor(address _user, uint _diameter) public {
@@ -57,18 +58,22 @@ contract Water_supply {
     function deposit() public payable {//onlyUser {
         if(msg.value <= 0) revert();
         wallet += msg.value;
+        if(not_pay_counter > 0) {
+            pay_unpaid_charge();
+        }
     }
     
     //料金の支払い
     function payment() private {
         uint charge = calc_charge() + unpaid_charge;
         if(wallet < charge) {
-                unpaid_charge = charge;
-                not_pay_counter += 1;
-                if(not_pay_counter  > 0) {
-                    stop_working();
-                }
-                
+            sender.transfer(wallet);
+            unpaid_charge = charge - wallet;
+            wallet = 0;
+            not_pay_counter += 1;
+            if(not_pay_counter > stop_counter) {
+                stop_working();
+            }
         }else{
             sender.transfer(charge);
             wallet -= charge;
@@ -78,13 +83,17 @@ contract Water_supply {
     
     //未払い金の支払い
     function pay_unpaid_charge() public {
-        if(wallet < unpaid_charge) revert();
-        sender.transfer(unpaid_charge);
-        wallet -= unpaid_charge;
-        unpaid_charge = 0;
-        not_pay_counter = 0;
-        if (!on_working) {
-            start_working();
+        if(wallet < unpaid_charge) {
+            sender.transfer(wallet);
+            unpaid_charge -= wallet;
+        } else {
+            sender.transfer(unpaid_charge);
+            wallet -= unpaid_charge;
+            unpaid_charge = 0;
+            not_pay_counter = 0;
+            if (!on_working) {
+                start_working();
+            }
         }
     }
 
@@ -119,10 +128,9 @@ contract Water_supply {
 
     //当月の水量を入力    
     function set_used_water(uint _amount_of_water) public {
-        if (!on_working) revert();
+        // if(!on_working) revert();
         amount_of_water = _amount_of_water;
         set_history();
-        diameter = 1;
         payment();
     }
 
@@ -160,13 +168,13 @@ contract Water_supply {
     
     //水道のon
     function start_working() private {
-        if(on_working) revert();
+        // if(on_working) revert();
         on_working = true;
     }
     
     //水道のoff
     function stop_working() private {
-        if(!on_working) revert();
+        // if(!on_working) revert();
         on_working = false;
     }
     

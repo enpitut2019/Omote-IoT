@@ -4,7 +4,7 @@ $(function(){
 			dispUserwallet();
 		});
 		getNotPayCount();
-		getOnWorking();
+//		getOnWorking();
 		getHistoryofWater().then(result => {
 			setCurrentJpy().then(result2 => {
 				setHistory(result);
@@ -32,42 +32,6 @@ function payUnpaidCharge() {
 				console.error(error);
 				removeLoading();
 			}
-	});
-}
-
-
-//未払金の回数を受け取る
-function getNotPayCount() {
-	contract.get_not_pay_counter.call({from:account},(error,result) => {
-		if(!error) {
-			if (result > 0) {
-				getUnpaidCharge();
-			}
-		}
-	});
-}
-
-//未払金を受け取る
-function getUnpaidCharge() {
-	contract.get_unpaid_charge.call({from:account},(error,result) => {
-		if(!error) {
-			$("#unpaid").text("未払金: " + result + " wei");
-			$("#sendUnpaid").append('<input type="submit" value="未払金支払い" id="sendUnpaidButton" onclick="payUnpaidCharge()">');
-			if(Number(result) >= wallet) {
-				$("#sendUnpaidButton").prop('disabled', true);
-			}
-		}
-	});
-}
-
-//水道が停止されているかどうかを受け取る
-function getOnWorking() {
-	contract.get_on_working.call({from:account},(error,result) => {
-		if(!error) {
-			if(!result) {
-				$("#onWorking").text("停止中");
-			}
-		}
 	});
 }
 

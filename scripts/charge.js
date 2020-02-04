@@ -3,6 +3,7 @@ $(function(){
 		setCurrentJpy().then(result2 => {
 			dispUserwallet();
 		});
+		getNotPayCount();
 	});
 });
 
