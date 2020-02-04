@@ -96,22 +96,22 @@ function setCurrentJpy() {
 }
 
 //未払金の回数を受け取る
-function getNotPayCount() {
+function getNotPayCount(_state) {
 	contract.get_not_pay_counter.call({from:account},(error,result) => {
 		if(!error) {
 			if (result > 0) {
-				getUnpaidCharge();
+				getUnpaidCharge(_state);
 			}
 		}
 	});
 }
 
 //未払金を受け取る
-function getUnpaidCharge() {
+function getUnpaidCharge(_state) {
 	contract.get_unpaid_charge.call({from:account},(error,result) => {
 		if(!error) {
 			$("#onWorking").text("未払金があります");
-			if(walletState) {
+			if(_state) {
 				$('#unpaid').text("未払金: " + (Math.floor(currentPrice * result * Math.pow(10, -18))/1).toLocaleString() + '(JPY)')
 			} else {
 				$('#unpaid').text("未払金: " + (Math.floor(result * Math.pow(10, -15))/1000).toLocaleString() + '(ETH)')

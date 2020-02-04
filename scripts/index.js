@@ -3,7 +3,7 @@ $(function(){
 		setCurrentJpy().then(result => {
 			dispUserwallet();
 		});
-		getNotPayCount();
+		getNotPayCount(true);
 //		getOnWorking();
 		getHistoryofWater().then(result => {
 			setCurrentJpy().then(result2 => {
@@ -123,7 +123,7 @@ function convertEthToJpyWal() {
 		walletState = true;
 	}
 	dispUserwallet();
-	getNotPayCount()
+	getNotPayCount(walletState)
 }
 
 //ethereumと円の変換
@@ -149,5 +149,5 @@ function convertEthToJpy() {
 		}
 		histState = true;
 	}
-	getNotPayCount()
+	getNotPayCount(histState);
 }

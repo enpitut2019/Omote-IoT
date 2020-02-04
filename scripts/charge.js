@@ -3,7 +3,7 @@ $(function(){
 		setCurrentJpy().then(result2 => {
 			dispUserwallet();
 		});
-		getNotPayCount();
+		getNotPayCount(true);
 	});
 });
 
@@ -101,5 +101,5 @@ function convertEthToJpyWal() {
 	}
 	document.form.reset();
 	dispUserwallet();
-	getNotPayCount()
+	getNotPayCount(walletState)
 }
