@@ -101,5 +101,5 @@ function convertEthToJpyWal() {
 	}
 	document.form.reset();
 	dispUserwallet();
-
+	getNotPayCount()
 }

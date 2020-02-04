@@ -123,6 +123,7 @@ function convertEthToJpyWal() {
 		walletState = true;
 	}
 	dispUserwallet();
+	getNotPayCount()
 }
 
 //ethereumと円の変換
@@ -148,4 +149,5 @@ function convertEthToJpy() {
 		}
 		histState = true;
 	}
+	getNotPayCount()
 }
