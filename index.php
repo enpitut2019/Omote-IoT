@@ -49,7 +49,7 @@
 		</nav>
 	</header>
 	<div class="p-3">
-			<br><br>
+			<br>
 			<div class="h3 text-center" id='noAccount'></div>
 			<div class="h3 text-center text-danger" id='onWorking'></div>
 			<div class="h3 text-center text-danger" id='unpaid'></div>
