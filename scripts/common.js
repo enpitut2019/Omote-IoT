@@ -25,8 +25,8 @@ function init() {
 							  $("#noAccount").append("<h4>利用するには初回登録が必要です</h4><a href='htmls/regist_form.html'>登録ページはこちら</a><br>");
 						  } else {
 							  contract = web3.eth.contract(abi).at(contractAddress);
-							  resolve();
 						  }
+						  resolve();
 					  }
 					});
 			})
