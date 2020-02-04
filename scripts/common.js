@@ -111,7 +111,11 @@ function getUnpaidCharge() {
 	contract.get_unpaid_charge.call({from:account},(error,result) => {
 		if(!error) {
 			$("#onWorking").text("未払金があります");
-			$("#unpaid").text("未払金: " + (Math.floor(result * Math.pow(10, -15))/1000).toLocaleString() + '(ETH)');
+			if(walletState) {
+				$('#unpaid').text("未払金: " + (Math.floor(currentPrice * result * Math.pow(10, -18))/1).toLocaleString() + '(JPY)')
+			} else {
+				$('#unpaid').text("未払金: " + (Math.floor(result * Math.pow(10, -15))/1000).toLocaleString() + '(ETH)')
+			}
 		}
 	});
 }
